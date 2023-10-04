@@ -1,7 +1,9 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
-
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,16 +15,26 @@ use App\Http\Controllers\EventController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
 Route::get('/inbox', function () {
     return view('inbox');
 });
 Route::get('/time-line', function () {
     return view('time-line');
 });
-Route::get('/', function(){ return view('login');})->name('login');
-Route::get('/home', function(){ return view('home');})->name('home');
-Route::get('/signup', function(){ return view('signup');})->name('signup');
-Route::get('/dashboard', function(){ return view('dashboard');});
+Route::get('/', function () {
+    return view('login');
+})->name('signin');
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+Route::get('/signup', function () {
+    return view('signup');
+})->name('signup');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 //Events ==>
 //add event routes
@@ -35,3 +47,8 @@ Route::put('events/{event}', [EventController::class, 'update'])->name('editEven
 Route::get('/dashboard/events', [EventController::class, 'index'])->name('showEvent');
 //delete event
 Route::delete('dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

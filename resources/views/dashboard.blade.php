@@ -457,12 +457,12 @@
 
         <section>
             <div class="getquot-baner">
-                <span>Want to join our awesome forum and start interacting with others?</span>
-                <a href="#" title="">Sign up</a>
+                <span>Want to return back as a user?</span>
+                <a href="{{ route('home') }}" title="">return</a>
             </div>
         </section>
 
-        <footer>
+        {{-- <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
@@ -563,7 +563,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 
