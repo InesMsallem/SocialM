@@ -448,7 +448,12 @@
 
 
     </div>
-
+    <section>
+        <div class="getquot-baner">
+            <span>Want to return back as a user?</span>
+            <a href="{{ route('home') }}" title="">return</a>
+        </div>
+    </section>
 
     @vite(['resources/assets/js/script.js'])
     @vite(['resources/assets/js/map-init.js'])
