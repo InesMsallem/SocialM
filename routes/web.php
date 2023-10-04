@@ -1,7 +1,8 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\landingController;
+use App\Http\Controllers\EventController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +20,18 @@ Route::get('/time-line', function () {
     return view('time-line');
 });
 Route::get('/', function(){ return view('login');})->name('login');
-
 Route::get('/home', function(){ return view('home');})->name('home');
 Route::get('/signup', function(){ return view('signup');})->name('signup');
 Route::get('/dashboard', function(){ return view('dashboard');});
-Route::get('/dashboard/events/add', function(){ return view('events/add');})->name('addEvent');
-Route::get('/dashboard/events', function(){ return view('events/event');});
 
+//Events ==>
+//add event routes
+Route::get('/dashboard/events/add', [EventController::class, 'create'])->name('addEvent');
+Route::post('/events', [EventController::class, 'store'])->name('addEventPost');
+//edit event routes
+Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('editEvent');
+Route::put('events/{event}', [EventController::class, 'update'])->name('editEventPut');
+//display event 
+Route::get('/dashboard/events', [EventController::class, 'index'])->name('showEvent');
+//delete event
+Route::delete('dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');

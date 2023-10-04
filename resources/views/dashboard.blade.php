@@ -389,7 +389,7 @@
                                             <span>50</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Events</a>
+                                            <a href="{{ route('showEvent') }}" title="">Events</a>
                                             <span>14</span>
                                         </li>
                                         <li>
