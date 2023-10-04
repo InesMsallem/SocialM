@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\landingController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +26,5 @@ Route::get('/signup', function(){ return view('signup');})->name('signup');
 Route::get('/dashboard', function(){ return view('dashboard');});
 Route::get('/dashboard/events/add', function(){ return view('events/add');})->name('addEvent');
 Route::get('/dashboard/events', function(){ return view('events/event');});
+Route::resource('posts', PostController::class);
 
