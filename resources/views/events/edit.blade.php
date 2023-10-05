@@ -329,66 +329,54 @@
                                         <button><i class="ti-search"></i></button>
                                     </form>
                                     {{-- <div class="purify">
-                                        <span>filter by</span>
-                                        <select>
-                                            <option>Assending A-Z</option>
-                                            <option>Desending Z-A</option>
-                                            <option>Desending (date)</option>
-                                            <option>Asending (date)</option>
-                                        </select>
-                                        <a href="#" title="">purify</a>
-                                    </div> --}}
+									<span>filter by</span>
+									<select>
+										<option>Assending A-Z</option>
+										<option>Desending Z-A</option>
+										<option>Desending (date)</option>
+										<option>Asending (date)</option>
+									</select>
+									<a href="#" title="">purify</a>
+								</div> --}}
                                 </div>
-                                <a class="addnewforum" href="{{ route('addEvent') }}" title=""><i
-                                        class="fa fa-plus"></i> Add New</a>
                             </div>
-                            <div class="forum-list">
-                                <table class="table table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Events</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">starting</th>
-                                            <th scope="col">Delete</th>
-                                            <th scope="col">Edit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($events as $event)
-                                            <tr>
-                                                <td>
-                                                    <i class="fa fa-comments"></i>
-                                                    <a href="" title="">{{ $event->title }}</a>
-                                                    <p>{{ $event->description }}
-                                                    </p>
-                                                </td>
-                                                <td>{{ $event->location }}</td>
-                                                <td>{{ $event->start_time }} </td>
-                                                <td>
-                                                    <form action="{{ route('events.destroy', $event->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <form action="{{ route('editEvent', $event->id) }}" method="GET"
-                                                        style="display: inline;">
-                                                        <button type="submit" class="btn btn-primary">Edit</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            <div class="forum-form">
+                                <h5 class="f-title"><i class="ti-info-alt"></i> Edit Event</h5>
+                                <form method="POST" action="{{ route('editEventPut', $event->id) }}">
+                                    @csrf
+                                    @method('PUT') <!-- Use the PUT method for updating -->
+
+                                    <div class="form-group">
+                                        <input type="text" name="title" required="required"
+                                            placeholder="Event Title" value="{{ $event->title }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="location" required="required"
+                                            placeholder="Event Location" value="{{ $event->location }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="datetime-local" name="start_time" required="required"
+                                            value="{{ \Carbon\Carbon::parse($event->start_time)->format('Y-m-d\TH:i') }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="datetime-local" name="end_time" required="required"
+                                            value="{{ \Carbon\Carbon::parse($event->end_time)->format('Y-m-d\TH:i') }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="description" rows="4" required="required" placeholder="Event Description">{{ $event->description }}</textarea>
+                                    </div>
+
+                                    <div class="submit-btns">
+                                        <a href="{{ route('showEvent') }}" class="mtr-btn"><span>Cancel</span></a>
+                                        <button type="submit" class="mtr-btn"><span>Update Event</span></button>
+                                    </div>
+                                </form>
                             </div>
+
+
                         </div>
-
-
                         <div class="col-lg-3">
                             <aside class="sidebar full-style">
-
                                 <div class="widget">
                                     <h4 class="widget-title">Manage</h4>
                                     <ul class="forum-static">
@@ -397,7 +385,7 @@
                                             <span>13</span>
                                         </li>
                                         <li>
-                                            <a href="{{ route('showGroup') }}" title="">Groups</a>
+                                            <a href="" title="">Groups</a>
                                             <span>50</span>
                                         </li>
                                         <li>
@@ -414,39 +402,12 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="widget">
-                                    <h4 class="widget-title">Recent Events</h4>
-                                    <ul class="recent-topics">
-                                        <li>
-                                            <a href="" title="">The new Goddess of War trailer was
-                                                launched at E3!</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                            <i>The Community</i>
-                                        </li>
-                                        <li>
-                                            <a href="" title="">The new Goddess of War trailer was
-                                                launched at E3!</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                            <i>The Community</i>
-                                        </li>
-                                        <li>
-                                            <a href="" title="">The new Goddess of War trailer was
-                                                launched at E3!</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                            <i>The Community</i>
-                                        </li>
-                                    </ul>
-                                </div>
-
                             </aside>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-
-
     </div>
     <section>
         <div class="getquot-baner">
@@ -454,7 +415,6 @@
             <a href="{{ route('home') }}" title="">return</a>
         </div>
     </section>
-
     @vite(['resources/assets/js/script.js'])
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
