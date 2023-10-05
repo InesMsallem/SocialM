@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\landingController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
@@ -62,4 +65,14 @@ Route::get('/dashboard/groups', [GroupController::class, 'index'])->name('showGr
 Route::delete('dashboard/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
 
 
+//Comment ==>
+// Route to display the comment creation form
+Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+Route::put('/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
