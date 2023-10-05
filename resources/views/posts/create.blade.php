@@ -320,7 +320,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h1>Create Comment</h1>
+                                        <h1>Create Post</h1>
 
                                         @if ($errors->any())
                                         <div class="alert alert-danger">
