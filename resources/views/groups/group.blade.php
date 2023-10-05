@@ -359,14 +359,12 @@
                                                 <td>
                                                     <i class="fa fa-comments"></i>
                                                     <a href="" title="">{{ $group->name }}</a>
-                                                    <p>{{ $group->description }}
                                                     </p>
                                                 </td>
                                                 <td>
-                                             
-                                                   
-                                                    <p>{{ $group->description }}
-                                                    </p>
+
+                                                    {{ $group->description }}
+                                                    
                                                 </td>
                                                 <td>
                                                     <form action="{{ route('groups.destroy', $group->id) }}"
