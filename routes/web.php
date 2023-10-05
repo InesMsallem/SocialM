@@ -75,4 +75,3 @@ Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])-
 Route::put('/dashboard/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
