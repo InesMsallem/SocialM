@@ -11,25 +11,25 @@ class CommentController extends Controller
 {
 
     public function index()
-{
-    $commentCount = Comment::count();
-    $comments = Comment::all();
-    return view('comments.index', compact('comments','commentCount'));
-}
+    {
+        $commentCount = Comment::count();
+        $comments = Comment::all();
+        return view('comments.index', compact('comments', 'commentCount'));
+    }
 
 
     public function create()
     {
-        $users = User::all(); 
-        $posts = Post::all(); 
-        return view('comments.create', compact('users', 'posts'));
+        $commentCount = Comment::count();
+        $users = User::all();
+        $posts = Post::all();
+        return view('comments.create', compact('users', 'posts', 'commentCount'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'content' => 'required|string',
-            'user_id' => 'required|exists:users,id', 
             'post_id' => 'required|exists:posts,id',
         ]);
 
@@ -42,65 +42,64 @@ class CommentController extends Controller
         }
 
         Comment::create([
-            'user_id' => $request->input('user_id'), 
+            'user_id' => auth()->user()->id,
             'post_id' => $request->input('post_id'),
             'file' => $path,
             'content' => $request->input('content'),
-            'likes' => 0, 
+            'likes' => 0,
         ]);
 
         return redirect()->route('comments.index')->with('success', 'Comment created successfully.');
     }
 
     public function destroy($id)
-{
-    $comment = Comment::find($id);
-    
-    if (!$comment) {
-        return redirect()->route('comments.index')->with('error', 'Comment not found.');
+    {
+        $comment = Comment::find($id);
+
+        if (!$comment) {
+            return redirect()->route('comments.index')->with('error', 'Comment not found.');
+        }
+
+        $comment->delete();
+
+        return redirect()->route('comments.index')->with('success', 'Comment deleted successfully.');
     }
 
-    $comment->delete();
+    public function edit($id)
+    {
+        $commentCount = Comment::count();
+        $comment = Comment::findOrFail($id);
+        $users = User::all();
+        $posts = Post::all();
 
-    return redirect()->route('comments.index')->with('success', 'Comment deleted successfully.');
-}
-
-public function edit($id)
-{
-    $comment = Comment::findOrFail($id);
-    $users = User::all();
-    $posts = Post::all();
-
-    return view('comments.edit', compact('comment', 'users', 'posts'));
-}
-
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'file' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
-        'content' => 'required|string',
-        'user_id' => 'required|exists:users,id',
-        'post_id' => 'required|exists:posts,id',
-    ]);
-
-    $comment = Comment::findOrFail($id);
-    $comment->user_id = $request->input('user_id');
-    $comment->post_id = $request->input('post_id');
-    $comment->content = $request->input('content');
-
-    $file = $request->file('file');
-
-    if ($file) {
-        $path = $file->store('uploads', 'public');
-        $comment->file = $path;
-    } else {
-        $comment->file = null;
+        return view('comments.edit', compact('comment', 'users', 'posts', 'commentCount'));
     }
 
-    $comment->save();
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'file' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
+            'content' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+            'post_id' => 'required|exists:posts,id',
+        ]);
 
-    return redirect()->route('comments.index')->with('success', 'Comment updated successfully.');
-}
+        $comment = Comment::findOrFail($id);
+        $comment->user_id = $request->input('user_id');
+        $comment->post_id = $request->input('post_id');
+        $comment->content = $request->input('content');
 
+        $file = $request->file('file');
 
+        if ($file) {
+            $path = $file->store('uploads', 'public');
+            $comment->file = $path;
+        } else {
+            $comment->file = null;
+        }
+
+        $comment->save();
+
+        return redirect()->route('comments.index')->with('success', 'Comment updated successfully.');
+    }
 }

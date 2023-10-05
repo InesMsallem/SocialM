@@ -392,8 +392,9 @@
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Comments</a>
-                                            <span>50</span>
+                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
+                                            <span>{{$commentCount}}</span>
+
                                         </li>
                                     </ul>
                                 </div>

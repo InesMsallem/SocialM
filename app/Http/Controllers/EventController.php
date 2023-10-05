@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Comment;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,15 +13,17 @@ class EventController extends Controller
     // Display all events
     public function index()
     {
+        $commentCount = Comment::count();
         $events = Event::all();
-        return view('events.event', compact('events'));
+        return view('events.event', compact('events', 'commentCount'));
     }
 
     // Display the event creation form
     public function create()
     {
+        $commentCount = Comment::count();
         $users = User::all();
-        return view('events.add', compact('users'));
+        return view('events.add', compact('users', 'commentCount'));
     }
 
 
@@ -51,7 +55,8 @@ class EventController extends Controller
     //edit events
     public function edit(Event $event)
     {
-        return view('events.edit', compact('event'));
+        $commentCount = Comment::count();
+        return view('events.edit', compact('event', 'commentCount'));
     }
 
 

@@ -32,7 +32,7 @@
                     <a class="fa fa-sliders" href="#shoppingbag"></a>
                 </span>
             </div>
-           
+
             <nav id="menu" class="res-menu">
                 <ul>
                     <li><span>Home</span>
@@ -302,7 +302,7 @@
                             <div class="top-banner">
                                 <h1>Dashboard</h1>
                                 <nav class="breadcrumb">
-                                    <a class="breadcrumb-item" href="index.html">Home</a>
+                                    <a class="breadcrumb-item" href="{{ route('home') }}">Home</a>
                                     <span class="breadcrumb-item active">Dashboard</span>
                                 </nav>
                             </div>
@@ -317,65 +317,54 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9">
-                        <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                <h1>Create Comment</h1>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <h1>Create Comment</h1>
 
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
 
-                @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-                @endif
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
 
-                <form action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+                                        <form action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="post_id">Post:</label>
+                                                <select name="post_id" id="post_id" class="form-control">
+                                                    <!-- Populate with posts -->
+                                                    @foreach ($posts as $post)
+                                                    <option value="{{ $post->id }}">{{ $post->id }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
-                    <div class="form-group">
-                        <label for="user_id">User:</label>
-                        <select name="user_id" id="user_id" class="form-control">
-                            <!-- Populate with users -->
-                            @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                                            <div class="form-group">
+                                                <label for="file">File (optional):</label>
+                                                <input type="file" name="file" id="file" class="form-control-file">
+                                            </div>
 
-                    <div class="form-group">
-                        <label for="post_id">Post:</label>
-                        <select name="post_id" id="post_id" class="form-control">
-                            <!-- Populate with posts -->
-                            @foreach ($posts as $post)
-                            <option value="{{ $post->id }}">{{ $post->content }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                                            <div class="form-group">
+                                                <label for="content">Content:</label>
+                                                <textarea name="content" id="content" class="form-control" rows="4"></textarea>
+                                            </div>
 
-                    <div class="form-group">
-                        <label for="file">File (optional):</label>
-                        <input type="file" name="file" id="file" class="form-control-file">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="content">Content:</label>
-                        <textarea name="content" id="content" class="form-control" rows="4"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Create Comment</button>
-                </form>
-            </div>
-        </div>
-    </div>
+                                            <button type="submit" class="btn btn-primary">Create Comment</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="col-lg-3">
@@ -388,11 +377,11 @@
                                             <span>13</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Groups</a>
+                                            <a href="{{ route('showGroup') }}" title="">Groups</a>
                                             <span>50</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Events</a>
+                                            <a href="{{ route('showEvent') }}" title="">Events</a>
                                             <span>14</span>
                                         </li>
                                         <li>
@@ -400,8 +389,8 @@
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Comments</a>
-                                            <span>50</span>
+                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
+                                            <span>{{ $commentCount }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -535,14 +524,11 @@
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 

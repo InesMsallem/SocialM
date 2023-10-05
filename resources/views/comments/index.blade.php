@@ -323,71 +323,70 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="forum-warper">
-                               
-                                <a class="addnewforum" href="{{ route('comments.create') }}" title=""><i
-                                        class="fa fa-plus"></i> Add New</a>
+
+                                <a class="addnewforum" href="{{ route('comments.create') }}" title=""><i class="fa fa-plus"></i> Add New</a>
                             </div>
                             <div class="container">
-        <h1>Comments</h1>
+                                <h1>Comments</h1>
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+                                @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Post</th>
-                    <th>File</th>
-                    <th>Content</th>
-                    <th>Likes</th>
-                    <th>Action</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($comments as $comment)
-                    <tr>
-                        <td>{{ $comment->user->name }}</td>
-                        <td>{{ $comment->post->content }}</td>
-                        
-                        <td>
-    @if ($comment->file)
-    <a href="{{ asset('storage/' . $comment->file) }}" target="_blank"><img src="{{ asset('storage/' . $comment->file) }}" alt="Image"></a>
-        
-    @else
-        N/A
-    @endif
-</td>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Post</th>
+                                            <th>File</th>
+                                            <th>Content</th>
+                                            <th>Likes</th>
+                                            <th>Delete</th>
+                                            <th>Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($comments as $comment)
+                                        <tr>
+                                            <td>{{ $comment->user->name }}</td>
+                                            <td>{{ $comment->post->id }}</td>
 
-                        <td>{{ $comment->content }}</td>
-                        <td>{{ $comment->likes }}</td>
-                        <td>
-                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this comment?')">Delete</button>
-                    </form>
+                                            <td>
+                                                @if ($comment->file)
+                                                <a href="{{ asset('storage/' . $comment->file) }}" target="_blank"><img src="{{ asset('storage/' . $comment->file) }}" alt="Image"></a>
 
+                                                @else
+                                                N/A
+                                                @endif
+                                            </td>
 
-                </td>
-                <td>
-    <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-primary">Update</a>
-</td>
+                                            <td>{{ $comment->content }}</td>
+                                            <td>{{ $comment->likes }}</td>
+                                            <td>
+                                                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this comment?')">Delete</button>
+                                                </form>
 
 
-            </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-primary">Update</a>
+                                            </td>
+
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="col-lg-3">
                             <aside class="sidebar full-style">
-                              
+
                                 <div class="widget">
                                     <h4 class="widget-title">Manage</h4>
                                     <ul class="forum-static">
@@ -396,11 +395,11 @@
                                             <span>13</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Groups</a>
+                                            <a href="{{ route('showGroup') }}" title="">Groups</a>
                                             <span>50</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Events</a>
+                                            <a href="{{ route('showEvent') }}" title="">Events</a>
                                             <span>14</span>
                                         </li>
                                         <li>
@@ -413,8 +412,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                               
-                                
+
+
                             </aside>
                         </div>
                     </div>
@@ -422,20 +421,22 @@
             </div>
         </section>
     </div>
-
+    <section>
+        <div class="getquot-baner">
+            <span>Want to return back as a user?</span>
+            <a href="{{ route('home') }}" title="">return</a>
+        </div>
+    </section>
 
     @vite(['resources/assets/js/script.js'])
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 

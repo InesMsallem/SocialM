@@ -339,8 +339,7 @@
                                         <a href="#" title="">purify</a>
                                     </div> --}}
                                 </div>
-                                <a class="addnewforum" href="{{ route('addEvent') }}" title=""><i
-                                        class="fa fa-plus"></i> Add New</a>
+                                <a class="addnewforum" href="{{ route('addEvent') }}" title=""><i class="fa fa-plus"></i> Add New</a>
                             </div>
                             <div class="forum-list">
                                 <table class="table table-responsive">
@@ -355,30 +354,28 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($events as $event)
-                                            <tr>
-                                                <td>
-                                                    <i class="fa fa-comments"></i>
-                                                    <a href="" title="">{{ $event->title }}</a>
-                                                    <p>{{ $event->description }}
-                                                    </p>
-                                                </td>
-                                                <td>{{ $event->location }}</td>
-                                                <td>{{ $event->start_time }} </td>
-                                                <td>
-                                                    <form action="{{ route('events.destroy', $event->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <form action="{{ route('editEvent', $event->id) }}" method="GET"
-                                                        style="display: inline;">
-                                                        <button type="submit" class="btn btn-primary">Edit</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>
+                                                <i class="fa fa-comments"></i>
+                                                <a href="" title="">{{ $event->title }}</a>
+                                                <p>{{ $event->description }}
+                                                </p>
+                                            </td>
+                                            <td>{{ $event->location }}</td>
+                                            <td>{{ $event->start_time }} </td>
+                                            <td>
+                                                <form action="{{ route('events.destroy', $event->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('editEvent', $event->id) }}" method="GET" style="display: inline;">
+                                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -409,8 +406,9 @@
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Comments</a>
-                                            <span>50</span>
+                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
+                                            <span>{{$commentCount}}</span>
+
                                         </li>
                                     </ul>
                                 </div>
@@ -459,14 +457,11 @@
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 
