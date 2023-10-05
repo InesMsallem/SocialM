@@ -393,7 +393,7 @@
                                             <span>14</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Posts</a>
+                                            <a href="{{ route('posts.index') }}">Posts</a>
                                             <span>32</span>
                                         </li>
                                         <li>
