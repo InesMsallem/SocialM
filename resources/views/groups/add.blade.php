@@ -307,7 +307,7 @@
                             <div class="top-banner">
                                 <h1>Dashboard</h1>
                                 <nav class="breadcrumb">
-                                    <a class="breadcrumb-item" href="index.html">Home</a>
+                                    <a class="breadcrumb-item" href="{{ route('home') }}">Home</a>
                                     <span class="breadcrumb-item active">Dashboard</span>
                                 </nav>
                             </div>

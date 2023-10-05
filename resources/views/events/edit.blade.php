@@ -307,7 +307,7 @@
                             <div class="top-banner">
                                 <h1>Dashboard</h1>
                                 <nav class="breadcrumb">
-                                    <a class="breadcrumb-item" href="index.html">Home</a>
+                                    <a class="breadcrumb-item" href="{{ route('home') }}">Home</a>
                                     <span class="breadcrumb-item active">Dashboard</span>
                                 </nav>
                             </div>
@@ -347,20 +347,16 @@
                                     @method('PUT') <!-- Use the PUT method for updating -->
 
                                     <div class="form-group">
-                                        <input type="text" name="title" required="required"
-                                            placeholder="Event Title" value="{{ $event->title }}" />
+                                        <input type="text" name="title" required="required" placeholder="Event Title" value="{{ $event->title }}" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="location" required="required"
-                                            placeholder="Event Location" value="{{ $event->location }}" />
+                                        <input type="text" name="location" required="required" placeholder="Event Location" value="{{ $event->location }}" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="datetime-local" name="start_time" required="required"
-                                            value="{{ \Carbon\Carbon::parse($event->start_time)->format('Y-m-d\TH:i') }}" />
+                                        <input type="datetime-local" name="start_time" required="required" value="{{ \Carbon\Carbon::parse($event->start_time)->format('Y-m-d\TH:i') }}" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="datetime-local" name="end_time" required="required"
-                                            value="{{ \Carbon\Carbon::parse($event->end_time)->format('Y-m-d\TH:i') }}" />
+                                        <input type="datetime-local" name="end_time" required="required" value="{{ \Carbon\Carbon::parse($event->end_time)->format('Y-m-d\TH:i') }}" />
                                     </div>
                                     <div class="form-group">
                                         <textarea name="description" rows="4" required="required" placeholder="Event Description">{{ $event->description }}</textarea>
@@ -420,14 +416,11 @@
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 
