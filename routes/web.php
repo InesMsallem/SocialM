@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +49,17 @@ Route::get('/dashboard/events', [EventController::class, 'index'])->name('showEv
 //delete event
 Route::delete('dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
-
+//Groups ==>
+//add group routes
+Route::get('/dashboard/groups/add', [GroupController::class, 'create'])->name('addGroup');
+Route::post('/groups', [GroupController::class, 'store'])->name('addGroupPost');
+//edit group routes
+Route::get('groups/{group}/edit', [GroupController::class, 'edit'])->name('editGroup');
+Route::put('groups/{group}', [GroupController::class, 'update'])->name('editGroupPut');
+//display group 
+Route::get('/dashboard/groups', [GroupController::class, 'index'])->name('showGroup');
+//delete group
+Route::delete('dashboard/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

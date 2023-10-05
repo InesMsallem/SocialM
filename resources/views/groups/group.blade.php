@@ -339,33 +339,37 @@
                                         <a href="#" title="">purify</a>
                                     </div> --}}
                                 </div>
-                                <a class="addnewforum" href="{{ route('addEvent') }}" title=""><i
+                                <a class="addnewforum" href="{{ route('addGroup') }}" title=""><i
                                         class="fa fa-plus"></i> Add New</a>
                             </div>
                             <div class="forum-list">
                                 <table class="table table-responsive">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Events</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">starting</th>
+                                            <th scope="col">Groups</th>
+                                            <th scope="col">Desription</th>
+                                            
                                             <th scope="col">Delete</th>
                                             <th scope="col">Edit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($events as $event)
+                                        @foreach ($groups as $group)
                                             <tr>
                                                 <td>
                                                     <i class="fa fa-comments"></i>
-                                                    <a href="" title="">{{ $event->title }}</a>
-                                                    <p>{{ $event->description }}
+                                                    <a href="" title="">{{ $group->name }}</a>
+                                                    <p>{{ $group->description }}
                                                     </p>
                                                 </td>
-                                                <td>{{ $event->location }}</td>
-                                                <td>{{ $event->start_time }} </td>
                                                 <td>
-                                                    <form action="{{ route('events.destroy', $event->id) }}"
+                                             
+                                                   
+                                                    <p>{{ $group->description }}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('groups.destroy', $group->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -373,7 +377,7 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('editEvent', $event->id) }}" method="GET"
+                                                    <form action="{{ route('editGroup', $group->id) }}" method="GET"
                                                         style="display: inline;">
                                                         <button type="submit" class="btn btn-primary">Edit</button>
                                                     </form>
@@ -397,7 +401,7 @@
                                             <span>13</span>
                                         </li>
                                         <li>
-                                            <a href="{{ route('showGroup') }}" title="">Groups</a>
+                                            <a href="" title="">Groups</a>
                                             <span>50</span>
                                         </li>
                                         <li>
