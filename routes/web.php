@@ -25,24 +25,12 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::get('/inbox', function () {
-    return view('inbox');
-});
-Route::get('/time-line', function () {
-    return view('time-line');
-});
-Route::get('/', function () {
-    return view('login');
-})->name('signin');
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
-Route::get('/signup', function () {
-    return view('signup');
-})->name('signup');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/inbox', function () {return view('inbox');});
+Route::get('/time-line', function () {return view('time-line');});
+Route::get('/', function () {return view('login');})->name('signin');
+Route::get('/home', function () {return view('home');})->name('home');
+Route::get('/signup', function () {return view('signup');})->name('signup');
+Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
 //Events ==>
 //add event routes
@@ -79,16 +67,12 @@ Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])-
 Route::put('/dashboard/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
 
-Route::get('/home', function(){ return view('home');})->name('home');
-Route::get('/home', function(){ return view('home');})->name('home');
-Route::get('/signup', function(){ return view('signup');})->name('signup');
-Route::get('/dashboard', function(){ return view('dashboard');});
-Route::get('/dashboard/events/add', function(){ return view('events/add');})->name('addEvent');
-Route::get('/dashboard/events', function(){ return view('events/event');});
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+
+
+
+// Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::resource('posts', PostController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
