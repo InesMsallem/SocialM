@@ -22,9 +22,13 @@ Route::get('/time-line', function () {
 Route::get('/', function(){ return view('login');})->name('login');
 
 Route::get('/home', function(){ return view('home');})->name('home');
+Route::get('/home', function(){ return view('home');})->name('home');
 Route::get('/signup', function(){ return view('signup');})->name('signup');
 Route::get('/dashboard', function(){ return view('dashboard');});
 Route::get('/dashboard/events/add', function(){ return view('events/add');})->name('addEvent');
 Route::get('/dashboard/events', function(){ return view('events/event');});
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::resource('posts', PostController::class);
+
+
 
