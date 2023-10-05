@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 </head>
 
@@ -398,32 +399,45 @@
                                                 <img src="{{ Vite::asset('resources/assets/images/resources/admin2.jpg') }}" alt="">
                                             </figure>
                                             <div class="newpst-input">
-                                                <form method="post">
-                                                    <textarea rows="2" placeholder="write something"></textarea>
+                                                <form action="{{ route('posts.store') }}" method="post">
+                                                    @csrf <!-- This is for CSRF protection -->
+                                                    @if ($message = Session::get('success'))
+                                                        <div class="alert alert-success" id="success-alert">
+                                                            <p>{{ $message }}</p>
+                                                        </div>
+                                                        <script>
+                                                            // Add JavaScript to hide the alert after 2 seconds
+                                                            setTimeout(function() {
+                                                                var successAlert = document.getElementById('success-alert');
+                                                                successAlert.style.display = 'none';
+                                                            }, 2000); // 2000 milliseconds = 2 seconds
+                                                        </script>
+                                                    @endif
+                                                    <textarea name="content" rows="2" placeholder="write something"></textarea>
                                                     <div class="attachments">
                                                         <ul>
                                                             <li>
                                                                 <i class="fa fa-music"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file">
+                                                                    <input type="file" name="music_attachment">
                                                                 </label>
                                                             </li>
                                                             <li>
                                                                 <i class="fa fa-image"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file">
+                                                                    <input type="file" name="image_attachment">
                                                                 </label>
                                                             </li>
                                                             <li>
                                                                 <i class="fa fa-video-camera"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file">
+                                                                    <input type="file" name="video_attachment">
                                                                 </label>
                                                             </li>
                                                             <li>
                                                                 <i class="fa fa-camera"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file">
+                                                                    <input type="file" name="camera_attachment">
                                                                 </label>
                                                             </li>
                                                             <li>
@@ -432,6 +446,7 @@
                                                         </ul>
                                                     </div>
                                                 </form>
+
                                             </div>
                                         </div>
                                     </div><!-- add post new box -->
@@ -451,12 +466,16 @@
                                                         <img src="{{ Vite::asset('resources/assets/images/resources/user-post.jpg') }}" alt="">
                                                         <div class="we-video-info">
                                                             <ul>
+<<<<<<< HEAD
                                                                 <li>
                                                                     <span class="views" data-toggle="tooltip" title="views">
                                                                         <i class="fa fa-eye"></i>
                                                                         <ins>1.2k</ins>
                                                                     </span>
                                                                 </li>
+=======
+
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                                                 <li>
                                                                     <span class="comment" data-toggle="tooltip" title="Comments">
                                                                         <i class="fa fa-comments-o"></i>
@@ -469,12 +488,16 @@
                                                                         <ins>2.2k</ins>
                                                                     </span>
                                                                 </li>
+<<<<<<< HEAD
                                                                 <li>
                                                                     <span class="dislike" data-toggle="tooltip" title="dislike">
                                                                         <i class="ti-heart-broken"></i>
                                                                         <ins>200</ins>
                                                                     </span>
                                                                 </li>
+=======
+
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                                                 <li class="social-media">
                                                                     <div class="menu">
                                                                         <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
@@ -632,6 +655,7 @@
                                                 </div>
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                         <div class="central-meta item">
                                             <div class="user-post">
                                                 <div class="friend-info">
@@ -1057,6 +1081,8 @@
                                                 </div>
                                             </div>
                                         </div>
+=======
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                     </div>
                                 </div><!-- centerl meta -->
                                 <div class="col-lg-3">
@@ -1208,7 +1234,12 @@
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="time-line.html">daniel warber</a>
+<<<<<<< HEAD
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcb6bdafb3b2be9cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</a></i>
+=======
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                                data-cfemail="dcb6bdafb3b2be9cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</a></i>
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                                     </div>
                                                 </li>
                                                 <li>
@@ -1219,7 +1250,12 @@
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="time-line.html">andrew</a>
+<<<<<<< HEAD
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7bdb6a4b8b9b597b0bab6bebbf9b4b8ba">[email&#160;protected]</a></i>
+=======
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                                data-cfemail="d7bdb6a4b8b9b597b0bab6bebbf9b4b8ba">[email&#160;protected]</a></i>
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                                     </div>
                                                 </li>
                                                 <li>
@@ -1230,7 +1266,12 @@
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="time-line.html">amy watson</a>
+<<<<<<< HEAD
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aec4cfddc1c0cceec9c3cfc7c280cdc1c3">[email&#160;protected]</a></i>
+=======
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                                data-cfemail="aec4cfddc1c0cceec9c3cfc7c280cdc1c3">[email&#160;protected]</a></i>
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                                     </div>
                                                 </li>
                                                 <li>
@@ -1241,7 +1282,12 @@
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="time-line.html">daniel warber</a>
+<<<<<<< HEAD
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a9c3c8dac6c7cbe9cec4c8c0c587cac6c4">[email&#160;protected]</a></i>
+=======
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                                data-cfemail="a9c3c8dac6c7cbe9cec4c8c0c587cac6c4">[email&#160;protected]</a></i>
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                                     </div>
                                                 </li>
                                                 <li>
@@ -1252,7 +1298,12 @@
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="time-line.html">Sarah Loren</a>
+<<<<<<< HEAD
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="adcfccdfc3c8deedcac0ccc4c183cec2c0">[email&#160;protected]</a></i>
+=======
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                                data-cfemail="adcfccdfc3c8deedcac0ccc4c183cec2c0">[email&#160;protected]</a></i>
+>>>>>>> c3d417c6aa3bea38fd79a6bae88bad80006cf910
                                                     </div>
                                                 </li>
                                             </ul>
