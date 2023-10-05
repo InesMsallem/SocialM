@@ -451,6 +451,7 @@
                                         </div>
                                     </div><!-- add post new box -->
                                     <div class="loadMore">
+                                        
                                         <div class="central-meta item">
                                             <div class="user-post">
                                                 <div class="friend-info">
