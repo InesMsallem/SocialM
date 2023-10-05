@@ -34,12 +34,8 @@
                     <li>
                         <a href="#" title="">Home</a>
                         <ul>
-                            <li><a href="index.html" title="">Home Social</a></li>
-                            <li><a href="index2.html" title="">Home Social 2</a></li>
+                            <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
                             <li><a href="index-company.html" title="">Home Company</a></li>
-                            <li><a href="landing.html" title="">Login page</a></li>
-                            <li><a href="logout.html" title="">Logout Page</a></li>
-                            <li><a href="newsfeed.html" title="">news feed</a></li>
                         </ul>
                     </li>
                     <li>
@@ -94,7 +90,7 @@
                             </form>
                         </div>
                     </li>
-                    <li><a href="newsfeed.html" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+                    <li><a href="" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
                     <li>
                         <a href="#" title="Notification" data-ripple="">
                             <i class="ti-bell"></i><span>20</span>
@@ -250,16 +246,27 @@
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
-                        <a href="#" title=""><span class="status f-away"></span>away</a>
-                        <a href="#" title=""><span class="status f-off"></span>offline</a>
-                        <a href="#" title=""><i class="ti-user"></i> view profile</a>
+                        {{-- <a href="#" title=""><span class="status f-away"></span>away</a>
+                        <a href="#" title=""><span class="status f-off"></span>offline</a> --}}
+                        @if (Auth::check())
+                            <a href="#" title=""><i class="ti-user"></i> {{ Auth::user()->name }}</a>
+                        @endif
                         <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-                        <a href="#" title=""><i class="ti-target"></i>activity log</a>
+                        <a href="" title=""><i class="ti-target"></i>activity log</a>
                         <a href="#" title=""><i class="ti-settings"></i>account setting</a>
-                        <a href="#" title=""><i class="ti-power-off"></i>log out</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                            <i class="ti-power-off"></i> {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                 </div>
                 <span class="ti-menu main-menu" data-ripple=""></span>
+
             </div>
         </div><!-- topbar -->
 
@@ -317,6 +324,7 @@
                                                 </li>
                                                 <li>
                                                     <i class="ti-power-off"></i>
+
                                                     <a href="landing.html" title="">Logout</a>
                                                 </li>
                                             </ul>
