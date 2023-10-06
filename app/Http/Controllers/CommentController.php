@@ -31,6 +31,7 @@ class CommentController extends Controller
         $request->validate([
             'content' => 'required|string',
             'post_id' => 'required|exists:posts,id',
+
         ]);
 
         $file = $request->file('file');
@@ -49,7 +50,7 @@ class CommentController extends Controller
             'likes' => 0,
         ]);
 
-        return redirect()->route('comments.index')->with('success', 'Comment created successfully.');
+        return back()->with('success', 'Comment deleted successfully.');
     }
 
     public function destroy($id)
@@ -62,7 +63,7 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return redirect()->route('comments.index')->with('success', 'Comment deleted successfully.');
+        return back()->with('success', 'Comment deleted successfully.');
     }
 
     public function edit($id)
@@ -100,6 +101,6 @@ class CommentController extends Controller
 
         $comment->save();
 
-        return redirect()->route('comments.index')->with('success', 'Comment updated successfully.');
+        return back()->with('success', 'Comment deleted successfully.');
     }
 }

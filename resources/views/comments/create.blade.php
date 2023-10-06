@@ -351,7 +351,9 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="file">File (optional):</label>
+                                                <label for="file" class="custom-file-upload"> Upload file (optional):
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                </label>
                                                 <input type="file" name="file" id="file" class="form-control-file">
                                             </div>
 
