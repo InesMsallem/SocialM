@@ -10,6 +10,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -67,6 +68,13 @@ Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])-
 Route::put('/dashboard/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
 
+// Pages
+Route::get('/dashboard/pages', [PageController::class, 'index'])->name('pages.index');
+Route::get('/dashboard/pages/add', [PageController::class, 'create'])->name('pages.create');
+Route::post('/dashboard/pages', [PageController::class, 'store'])->name('pages.store');
+Route::get('/dashboard/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
+Route::put('/dashboard/pages/{page}', [PageController::class, 'update'])->name('pages.update');
+Route::delete('/dashboard/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
 
 
