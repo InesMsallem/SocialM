@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('location');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->unsignedBigInteger('user_id'); // Remove nullable modifier
+            $table->unsignedBigInteger('user_id'); 
             $table->timestamps();
             
             // Define a foreign key constraint for the user who created the event

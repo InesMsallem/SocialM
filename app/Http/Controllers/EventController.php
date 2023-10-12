@@ -6,16 +6,27 @@ use App\Models\Event;
 use App\Models\Comment;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    // Display all events
+    // Display all events backOffice
     public function index()
     {
         $commentCount = Comment::count();
-        $events = Event::all();
+        $events = Event::with('creator')->get();
         return view('events.event', compact('events', 'commentCount'));
+    }
+    // display event frontOffice
+    public function displayEvents()
+    {
+        $commentCount = Comment::count();
+        $events = Event::join('users', 'events.user_id', '=', 'users.id')
+            ->select('events.*', 'users.name as username')
+            ->get();
+        return view('events.frontOffice.eventFrontOffice', compact('events', 'commentCount'));
     }
 
     // Display the event creation form
@@ -23,6 +34,7 @@ class EventController extends Controller
     {
         $commentCount = Comment::count();
         $users = User::all();
+
         return view('events.add', compact('users', 'commentCount'));
     }
 
@@ -37,7 +49,10 @@ class EventController extends Controller
             'start_time' => 'required',
             'end_time' => 'required',
         ]);
-        Event::create($validatedData);
+        $user = Auth::user();
+        $event = new Event($validatedData);
+        $event->user_id = $user->id;
+        $event->save();
         return redirect('dashboard/events');
     }
 

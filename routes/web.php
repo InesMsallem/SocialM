@@ -43,6 +43,8 @@ Route::put('events/{event}', [EventController::class, 'update'])->name('editEven
 Route::get('/dashboard/events', [EventController::class, 'index'])->name('showEvent');
 //delete event
 Route::delete('dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+//display event frontOffice
+Route::get('/home/events', [EventController::class, 'displayEvents'])->name('events');
 
 //Groups ==>
 //add group routes

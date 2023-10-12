@@ -287,7 +287,7 @@
                                                 </li>
                                                 <li>
                                                     <i class="ti-image"></i>
-                                                    <a href="timeline-photos.html" title="">images</a>
+                                                    <a href="{{ route('events') }}" title="">Events</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-video-camera"></i>
