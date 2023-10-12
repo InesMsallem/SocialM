@@ -32,12 +32,7 @@
                     <a class="fa fa-sliders" href="#shoppingbag"></a>
                 </span>
             </div>
-            <div class="mh-head second">
-                <form class="mh-form">
-                    <input placeholder="search" />
-                    <a href="#/" class="fa fa-search"></a>
-                </form>
-            </div>
+
             <nav id="menu" class="res-menu">
                 <ul>
                     <li><span>Home</span>
@@ -322,49 +317,62 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9">
-                            <div class="forum-warper">
-                                <div class="post-filter-sec">
-                                    <form method="post" class="filter-form">
-                                        <input type="post" placeholder="Search post">
-                                        <button><i class="ti-search"></i></button>
-                                    </form>
-                                    {{-- <div class="purify">
-									<span>filter by</span>
-									<select>
-										<option>Assending A-Z</option>
-										<option>Desending Z-A</option>
-										<option>Desending (date)</option>
-										<option>Asending (date)</option>
-									</select>
-									<a href="#" title="">purify</a>
-								</div> --}}
-                                </div>
-                            </div>
-                            <div class="forum-form">
-                                <h5 class="f-title"><i class="ti-info-alt"></i> Create Event</h5>
-                                <form method="POST" action="{{ route('addEventPost') }}">
-                                    @csrf <!-- Add CSRF token -->
-                                    <div class="form-group">
-                                        <input type="text" name="title" required="required" placeholder="Event Title" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="location" required="required" placeholder="Event Location" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="datetime-local" name="start_time" required="required" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="datetime-local" name="end_time" required="required" />
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
-                                    </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <h1>Create Post</h1>
 
-                                    <div class="submit-btns">
-                                        <button type="button" class="mtr-btn"><span>Cancel</span></button>
-                                        <button type="submit" class="mtr-btn"><span>Create Event</span></button>
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
+
+                                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Post Content:</strong>
+                        <input type="text" name="content" class="form-control" placeholder="Post content">
+                        @error('content')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Post Likes:</strong>
+                        <input type="text" name="likes" class="form-control" placeholder="Post likes">
+                        @error('likes')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Post Comments:</strong>
+                        <input type="text" name="comments" class="form-control" placeholder="Post comments">
+                        @error('comments')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary ml-3">Submit</button>
+            </div>
+        </form>
                                     </div>
-                                </form>
+                                </div>
                             </div>
 
                         </div>
@@ -378,7 +386,7 @@
                                             <span>13</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Groups</a>
+                                            <a href="{{ route('showGroup') }}" title="">Groups</a>
                                             <span>50</span>
                                         </li>
                                         <li>
@@ -391,8 +399,7 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
-                                            <span>{{$commentCount}}</span>
-
+                                            <span>10</span>
                                         </li>
                                     </ul>
                                 </div>

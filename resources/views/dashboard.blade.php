@@ -389,16 +389,15 @@
                                             <span>50</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Events</a>
+                                            <a href="{{ route('showEvent') }}" title="">Events</a>
                                             <span>14</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Posts</a>
+                                            <a href="{{ route('posts.index') }}">Posts</a>
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Comments</a>
-                                            <span>50</span>
+                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -457,12 +456,12 @@
 
         <section>
             <div class="getquot-baner">
-                <span>Want to join our awesome forum and start interacting with others?</span>
-                <a href="#" title="">Sign up</a>
+                <span>Want to return back as a user?</span>
+                <a href="{{ route('home') }}" title="">return</a>
             </div>
         </section>
 
-        <footer>
+        {{-- <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
@@ -563,7 +562,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 
