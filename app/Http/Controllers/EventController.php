@@ -37,8 +37,7 @@ class EventController extends Controller
 
         return view('events.add', compact('users', 'commentCount'));
     }
-
-
+ 
     // Store a new event in the database
     public function store(Request $request)
     {
@@ -53,7 +52,7 @@ class EventController extends Controller
         $event = new Event($validatedData);
         $event->user_id = $user->id;
         $event->save();
-        return redirect('dashboard/events');
+        return back();
     }
 
 
@@ -88,5 +87,19 @@ class EventController extends Controller
 
         $event->update($validatedData);
         return redirect()->route('showEvent');
+    }
+
+    public function participateInEvent(Event $event)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+            if (!$event->participants->contains($user)) {
+                $event->participants()->attach($user);
+            } else {
+                // User is already a participant, handle accordingly
+            }
+            return redirect()->route('events', $event->id);
+        } else {
+        }
     }
 }

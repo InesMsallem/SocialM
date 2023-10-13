@@ -45,6 +45,8 @@ Route::get('/dashboard/events', [EventController::class, 'index'])->name('showEv
 Route::delete('dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 //display event frontOffice
 Route::get('/home/events', [EventController::class, 'displayEvents'])->name('events');
+//participate
+Route::post('/home/events/{event}/participate', [EventController::class, 'participateInEvent'])->name('eventParticipate');
 
 //Groups ==>
 //add group routes
