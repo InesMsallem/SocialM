@@ -19,11 +19,12 @@ class Event extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function attendees(): BelongsToMany
+    public function participants(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'event_attendees', 'event_id', 'user_id')
-            ->withTimestamps(); 
+        return $this->belongsToMany(User::class, 'event_user', 'event_id', 'user_id')
+            ->withTimestamps();
     }
+
 
     public function eventsCreatedByUser(): HasOne
     {
