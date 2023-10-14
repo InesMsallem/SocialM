@@ -48,6 +48,7 @@ Route::get('/home/events', [EventController::class, 'displayEvents'])->name('eve
 //participate
 Route::post('/home/events/{event}/participate', [EventController::class, 'participateInEvent'])->name('eventParticipate');
 
+
 //Groups ==>
 //add group routes
 Route::get('/dashboard/groups/add', [GroupController::class, 'create'])->name('addGroup');

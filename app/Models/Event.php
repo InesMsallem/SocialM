@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Event extends Model
 {
     protected $fillable = [
-        'title', 'description', 'location', 'start_time', 'end_time',
+        'title', 'description', 'location', 'start_time', 'end_time','image','category',
     ];
-
+    
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

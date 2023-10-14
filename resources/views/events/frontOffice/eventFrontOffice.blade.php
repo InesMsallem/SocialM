@@ -11,7 +11,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>Events</title>
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
@@ -20,7 +20,6 @@
 </head>
 
 <body>
-    <!--<div class="se-pre-con"></div>-->
     <div class="theme-layout">
         <div class="topbar stick">
             <div class="logo">
@@ -295,8 +294,9 @@
                                     <h4 class="widget-title">Shortcuts</h4>
                                     <ul class="naves">
                                         <li>
-                                            <i class="ti-clipboard"></i>
-                                            <a href="newsfeed.html" title="">News feed</a>
+                                            <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#myModal"
+                                                href="" title="">Create
+                                                event</a>
                                         </li>
                                         <li>
                                             <i class="ti-mouse-alt"></i>
@@ -304,7 +304,7 @@
                                         </li>
                                         <li>
                                             <i class="ti-files"></i>
-                                            <a href="fav-page.html" title="">My pages</a>
+                                            <a href="fav-page.html" title="">My events</a>
                                         </li>
                                         <li>
                                             <i class="ti-user"></i>
@@ -326,87 +326,113 @@
                         <div class="col-lg-9">
                             <div class="blog-sec right-pading">
                                 <div class="post-filter-sec">
-                                    <form method="post" class="filter-form">
-                                        <input type="post" placeholder="Search event">
-                                        <button><i class="ti-search"></i></button>
+                                    <form method="get" class="filter-form">
+                                        <input type="text" name="search" placeholder="Search event"
+                                            value="{{ request('search') }}">
+                                        <button type="submit"><i class="ti-search"></i></button>
                                     </form>
-                                    <div class="purify">
-                                        <span>filter by</span>
-                                        <select>
-                                            <option>All categories</option>
-                                            <option>By Favouirtes</option>
-                                            <option>By Likes</option>
-                                        </select>
-                                        <select>
-                                            <option>Assending A-Z</option>
-                                            <option>Desending Z-A</option>
-                                            <option>Desending (date)</option>
-                                            <option>Asending (date)</option>
-                                        </select>
-                                        <a href="#" title="" data-toggle="modal"
-                                            data-target="#myModal">Add</a>
+                                    <div class="purify mt-1">
+                                        <form method="get" action="{{ route('events') }}">
+                                            <select name="category">
+                                                <option value="">All categories</option>
+                                                <option value="art">Art</option>
+                                                <option value="cultural">Cultural</option>
+                                                <option value="music">Music</option>
+                                                <option value="sports">Sports</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                            <button type="submit" class="py-2 px-3"> Purify
+                                            </button>
+                                        </form>
                                     </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Add Item</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Your form goes here -->
-                                                    <form method="POST" action="{{ route('addEventPost') }}">
-                                                        @csrf <!-- Add CSRF token -->
-                                                        <div class="form-group">
-                                                            <input type="text" name="title" required="required"
-                                                                placeholder="Event Title" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="text" name="location" required="required"
-                                                                placeholder="Event Location" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="datetime-local" name="start_time"
-                                                                required="required" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="datetime-local" name="end_time"
-                                                                required="required" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
-                                                        </div>
-
-                                                        <div class="submit-btns">
-                                                            <button type="button" class="mtr-btn"
-                                                                data-dismiss="modal"><span>Cancel</span></button>
-                                                            <button type="submit" class="mtr-btn"><span>Create
-                                                                </span></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="{{ route('addEventPost') }}"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <input type="text" name="title" required="required"
+                                                            placeholder="Event Title" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="location" required="required"
+                                                            placeholder="Event Location" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="end_time">Starting Time:</label>
+
+                                                        <input type="datetime-local" name="start_time"
+                                                            required="required" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="end_time">End Time:</label>
+                                                        <input type="datetime-local" name="end_time"
+                                                            required="required" />
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="category">Category :</label>
+                                                        <div class="input-group">
+                                                            <select class="custom-select" name="category"
+                                                                id="category" required>
+                                                                <option value="art">Art</option>
+                                                                <option value="cultural">Cultural</option>
+                                                                <option value="music">Music</option>
+                                                                <option value="sports">Sports</option>
+                                                                <option value="other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group custom-file">
+                                                        <input type="file" class="custom-file-input"
+                                                            id="customFile" name="image" accept="image/*">
+                                                        <label class="custom-file-label" for="customFile">Choose
+                                                            image...</label>
+                                                    </div>
+
+
+                                                    <div class="submit-btns">
+                                                        <button type="button" class="mtr-btn"
+                                                            data-dismiss="modal"><span>Cancel</span></button>
+                                                        <button type="submit"
+                                                            class="mtr-btn"><span>Create</span></button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </div>
                                     </div>
-
                                 </div>
+
                                 @foreach ($events as $event)
                                     <div class="l-post">
                                         <figure>
-                                            <img src="{{ Vite::asset('resources/assets/images/resources/bloglist-4.jpg') }}"
-                                                alt="image">
+
+                                            @if ($event->image)
+                                                <img src= "{{ Vite::asset('storage/app/public/' . $event->image) }}"
+                                                    alt="Image">
+                                            @else
+                                                <img src="{{ Vite::asset('resources/assets/images/resources/404.jpg') }}"
+                                                    alt="">
+                                            @endif
                                             <ul class="blg-socials">
-                                                <li><a href="#" title="" class="facebook"><i
-                                                            class="fa fa-facebook"></i></a></li>
                                                 <li><a href="#" title="" class="youtube"><i
                                                             class="fa fa-youtube"></i></a></li>
-
                                             </ul>
                                         </figure>
                                         <div class="l-post-meta">
@@ -431,12 +457,13 @@
                                                     method="POST">
                                                     @csrf
                                                     @if ($event->participants->contains(auth()->user()))
-                                                        <button>Participated </button>
+                                                        <button class="p-2"
+                                                            style="background-color: #3B5138;">Participated</button>
                                                     @else
                                                         <form action="{{ route('eventParticipate', $event->id) }}"
                                                             method="POST">
                                                             @csrf
-                                                            <button type="submit">Participate in Event</button>
+                                                            <button class="p-2" type="submit">Participate</button>
                                                         </form>
                                                     @endif
                                                 </form>
@@ -444,8 +471,30 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-                                <button class="btn-view btn-load-more">Load More</button>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <ul class="pagination justify-content-center">
+                                            @if ($events->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                            @else
+                                                <li class="page-item"><a href="{{ $events->previousPageUrl() }}" class="page-link">Previous</a></li>
+                                            @endif
+                                
+                                            @for ($i = 1; $i <= $events->lastPage(); $i++)
+                                                <li class="page-item{{ $i === $events->currentPage() ? ' active' : '' }}">
+                                                    <a href="{{ $events->url($i) }}" class="page-link">{{ $i }}</a>
+                                                </li>
+                                            @endfor
+                                
+                                            @if ($events->hasMorePages())
+                                                <li class="page-item"><a href="{{ $events->nextPageUrl() }}" class="page-link">Next</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

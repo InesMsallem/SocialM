@@ -12,22 +12,32 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
-    // Display all events backOffice
+    // Display events backOffice
     public function index()
     {
         $commentCount = Comment::count();
         $events = Event::with('creator')->get();
         return view('events.event', compact('events', 'commentCount'));
     }
-    // display event frontOffice
-    public function displayEvents()
+    // Display event frontOffice
+    public function displayEvents(Request $request)
     {
-        $commentCount = Comment::count();
+        $search = $request->input('search');
+        $category = $request->input('category');
         $events = Event::join('users', 'events.user_id', '=', 'users.id')
             ->select('events.*', 'users.name as username')
-            ->get();
-        return view('events.frontOffice.eventFrontOffice', compact('events', 'commentCount'));
+            ->when($search, function ($query) use ($search) {
+                return $query->where('events.title', 'like', "%$search%")
+                    ->orWhere('events.description', 'like', "%$search%")
+                    ->orWhere('users.name', 'like', "%$search%");
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('events.category', $category);
+            })
+            ->paginate(3); 
+        return view('events.frontOffice.eventFrontOffice', compact('events'));
     }
+
 
     // Display the event creation form
     public function create()
@@ -37,8 +47,8 @@ class EventController extends Controller
 
         return view('events.add', compact('users', 'commentCount'));
     }
- 
-    // Store a new event in the database
+
+    // Create event
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -47,7 +57,13 @@ class EventController extends Controller
             'location' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
+            'image' => 'required',
+            'category' => 'required',
         ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public');
+            $validatedData['image'] = $imagePath;
+        }
         $user = Auth::user();
         $event = new Event($validatedData);
         $event->user_id = $user->id;
@@ -96,7 +112,7 @@ class EventController extends Controller
             if (!$event->participants->contains($user)) {
                 $event->participants()->attach($user);
             } else {
-                // User is already a participant, handle accordingly
+                // User is already a participant
             }
             return redirect()->route('events', $event->id);
         } else {
