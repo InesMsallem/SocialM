@@ -237,7 +237,7 @@
                         {{-- <a href="#" title=""><span class="status f-away"></span>away</a>
                         <a href="#" title=""><span class="status f-off"></span>offline</a> --}}
                         @if (Auth::check())
-                        <a href="#" title=""><i class="ti-user"></i> {{ Auth::user()->name }}</a>
+                        <a href="{{ route('profile') }}" title=""><i class="ti-user"></i> {{ Auth::user()->name }}</a>
                         @endif
                         <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
                         <a href="" title=""><i class="ti-target"></i>activity log</a>
@@ -270,11 +270,11 @@
                                             <ul class="naves">
                                                 <li>
                                                     <i class="ti-clipboard"></i>
-                                                    <a href="newsfeed.html" title="">News feed</a>
+                                                    <a href="{{route('home')}}" title="">News feed</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-mouse-alt"></i>
-                                                    <a href="/inbox">Inbox</a>
+                                                    <a href="{{route('profile')}}">Profile</a>
 
                                                 </li>
                                                 <li>
