@@ -342,32 +342,43 @@
                             </div>
                             <div class="forum-form">
                                 <h5 class="f-title"><i class="ti-info-alt"></i> Edit Event</h5>
-                                <form method="POST" action="{{ route('editEventPut', $event->id) }}">
+                                <form method="POST" action="{{ route('editEventPut', ['id' => $event->id]) }}"
+                                    enctype="multipart/form-data">
                                     @csrf
-                                    @method('PUT') <!-- Use the PUT method for updating -->
+                                    @method('PUT') 
+                                    <div class="form-group">
+                                        <input type="text" name="title" required="required"
+                                            placeholder="Event Title" value="{{ $event->title }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="location_id" id="location_id" class="form-control" required>
+                                            @foreach ($locations as $location)
+                                                <option value="{{ $location->id }}"
+                                                    {{ $location->id == $event->location_id ? 'selected' : '' }}>
+                                                    {{ $location->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="datetime-local" name="start_time" required="required"
+                                            value="{{ \Carbon\Carbon::parse($event->start_time)->format('Y-m-d\TH:i') }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="datetime-local" name="end_time" required="required"
+                                            value="{{ \Carbon\Carbon::parse($event->end_time)->format('Y-m-d\TH:i') }}" />
+                                    </div>
 
-                                    <div class="form-group">
-                                        <input type="text" name="title" required="required" placeholder="Event Title" value="{{ $event->title }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="location" required="required" placeholder="Event Location" value="{{ $event->location }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="datetime-local" name="start_time" required="required" value="{{ \Carbon\Carbon::parse($event->start_time)->format('Y-m-d\TH:i') }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="datetime-local" name="end_time" required="required" value="{{ \Carbon\Carbon::parse($event->end_time)->format('Y-m-d\TH:i') }}" />
-                                    </div>
+
                                     <div class="form-group">
                                         <textarea name="description" rows="4" required="required" placeholder="Event Description">{{ $event->description }}</textarea>
                                     </div>
-
                                     <div class="submit-btns">
                                         <a href="{{ route('showEvent') }}" class="mtr-btn"><span>Cancel</span></a>
                                         <button type="submit" class="mtr-btn"><span>Update Event</span></button>
                                     </div>
                                 </form>
                             </div>
+
 
 
                         </div>
@@ -394,7 +405,7 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
-                                            <span>{{$commentCount}}</span>
+                                            <span>{{ $commentCount }}</span>
 
                                         </li>
                                     </ul>
@@ -416,11 +427,14 @@
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 

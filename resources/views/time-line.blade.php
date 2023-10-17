@@ -434,10 +434,10 @@
         <section>
             <div class="feature-photo">
                 <figure><img src="{{ Vite::asset('resources/assets/images/resources/timeline-1.jpg') }}"  alt=""></figure>
-                <div class="add-btn">
+                {{-- <div class="add-btn">
                     <span>1205 followers</span>
                     <a href="#" title="" data-ripple="">Add Friend</a>
-                </div>
+                </div> --}}
                 <form class="edit-phto">
                     <i class="fa fa-camera-retro"></i>
                     <label class="fileContainer">
@@ -465,7 +465,7 @@
                             <div class="timeline-info">
                                 <ul>
                                     <li class="admin-name">
-                                        <h5>Janice Griffith</h5>
+                                        <h5>{{ Auth::user()->name }}</h5>
                                     </li>
                                     <li>
                                         <a class="active" href="/time-line" title="" data-ripple="">time

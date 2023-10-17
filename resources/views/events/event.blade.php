@@ -361,7 +361,7 @@
                                                 <p>{{ $event->description }}
                                                 </p>
                                             </td>
-                                            <td>{{ $event->location }}</td>
+                                            <td>{{ $event->location->name }}</td>
                                             <td>{{ $event->start_time }} </td>
                                             <td>
                                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST">
