@@ -392,12 +392,16 @@
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="{{route('comments.index')}}" title="">Comments</a>
+                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
                                             <span>{{ $commentCount }}</span>
                                         </li>
                                         <li>
                                             <a href="{{ route('categories.index') }}" title="">Categories</a>
                                             <span>{{ $categoryCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>{{ $productCount }}</span>
                                         </li>
                                     </ul>
                                 </div>

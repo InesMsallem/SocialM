@@ -14,6 +14,14 @@
     @vite(['resources/assets/css/color.css'])
     @vite(['resources/assets/css/responsive.css'])
 
+    <style>
+        .styled-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -338,18 +346,20 @@
                                         </div>
                                         @endif
 
-                                        <form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data" class="styled-form">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="name">Name:</label>
-                                                <input type="text" name="name" id="name" class="form-control" rows="4"></input>
+                                                <input type="text" name="name" id="name" class="form-control" rows="4" style="background-color: #e9f5f9;"></input>
                                             </div>
                                             <div class="form-group">
                                                 <label for="name">Description:</label>
-                                                <textarea name="description" id="description" class="form-control" rows="4"></textarea>
+                                                <textarea name="description" id="description" class="form-control" rows="4" style="background-color: #e9f5f9;"></textarea>
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Create category</button>
+                                            <button type="submit" class="mtr-btn"><span>Create category</span></button>
+                                            <a href="{{ route('categories.index') }}" class="mtr-btn"><span>Cancel</span></a>
+
                                         </form>
                                     </div>
                                 </div>
@@ -384,6 +394,10 @@
                                         <li>
                                             <a href="{{ route('categories.index') }}" title="">Categories</a>
                                             <span>{{ $categoryCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>{{ $productCount }}</span>
                                         </li>
                                     </ul>
                                 </div>

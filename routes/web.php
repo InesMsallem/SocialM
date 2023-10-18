@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -98,6 +99,16 @@ Route::get('/dashboard/categories', [CategoryController::class, 'index'])->name(
 Route::delete('/dashboard/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::get('/dashboard/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
+
+//Category ==>
+// Route to display the comment creation form
+Route::get('/dashboard/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/dashboard/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/dashboard/products', [ProductController::class, 'index'])->name('products.index');
+Route::delete('/dashboard/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/dashboard/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::put('/dashboard/products/{id}', [ProductController::class, 'update'])->name('products.update');
 
 
 

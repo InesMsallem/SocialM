@@ -13,7 +13,12 @@
     @vite(['resources/assets/css/style.css'])
     @vite(['resources/assets/css/color.css'])
     @vite(['resources/assets/css/responsive.css'])
-
+    <style>
+        .styled-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -322,17 +327,17 @@
                                     <div class="col-lg-9">
                                         <h1>Edit Category</h1>
 
-                                        <form action="{{ route('categories.update', $category->id) }}" method="post">
+                                        <form action="{{ route('categories.update', $category->id) }}" method="post" class="styled-form">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group">
-                                                <input type="text" name="name" required="required" placeholder="name" value="{{ $category->name }}" />
+                                                <input type="text" name="name" required="required" placeholder="name" value="{{ $category->name }}" style="background-color: #e9f5f9;" />
                                             </div>
                                             <div class="form-group">
-                                                <textarea rows="4" name="description" required="required" placeholder="description">{{ $category->description }}</textarea>
+                                                <textarea rows="4" name="description" required="required" placeholder="description" style="background-color: #e9f5f9;">{{ $category->description }}</textarea>
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Update Category</button>
+                                            <button type="submit" class="mtr-btn"><span>Update Category</span></button>
                                             <a href="{{ route('categories.index') }}" class="mtr-btn"><span>Cancel</span></a>
 
                                         </form>
@@ -370,6 +375,10 @@
                                         <li>
                                             <a href="{{ route('categories.index') }}" title="">Categories</a>
                                             <span>{{ $categoryCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>{{ $productCount }}</span>
                                         </li>
                                     </ul>
                                 </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
-
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,8 +13,10 @@ class CategoryController extends Controller
     {
         $commentCount = Comment::count();
         $categoryCount = Category::count();
+        $productCount = Product::count();
+
         $categories = Category::all();
-        return view('categories.index', compact('categories', 'categoryCount', 'commentCount'));
+        return view('categories.index', compact('productCount', 'categories', 'categoryCount', 'commentCount'));
     }
 
 
@@ -22,8 +24,9 @@ class CategoryController extends Controller
     {
         $commentCount = Comment::count();
         $categoryCount = Category::count();
+        $productCount = Product::count();
         $categories = Category::all();
-        return view('categories.create', compact('categoryCount', 'commentCount'));
+        return view('categories.create', compact('productCount', 'categoryCount', 'commentCount'));
     }
 
     public function store(Request $request)
@@ -58,11 +61,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $commentCount = Comment::count();
-
         $categoryCount = Category::count();
+        $productCount = Product::count();
         $category = Category::findOrFail($id);
 
-        return view('categories.edit', compact('category', 'categoryCount', 'commentCount'));
+        return view('categories.edit', compact('productCount', 'category', 'categoryCount', 'commentCount'));
     }
 
     public function update(Request $request, $id)
