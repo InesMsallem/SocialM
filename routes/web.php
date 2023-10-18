@@ -25,12 +25,25 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::get('/inbox', function () {return view('inbox');});
+
 Route::get('/profile', function () {return view('time-line');})->name('profile');
-Route::get('/', function () {return view('login');})->name('signin');
-Route::get('/home', function () {return view('home');})->name('home');
-Route::get('/signup', function () {return view('signup');})->name('signup');
-Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+Route::get('/inbox', function () {
+    return view('inbox');
+});
+
+Route::get('/', function () {
+    return view('login');
+})->name('signin');
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+Route::get('/signup', function () {
+    return view('signup');
+})->name('signup');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 
 //Events ==>
 //add event routes
@@ -79,15 +92,13 @@ Route::put('/dashboard/comments/{id}', [CommentController::class, 'update'])->na
 
 
 
-// Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::resource('posts', PostController::class);
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::resource('posts', PostController::class);
+
+Route::resource('/posts', PostController::class);
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
