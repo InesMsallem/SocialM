@@ -296,33 +296,23 @@
                                             <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#myModal"
                                                 href="" title="">Create
                                                 event</a>
-                                        </li>
-                                        <li>
-                                            <i class="ti-mouse-alt"></i>
-                                            <a href="inbox.html" title="">reports</a>
-                                        </li>
+                                        </li>                                   
                                         <li>
                                             <i class="ti-files"></i>
                                             <a href="" data-toggle="modal" data-target="#myEventsModal"
                                                 title="">My events</a>
                                         </li>
-                                        <li>
-                                            <i class="ti-user"></i>
-                                            <a href="timeline-friends.html" title="">friends</a>
-                                        </li>
+
                                         <li>
                                             <i class="ti-image"></i>
                                             <a href="#" title="" data-toggle="modal"
                                                 data-target="#imagesModal">Images</a>
                                         </li>
 
-                                        <li>
-                                            <i class="ti-video-camera"></i>
-                                            <a href="timeline-videos.html" title="">videos</a>
-                                        </li>
+
 
                                     </ul>
-                                </div><!-- Shortcuts -->
+                                </div>
                             </aside>
 
 
@@ -380,76 +370,73 @@
                                         </div>
                                         <div class="modal-body">
                                             <ul class="list-group">
-                                              
-                                                    @foreach ($myevents as $event)
-                                                        <li class="list-group-item position-relative">
+
+                                                @foreach ($myevents as $event)
+                                                    <li class="list-group-item position-relative">
 
 
-                                                            <h5 class="mb-1">{{ $event->title }}</h5>
-                                                            <p class="mb-1"><strong>Location:</strong>
-                                                                {{ $event->location->name }}</p>
-                                                            <p><strong>Participants:</strong>
-                                                                {{ $event->participants->count() }}</p>
+                                                        <h5 class="mb-1">{{ $event->title }}</h5>
+                                                        <p class="mb-1"><strong>Location:</strong>
+                                                            {{ $event->location->name }}</p>
+                                                        <p><strong>Participants:</strong>
+                                                            {{ $event->participants->count() }}</p>
 
-                                                            @php
-                                                                $startDate = \Carbon\Carbon::parse($event->start_time);
-                                                                $endDate = \Carbon\Carbon::parse($event->end_time);
-                                                                $currentDate = \Carbon\Carbon::now();
-                                                            @endphp
+                                                        @php
+                                                            $startDate = \Carbon\Carbon::parse($event->start_time);
+                                                            $endDate = \Carbon\Carbon::parse($event->end_time);
+                                                            $currentDate = \Carbon\Carbon::now();
+                                                        @endphp
 
-                                                            @if ($currentDate->between($startDate, $endDate))
-                                                                <p class="mb-1"><strong>State:</strong> Current</p>
-                                                            @elseif ($currentDate->greaterThan($endDate))
-                                                                <p class="mb-1"><strong>State:</strong> Finished</p>
-                                                            @else
-                                                                <p class="mb-1"><strong>State:</strong> Soon</p>
-                                                            @endif
-                                                        </li>
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-danger delete-button"
-                                                            data-toggle="modal"
-                                                            data-target="#deleteEventModal{{ $event->id }}">
-                                                            Delete
-                                                        </button>
+                                                        @if ($currentDate->between($startDate, $endDate))
+                                                            <p class="mb-1"><strong>State:</strong> Current</p>
+                                                        @elseif ($currentDate->greaterThan($endDate))
+                                                            <p class="mb-1"><strong>State:</strong> Finished</p>
+                                                        @else
+                                                            <p class="mb-1"><strong>State:</strong> Soon</p>
+                                                        @endif
+                                                    </li>
+                                                    <button type="button" class="btn btn-sm btn-danger delete-button"
+                                                        data-toggle="modal"
+                                                        data-target="#deleteEventModal{{ $event->id }}">
+                                                        Delete
+                                                    </button>
 
-                                                        <div class="modal fade"
-                                                            id="deleteEventModal{{ $event->id }}" tabindex="-1"
-                                                            role="dialog"
-                                                            aria-labelledby="deleteEventModalLabel{{ $event->id }}"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title"
-                                                                            id="deleteEventModalLabel{{ $event->id }}">
-                                                                            Delete Event</h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>Are you sure you want to delete this event?
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button"
-                                                                            class="btn btn-secondary"
-                                                                            data-dismiss="modal">Cancel</button>
-                                                                        <form
-                                                                            action="{{ route('events.destroy', $event) }}"
-                                                                            method="POST">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit"
-                                                                                class="btn btn-danger">Delete</button>
-                                                                        </form>
-                                                                    </div>
+                                                    <div class="modal fade" id="deleteEventModal{{ $event->id }}"
+                                                        tabindex="-1" role="dialog"
+                                                        aria-labelledby="deleteEventModalLabel{{ $event->id }}"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title"
+                                                                        id="deleteEventModalLabel{{ $event->id }}">
+                                                                        Delete Event</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Are you sure you want to delete this event?
+                                                                    </p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Cancel</button>
+                                                                    <form
+                                                                        action="{{ route('events.destroy', $event) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-danger">Delete</button>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                   
+                                                    </div>
+                                                @endforeach
+
 
                                             </ul>
                                         </div>
@@ -564,7 +551,8 @@
                                     <div class="l-post">
                                         <figure>
                                             @if ($event->image)
-                                                <img src= "{{ Vite::asset('storage/app/public/' . $event->image) }}"
+                                                <img class="mx-3 my-4"
+                                                    src= "{{ Vite::asset('storage/app/public/' . $event->image) }}"
                                                     alt="Image">
                                             @else
                                                 <img src="{{ Vite::asset('resources/assets/images/resources/404.jpg') }}"
@@ -576,7 +564,8 @@
                                             </ul>
                                         </figure>
                                         <div class="l-post-meta">
-                                            <h4><a href="#" title="">{{ $event->title }}</a></h4>
+                                            <h4 class="my-3"><a href="#"
+                                                    title="">{{ $event->title }}</a></h4>
                                             <div class="l-post-ranking">
                                                 <a class="admin" href="#"
                                                     title="">{{ $event->creator->name }}</a>
@@ -591,60 +580,169 @@
                                                     <i class="fa fa-heart-o"></i>
                                                     {{ $event->participants->count() }} Participants
                                                 </a>
-                                                @foreach ($events as $event)
-                                                    <div class="modal fade" id="participantsModal{{ $event->id }}"
+                                                @if (\Carbon\Carbon::parse($event->end_time)->isPast())
+                                                    <a class="coments" href="#" title=""
+                                                        data-toggle="modal"
+                                                        data-target="#reviewsModal{{ $event->id }}"><i
+                                                            class="fa fa-comment-o"></i>{{ $event->reviews->count() }}
+                                                        Review</a>
+                                                @endif
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <form action="{{ route('eventParticipate', $event->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @if ($event->participants->contains(auth()->user()))
+                                                                <button class="btn btn-block my-3"
+                                                                    style="background-color: #3B5138; color:white"
+                                                                    type="submit">Participated</button>
+                                                            @else
+                                                                <button style="background-color: #088DCD; color:white"
+                                                                    class="btn btn-block my-3"
+                                                                    type="submit">Participate</button>
+                                                            @endif
+                                                        </form>
+                                                    </div>
+
+                                                    @if (\Carbon\Carbon::parse($event->end_time)->isPast())
+                                                        <div class="col-md-4 ">
+                                                            <form action="">
+                                                                <a data-toggle="modal"
+                                                                    data-target="#addReviewModal{{ $event->id }}"
+                                                                    href=""> <button
+                                                                        style="background-color: #088DCD; color:white"
+                                                                        class="btn btn-block my-3" type="submit">Add
+                                                                        Review</button></a>
+
+                                                            </form>
+                                                        </div>
+                                                    @endif
+                                                    <div class="modal fade" id="addReviewModal{{ $event->id }}"
                                                         tabindex="-1" role="dialog"
-                                                        aria-labelledby="participantsModalLabel" aria-hidden="true">
+                                                        aria-labelledby="reviewInputModalLabel{{ $event->id }}"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
-                                                                        id="participantsModalLabel">Participants for
-                                                                        {{ $event->title }}</h5>
+                                                                        id="reviewInputModalLabel{{ $event->id }}">
+                                                                        Add Review for {{ $event->title }}</h5>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <ul class="list-group">
-                                                                        @foreach ($event->participants as $participant)
-                                                                            <li class="list-group-item">
-                                                                                {{ $participant->name }}</li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
+                                                                    <form method="POST"
+                                                                        action="{{ route('addReview', $event->id) }}">
+                                                                        @csrf
+                                                                        <div class="form-group">
+                                                                            <label for="rating">Rating:</label>
+                                                                            <select name="rating" id="rating"
+                                                                                class="form-control" required>
+                                                                                <option value="1">1 (Poor)
+                                                                                </option>
+                                                                                <option value="2">2 (Fair)
+                                                                                </option>
+                                                                                <option value="3">3 (Good)
+                                                                                </option>
+                                                                                <option value="4">4 (Very Good)
+                                                                                </option>
+                                                                                <option value="5">5 (Excellent)
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="comment">Comment:</label>
+                                                                            <textarea name="comment" rows="4" required="required" placeholder="Enter your review"></textarea>
+                                                                        </div>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Submit
+                                                                            Review</button>
+                                                                    </form>
+
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endforeach
+                                                </div>
 
-                                                <a class="coments" href="#" title=""><i
-                                                        class="fa fa-comment-o"></i>5 Review</a>
+
                                             </div>
-                                            <a href="#" title="" class="read">
-                                                <form action="{{ route('eventParticipate', $event->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @if ($event->participants->contains(auth()->user()))
-                                                        <button class="p-2"
-                                                            style="background-color: #3B5138;">Participated</button>
-                                                    @else
-                                                        <form action="{{ route('eventParticipate', $event->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            <button class="p-2" type="submit">Participate</button>
-                                                        </form>
-                                                    @endif
-                                                </form>
-                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="participantsModal{{ $event->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="participantsModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="participantsModalLabel">Participants
+                                                        for
+                                                        {{ $event->title }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul class="list-group">
+                                                        @foreach ($event->participants as $participant)
+                                                            <li class="list-group-item">
+                                                                {{ $participant->name }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="reviewsModal{{ $event->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="reviewsModalLabel">Reviews for
+                                                        {{ $event->title }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul class="list-group">
+                                                        @foreach ($event->reviews as $review)
+                                                            <div class="review">
+                                                                <p class="comment">{{ $review->comment }}</p>
+                                                                <div class="rating">
+                                                                    <p class="rating-value">Rating:
+                                                                        {{ $review->rating }}</p>
+                                                                    <p class="user-name">
+                                                                        @foreach ($users as $user)
+                                                                            @if ($user->id == $review->user_id)
+                                                                                User: {{ $user->name }}
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                        @if ($event->reviews->isEmpty())
+                                                            <p>No reviews yet</p>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
+
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <ul class="pagination justify-content-center">
@@ -682,7 +780,7 @@
             </div>
         </section>
 
-        <footer>
+        {{-- <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
@@ -846,23 +944,23 @@
                 <label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
             </div>
         </form>
-    </div><!-- side panel -->
+    </div><!-- side panel --> --}}
 
-    <script src="resources/assets/js/script.js"></script>
+        <script src="resources/assets/js/script.js"></script>
 
-    @vite(['resources/assets/js/script.js'])
-    @vite(['resources/assets/js/map-init.js'])
-    @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
-    @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
+        @vite(['resources/assets/js/script.js'])
+        @vite(['resources/assets/js/map-init.js'])
+        @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
+        @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
 
 </body>
 
