@@ -325,44 +325,20 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h1>Edit Comment</h1>
+                                        <h1>Edit Category</h1>
 
-                                        <form action="{{ route('comments.update', $comment->id) }}" method="post" enctype="multipart/form-data" class="styled-form">
+                                        <form action="{{ route('categories.update', $category->id) }}" method="post" class="styled-form">
                                             @csrf
                                             @method('PUT')
-
                                             <div class="form-group">
-                                                <label for="user_id">User:</label>
-                                                <select name="user_id" id="user_id" class="form-control" style="background-color: #e9f5f9;">
-                                                    <!-- Populate with users -->
-                                                    @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}" {{ $comment->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="name" required="required" placeholder="name" value="{{ $category->name }}" style="background-color: #e9f5f9;" />
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea rows="4" name="description" required="required" placeholder="description" style="background-color: #e9f5f9;">{{ $category->description }}</textarea>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="post_id">Post:</label>
-                                                <select name="post_id" id="post_id" class="form-control" style="background-color: #e9f5f9;">
-                                                    <!-- Populate with posts -->
-                                                    @foreach ($posts as $post)
-                                                    <option value="{{ $post->id }}" {{ $comment->post_id == $post->id ? 'selected' : '' }}>{{ $post->content }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="file">File (optional):</label>
-                                                <input type="file" name="file" id="file" class="form-control-file">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="content">Content:</label>
-                                                <textarea name="content" id="content" class="form-control" rows="4" style="background-color: #e9f5f9;">{{ $comment->content }}</textarea>
-                                            </div>
-
-                                            <button type="submit" class="mtr-btn"><span>Update Comment</span></button>
-                                            <a href="{{ route('comments.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
+                                            <button type="submit" class="mtr-btn"><span>Update Category</span></button>
+                                            <a href="{{ route('categories.index') }}" class="mtr-btn"><span>Cancel</span></a>
 
                                         </form>
 

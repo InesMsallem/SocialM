@@ -13,12 +13,7 @@
     @vite(['resources/assets/css/style.css'])
     @vite(['resources/assets/css/color.css'])
     @vite(['resources/assets/css/responsive.css'])
-    <style>
-        .styled-form {
-            border: 1px solid #ccc;
-            padding: 20px;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -37,7 +32,12 @@
                     <a class="fa fa-sliders" href="#shoppingbag"></a>
                 </span>
             </div>
-
+            <div class="mh-head second">
+                <form class="mh-form">
+                    <input placeholder="search" />
+                    <a href="#/" class="fa fa-search"></a>
+                </form>
+            </div>
             <nav id="menu" class="res-menu">
                 <ul>
                     <li><span>Home</span>
@@ -322,57 +322,56 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <h1>Edit Comment</h1>
+                            <div class="forum-warper">
 
-                                        <form action="{{ route('comments.update', $comment->id) }}" method="post" enctype="multipart/form-data" class="styled-form">
-                                            @csrf
-                                            @method('PUT')
-
-                                            <div class="form-group">
-                                                <label for="user_id">User:</label>
-                                                <select name="user_id" id="user_id" class="form-control" style="background-color: #e9f5f9;">
-                                                    <!-- Populate with users -->
-                                                    @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}" {{ $comment->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="post_id">Post:</label>
-                                                <select name="post_id" id="post_id" class="form-control" style="background-color: #e9f5f9;">
-                                                    <!-- Populate with posts -->
-                                                    @foreach ($posts as $post)
-                                                    <option value="{{ $post->id }}" {{ $comment->post_id == $post->id ? 'selected' : '' }}>{{ $post->content }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="file">File (optional):</label>
-                                                <input type="file" name="file" id="file" class="form-control-file">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="content">Content:</label>
-                                                <textarea name="content" id="content" class="form-control" rows="4" style="background-color: #e9f5f9;">{{ $comment->content }}</textarea>
-                                            </div>
-
-                                            <button type="submit" class="mtr-btn"><span>Update Comment</span></button>
-                                            <a href="{{ route('comments.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
-
-                                        </form>
-
-                                    </div>
-                                </div>
+                                <a class="addnewforum" href="{{ route('categories.create') }}" title=""><i class="fa fa-plus"></i> Add New</a>
                             </div>
+                            <div class="container">
+                                <h1>Categories</h1>
 
+                                @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Delete</th>
+                                            <th>Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($categories as $category)
+                                        <tr>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->description }}</td>
+                                            <td>
+                                                <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                                                </form>
+
+
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Update</a>
+                                            </td>
+
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="col-lg-3">
                             <aside class="sidebar full-style">
+
                                 <div class="widget">
                                     <h4 class="widget-title">Manage</h4>
                                     <ul class="forum-static">
@@ -406,125 +405,14 @@
                                         </li>
                                     </ul>
                                 </div>
-                                {{-- <div class="widget">
-								<h4 class="widget-title">Featured Topics</h4>
-								<ul class="feature-topics">
-									<li>
-										<i class="fa fa-star"></i>
-										<a href="" title="">What is your favourit season in summer?</a>
-										<span>2 hours, 16 minutes ago</span>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-										<a href="" title="">The new Goddess of War trailer was launched at E3!</a>
-										<span>2 hours, 16 minutes ago</span>
-									</li>
-									<li>
-										<i class="fa fa-star"></i>
-										<a href="" title="">Summer is Coming! Picnic in the east boulevard park</a>
-										<span>2 hours, 16 minutes ago</span>
-									</li>
-								</ul>
-							</div> --}}
+
+
                             </aside>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        {{-- <section>
-		<div class="getquot-baner">
-			<span>Want to join our awesome forum and start interacting with others?</span>
-			<a href="#" title="">Sign up</a>
-		</div>
-	</section>
-	
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-4">
-					<div class="widget">
-						<div class="foot-logo">
-							<div class="logo">
-								<a href="index.html" title=""><img src="images/logo.png" alt=""></a>
-							</div>	
-							<p>
-								The trio took this simple idea and built it into the world’s leading carpooling platform.
-							</p>
-						</div>
-						<ul class="location">
-							<li>
-								<i class="ti-map-alt"></i>
-								<p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
-							</li>
-							<li>
-								<i class="ti-mobile"></i>
-								<p>+1-56-346 345</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4">
-					<div class="widget">
-						<div class="widget-title"><h4>follow</h4></div>
-						<ul class="list-style">
-							<li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
-							<li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en" title="">twitter</a></li>
-							<li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en" title="">instagram</a></li>
-							<li><i class="fa fa-google-plus-square"></i> <a href="https://plus.google.com/discover" title="">Google+</a></li>
-							<li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/" title="">Pintrest</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4">
-					<div class="widget">
-						<div class="widget-title"><h4>Navigate</h4></div>
-						<ul class="list-style">
-							<li><a href="about.html" title="">about us</a></li>
-							<li><a href="contact.html" title="">contact us</a></li>
-							<li><a href="terms.html" title="">terms & Conditions</a></li>
-							<li><a href="#" title="">RSS syndication</a></li>
-							<li><a href="sitemap.html" title="">Sitemap</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4">
-					<div class="widget">
-						<div class="widget-title"><h4>useful links</h4></div>
-						<ul class="list-style">
-							<li><a href="#" title="">leasing</a></li>
-							<li><a href="#" title="">submit route</a></li>
-							<li><a href="#" title="">how does it work?</a></li>
-							<li><a href="#" title="">agent listings</a></li>
-							<li><a href="#" title="">view All</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4">
-					<div class="widget">
-						<div class="widget-title"><h4>download apps</h4></div>
-						<ul class="colla-apps">
-							<li><a href="https://play.google.com/store?hl=en" title=""><i class="fa fa-android"></i>android</a></li>
-							<li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i class="ti-apple"></i>iPhone</a></li>
-							<li><a href="https://www.microsoft.com/store/apps" title=""><i class="fa fa-windows"></i>Windows</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer><!-- footer --> --}}
-        {{-- <div class="bottombar">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<span class="copyright">© Winku 2018. All rights reserved.</span>
-					<i><img src="images/credit-cards.png" alt=""></i>
-				</div>
-			</div>
-		</div>
-	</div>
-	 --}}
     </div>
     <section>
         <div class="getquot-baner">
@@ -532,6 +420,7 @@
             <a href="{{ route('home') }}" title="">return</a>
         </div>
     </section>
+
     @vite(['resources/assets/js/script.js'])
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])

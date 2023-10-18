@@ -339,8 +339,7 @@
                                         <a href="#" title="">purify</a>
                                     </div> --}}
                                 </div>
-                                <a class="addnewforum" href="{{ route('login') }}" title=""><i
-                                        class="fa fa-plus"></i> Add New</a>
+                                <a class="addnewforum" href="{{ route('login') }}" title=""><i class="fa fa-plus"></i> Add New</a>
                             </div>
                             <div class="forum-list">
                                 <table class="table table-responsive">
@@ -368,15 +367,15 @@
                                             <td>delete</td>
                                             <td>edit</td>
                                         </tr>
-                                      
-                                      
+
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <aside class="sidebar full-style">
-                              
+
                                 <div class="widget">
                                     <h4 class="widget-title">Manage</h4>
                                     <ul class="forum-static">
@@ -385,7 +384,7 @@
                                             <span>13</span>
                                         </li>
                                         <li>
-                                            <a href="" title="">Groups</a>
+                                            <a href="{{ route('showGroup') }}" title="">Groups</a>
                                             <span>50</span>
                                         </li>
                                         <li>
@@ -398,6 +397,9 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('categories.index') }}" title="">Categories</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -571,14 +573,11 @@
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 

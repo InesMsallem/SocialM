@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Product;
 
 class CommentController extends Controller
 {
@@ -13,17 +15,21 @@ class CommentController extends Controller
     public function index()
     {
         $commentCount = Comment::count();
+        $categoryCount = Category::count();
+        $productCount = Product::count();
         $comments = Comment::all();
-        return view('comments.index', compact('comments', 'commentCount'));
+        return view('comments.index', compact('productCount', 'categoryCount', 'comments', 'commentCount'));
     }
 
 
     public function create()
     {
         $commentCount = Comment::count();
+        $categoryCount = Category::count();
+        $productCount = Product::count();
         $users = User::all();
         $posts = Post::all();
-        return view('comments.create', compact('users', 'posts', 'commentCount'));
+        return view('comments.create', compact('productCount', 'categoryCount', 'users', 'posts', 'commentCount'));
     }
 
     public function store(Request $request)
@@ -31,6 +37,7 @@ class CommentController extends Controller
         $request->validate([
             'content' => 'required|string',
             'post_id' => 'required|exists:posts,id',
+
         ]);
 
         $file = $request->file('file');
@@ -49,7 +56,7 @@ class CommentController extends Controller
             'likes' => 0,
         ]);
 
-        return redirect()->route('comments.index')->with('success', 'Comment created successfully.');
+        return back()->with('success', 'Comment deleted successfully.');
     }
 
     public function destroy($id)
@@ -62,17 +69,19 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return redirect()->route('comments.index')->with('success', 'Comment deleted successfully.');
+        return back()->with('success', 'Comment deleted successfully.');
     }
 
     public function edit($id)
     {
         $commentCount = Comment::count();
+        $categoryCount = Category::count();
+        $productCount = Product::count();
         $comment = Comment::findOrFail($id);
         $users = User::all();
         $posts = Post::all();
 
-        return view('comments.edit', compact('comment', 'users', 'posts', 'commentCount'));
+        return view('comments.edit', compact('productCount', 'categoryCount', 'comment', 'users', 'posts', 'commentCount'));
     }
 
     public function update(Request $request, $id)
@@ -100,6 +109,6 @@ class CommentController extends Controller
 
         $comment->save();
 
-        return redirect()->route('comments.index')->with('success', 'Comment updated successfully.');
+        return back()->with('success', 'Comment deleted successfully.');
     }
 }

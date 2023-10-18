@@ -14,6 +14,12 @@
     @vite(['resources/assets/css/color.css'])
     @vite(['resources/assets/css/responsive.css'])
 
+    <style>
+        .styled-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -338,11 +344,11 @@
                                         </div>
                                         @endif
 
-                                        <form action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data" class="styled-form">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="post_id">Post:</label>
-                                                <select name="post_id" id="post_id" class="form-control">
+                                                <select name="post_id" id="post_id" class="form-control" style="background-color: #e9f5f9;">
                                                     <!-- Populate with posts -->
                                                     @foreach ($posts as $post)
                                                     <option value="{{ $post->id }}">{{ $post->id }}</option>
@@ -351,16 +357,20 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="file">File (optional):</label>
+                                                <label for="file" class="custom-file-upload"> Upload file (optional):
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                </label>
                                                 <input type="file" name="file" id="file" class="form-control-file">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="content">Content:</label>
-                                                <textarea name="content" id="content" class="form-control" rows="4"></textarea>
+                                                <textarea name="content" id="content" class="form-control" rows="4" style="background-color: #e9f5f9;"></textarea>
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Create Comment</button>
+                                            <button type="submit" class="mtr-btn"><span>Create Comment</span></button>
+                                            <a href="{{ route('comments.index') }}" class="mtr-btn"><span>Cancel</span></a>
+
                                         </form>
                                     </div>
                                 </div>
@@ -391,6 +401,14 @@
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
                                             <span>{{ $commentCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('categories.index') }}" title="">Categories</a>
+                                            <span>{{ $categoryCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>{{ $productCount }}</span>
                                         </li>
                                     </ul>
                                 </div>
