@@ -109,7 +109,7 @@ Route::get('/dashboard/products', [ProductController::class, 'index'])->name('pr
 Route::delete('/dashboard/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 Route::get('/dashboard/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/dashboard/products/{id}', [ProductController::class, 'update'])->name('products.update');
-
+Route::get('/home/products', [EventController::class, 'displayProducts'])->name('products');
 
 
 
