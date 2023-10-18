@@ -477,8 +477,9 @@
                                                                 </div>
                                                                 <p>{{ $comment->content }}</p>
                                                                 <br>
+                                                                @if ($comment->file)
                                                                 <a href="{{ asset('storage/' . $comment->file) }}" target="_blank"><img src="{{ asset('storage/' . $comment->file) }}" alt="Image" style="width: 100px; height: 50px;"></a>
-
+                                                                @endif
                                                             </div>
                                                         </li>
                                                     </ul>

@@ -307,7 +307,7 @@
                             <div class="top-banner">
                                 <h1>Dashboard</h1>
                                 <nav class="breadcrumb">
-                                    <a class="breadcrumb-item" href="index.html">Home</a>
+                                    <a class="breadcrumb-item" href="{{ route('home') }}">Home</a>
                                     <span class="breadcrumb-item active">Dashboard</span>
                                 </nav>
                             </div>
@@ -323,52 +323,48 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="forum-warper">
-                                <div class="post-filter-sec">
-                                    <form method="post" class="filter-form">
-                                        <input type="post" placeholder="Search post">
-                                        <button><i class="ti-search"></i></button>
-                                    </form>
-                                    {{-- <div class="purify">
-                                        <span>filter by</span>
-                                        <select>
-                                            <option>Assending A-Z</option>
-                                            <option>Desending Z-A</option>
-                                            <option>Desending (date)</option>
-                                            <option>Asending (date)</option>
-                                        </select>
-                                        <a href="#" title="">purify</a>
-                                    </div> --}}
-                                </div>
-                                <a class="addnewforum" href="{{ route('login') }}" title=""><i class="fa fa-plus"></i> Add New</a>
+
+                                <a class="addnewforum" href="{{ route('categories.create') }}" title=""><i class="fa fa-plus"></i> Add New</a>
                             </div>
-                            <div class="forum-list">
-                                <table class="table table-responsive">
+                            <div class="container">
+                                <h1>Categories</h1>
+
+                                @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
+
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">forum</th>
-                                            <th scope="col">topics</th>
-                                            <th scope="col">posts</th>
-                                            <th scope="col">Delete</th>
-                                            <th scope="col">Edit</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Delete</th>
+                                            <th>Update</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($categories as $category)
                                         <tr>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->description }}</td>
                                             <td>
-                                                <i class="fa fa-comments"></i>
-                                                <a href="forums-category.html" title="">Asset for creating a
-                                                    beautiful website</a>
-                                                <p>list your recommended website and when you start to create your
-                                                    website so please check your laptop window and battery &#58;-&#41;
-                                                </p>
+                                                <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                                                </form>
+
+
                                             </td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>delete</td>
-                                            <td>edit</td>
+                                            <td>
+                                                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Update</a>
+                                            </td>
+
+
                                         </tr>
-
-
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -392,182 +388,34 @@
                                             <span>14</span>
                                         </li>
                                         <li>
-                                            <a href="{{ route('posts.index') }}">Posts</a>
+                                            <a href="" title="">Posts</a>
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
+                                            <a href="{{route('comments.index')}}" title="">Comments</a>
+                                            <span>{{ $commentCount }}</span>
                                         </li>
                                         <li>
                                             <a href="{{ route('categories.index') }}" title="">Categories</a>
+                                            <span>{{ $categoryCount }}</span>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="widget">
-                                    <h4 class="widget-title">Recent Topics</h4>
-                                    <ul class="recent-topics">
-                                        <li>
-                                            <a href="" title="">The new Goddess of War trailer was
-                                                launched at E3!</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                            <i>The Community</i>
-                                        </li>
-                                        <li>
-                                            <a href="" title="">The new Goddess of War trailer was
-                                                launched at E3!</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                            <i>The Community</i>
-                                        </li>
-                                        <li>
-                                            <a href="" title="">The new Goddess of War trailer was
-                                                launched at E3!</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                            <i>The Community</i>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="widget">
-                                    <h4 class="widget-title">Featured Topics</h4>
-                                    <ul class="feature-topics">
-                                        <li>
-                                            <i class="fa fa-star"></i>
-                                            <a href="" title="">What is your favourit season in
-                                                summer?</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-star"></i>
-                                            <a href="" title="">The new Goddess of War trailer was
-                                                launched at E3!</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-star"></i>
-                                            <a href="" title="">Summer is Coming! Picnic in the east
-                                                boulevard park</a>
-                                            <span>2 hours, 16 minutes ago</span>
-                                        </li>
-                                    </ul>
-                                </div>
+
+
                             </aside>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section>
-            <div class="getquot-baner">
-                <span>Want to return back as a user?</span>
-                <a href="{{ route('home') }}" title="">return</a>
-            </div>
-        </section>
-
-        {{-- <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4">
-                        <div class="widget">
-                            <div class="foot-logo">
-                                <div class="logo">
-                                    <a href="index.html" title=""><img src="images/logo.png"
-                                            alt=""></a>
-                                </div>
-                                <p>
-                                    The trio took this simple idea and built it into the world’s leading carpooling
-                                    platform.
-                                </p>
-                            </div>
-                            <ul class="location">
-                                <li>
-                                    <i class="ti-map-alt"></i>
-                                    <p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
-                                </li>
-                                <li>
-                                    <i class="ti-mobile"></i>
-                                    <p>+1-56-346 345</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>follow</h4>
-                            </div>
-                            <ul class="list-style">
-                                <li><i class="fa fa-facebook-square"></i> <a
-                                        href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
-                                <li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en"
-                                        title="">twitter</a></li>
-                                <li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en"
-                                        title="">instagram</a></li>
-                                <li><i class="fa fa-google-plus-square"></i> <a
-                                        href="https://plus.google.com/discover" title="">Google+</a></li>
-                                <li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/"
-                                        title="">Pintrest</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>Navigate</h4>
-                            </div>
-                            <ul class="list-style">
-                                <li><a href="about.html" title="">about us</a></li>
-                                <li><a href="contact.html" title="">contact us</a></li>
-                                <li><a href="terms.html" title="">terms & Conditions</a></li>
-                                <li><a href="#" title="">RSS syndication</a></li>
-                                <li><a href="sitemap.html" title="">Sitemap</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>useful links</h4>
-                            </div>
-                            <ul class="list-style">
-                                <li><a href="#" title="">leasing</a></li>
-                                <li><a href="#" title="">submit route</a></li>
-                                <li><a href="#" title="">how does it work?</a></li>
-                                <li><a href="#" title="">agent listings</a></li>
-                                <li><a href="#" title="">view All</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>download apps</h4>
-                            </div>
-                            <ul class="colla-apps">
-                                <li><a href="https://play.google.com/store?hl=en" title=""><i
-                                            class="fa fa-android"></i>android</a></li>
-                                <li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i
-                                            class="ti-apple"></i>iPhone</a></li>
-                                <li><a href="https://www.microsoft.com/store/apps" title=""><i
-                                            class="fa fa-windows"></i>Windows</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer><!-- footer -->
-        <div class="bottombar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="copyright">© Winku 2018. All rights reserved.</span>
-                        <i><img src="images/credit-cards.png" alt=""></i>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
     </div>
-
+    <section>
+        <div class="getquot-baner">
+            <span>Want to return back as a user?</span>
+            <a href="{{ route('home') }}" title="">return</a>
+        </div>
+    </section>
 
     @vite(['resources/assets/js/script.js'])
     @vite(['resources/assets/js/map-init.js'])

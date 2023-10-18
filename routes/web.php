@@ -7,6 +7,8 @@ use App\Http\Controllers\landingController;
 use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
+
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
@@ -26,7 +28,9 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/profile', function () {return view('time-line');})->name('profile');
+Route::get('/profile', function () {
+    return view('time-line');
+})->name('profile');
 Route::get('/inbox', function () {
     return view('inbox');
 });
@@ -85,6 +89,15 @@ Route::get('/dashboard/comments', [CommentController::class, 'index'])->name('co
 Route::delete('/dashboard/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 Route::put('/dashboard/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
+
+//Category ==>
+// Route to display the comment creation form
+Route::get('/dashboard/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/dashboard/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/dashboard/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::delete('/dashboard/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('/dashboard/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 
 
 
