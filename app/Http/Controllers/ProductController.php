@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Location;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -20,6 +21,35 @@ class ProductController extends Controller
         $products = Product::all();
         return view('products.index', compact('products', 'productCount', 'categoryCount', 'commentCount'));
     }
+
+    public function displayProducts(Request $request)
+    {
+        $locations = Location::all();
+        $allProducts = Product::all();
+        $categories = Category::all();
+        $search = $request->input('search');
+        $category = $request->input('category');
+        $user = auth()->user();
+        $myProducts = Product::where('user_id', $user->id)->get();
+
+
+        $products = Product::join('users', 'products.user_id', '=', 'users.id')
+            ->join('locations', 'products.location_id', '=', 'locations.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'users.name as username', 'locations.name as location_name', 'categories.name as category_name')
+            ->when($search, function ($query) use ($search) {
+                return $query->where('products.name', 'like', "%$search%")
+                    ->orWhere('products.description', 'like', "%$search%")
+                    ->orWhere('users.name', 'like', "%$search%");
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('products.category_id', $category);
+            })
+            ->paginate(2); // Adjust the pagination limit as needed
+
+        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'myProducts', 'locations', 'allProducts'));
+    }
+
 
 
     public function create()
@@ -99,22 +129,21 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'prix' => 'required',
-            'file' => 'required',
-            'location_id' => 'required|exists:locations,id',
-            'category_id' => 'required|exists:categories,id',
+            'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
+            'name' => 'required|string',
+            'description' => 'required|string',
+
 
         ]);
 
         $product = Product::findOrFail($id);
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
-        $product->prix = $request->input('prix');
-        $product->user_id = $request->user()->id;
         $product->location_id = $request->input('location_id');
         $product->category_id = $request->input('category_id');
+        $user = Auth::user();
+        $product->user_id = $user->id;
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+
 
         $file = $request->file('file');
 
