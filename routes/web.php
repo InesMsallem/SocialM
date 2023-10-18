@@ -56,9 +56,7 @@ Route::get('/dashboard/events/add', [EventController::class, 'create'])->name('a
 Route::post('/events', [EventController::class, 'store'])->name('addEventPost');
 //edit event routes
 Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('editEvent');
-// Route::put('events/{event}', [EventController::class, 'update'])->name('editEventPut');
 Route::put('/events/{id}',  [EventController::class, 'update'])->name('editEventPut');
-
 //display event 
 Route::get('/dashboard/events', [EventController::class, 'index'])->name('showEvent');
 //delete event
@@ -67,6 +65,10 @@ Route::delete('dashboard/events/{event}', [EventController::class, 'destroy'])->
 Route::get('/home/events', [EventController::class, 'displayEvents'])->name('events');
 //participate
 Route::post('/home/events/{event}/participate', [EventController::class, 'participateInEvent'])->name('eventParticipate');
+//event reviews 
+Route::post('/home/events/{event}/reviews', [EventController::class, 'addReview'])->name('addReview');
+
+
 
 
 //Groups ==>

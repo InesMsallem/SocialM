@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Comment;
 use App\Models\Location;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class EventController extends Controller
 
         $commentCount = Comment::count();
         $events = Event::with('creator')->get();
+        
         return view('events.event', compact('events', 'commentCount'));
     }
     // Display event frontOffice
@@ -28,6 +30,7 @@ class EventController extends Controller
         $search = $request->input('search');
         $category = $request->input('category');
         $user = auth()->user();
+        $users = User::all();
         $myevents = $user->events;
         $events = Event::join('users', 'events.user_id', '=', 'users.id')
             ->select('events.*', 'users.name as username')
@@ -40,17 +43,17 @@ class EventController extends Controller
                 return $query->where('events.category', $category);
             })
             ->paginate(3);
-        return view('events.frontOffice.eventFrontOffice', compact('events', 'myevents', 'locations','allevents'));
+        return view('events.frontOffice.eventFrontOffice', compact('events', 'myevents', 'locations', 'allevents', 'users'));
     }
- 
+
 
     // Display the event creation form
     public function create()
     {
         $commentCount = Comment::count();
         $users = User::all();
-
-        return view('events.add', compact('users', 'commentCount'));
+        $locations = Location::all();
+        return view('events.add', compact('users', 'commentCount','locations'));
     }
 
     // Create event
@@ -119,20 +122,21 @@ class EventController extends Controller
     }
 
 
-
+    //participate
     public function participateInEvent(Event $event)
     {
-        if (auth()->check()) {
-            $user = auth()->user();
-            if (!$event->participants->contains($user)) {
-                $event->participants()->attach($user);
-            } else {
-                // User is already a participant
-            }
-            return redirect()->route('events', $event->id);
+        $user = auth()->user();
+
+        if (!$event->participants->contains($user)) {
+            $event->participants()->attach($user);
         } else {
+            $event->participants()->detach($user);
         }
+
+        return back(); // Redirect back to the same page or to wherever you need
     }
+
+
 
     // my events
     public function myEvents()
@@ -142,5 +146,25 @@ class EventController extends Controller
         $events = $user->events;
 
         return view('events.frontOffice.myEvents', compact('events'));
+    }
+
+    public function addReview(Request $request, Event $event)
+    {
+        $validatedData = $request->validate([
+            'comment' => 'required',
+            'rating' => 'required',
+        ]);
+
+        $user = auth()->user();
+
+        $review = new Review([
+            'user_id' => $user->id,
+            'event_id' => $event->id,
+            'comment' => $validatedData['comment'],
+            'rating' => $validatedData['rating'],
+        ]);
+        $review->save();
+
+        return redirect()->route('events')->with('success', 'Review added successfully');
     }
 }

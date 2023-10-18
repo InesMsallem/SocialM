@@ -342,29 +342,66 @@
                             </div>
                             <div class="forum-form">
                                 <h5 class="f-title"><i class="ti-info-alt"></i> Create Event</h5>
-                                <form method="POST" action="{{ route('addEventPost') }}">
-                                    @csrf <!-- Add CSRF token -->
-                                    <div class="form-group">
-                                        <input type="text" name="title" required="required" placeholder="Event Title" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="location" required="required" placeholder="Event Location" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="datetime-local" name="start_time" required="required" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="datetime-local" name="end_time" required="required" />
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
-                                    </div>
+                                <form method="POST" action="{{ route('addEventPost') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" name="title" required="required"
+                                        placeholder="Event Title" />
+                                </div>
+                                <div class="form-group">
+                                    <select name="location_id" id="location_id"
+                                        class="form-control" required>
 
-                                    <div class="submit-btns">
-                                        <button type="button" class="mtr-btn"><span>Cancel</span></button>
-                                        <button type="submit" class="mtr-btn"><span>Create Event</span></button>
+                                        @foreach ($locations as $location)
+                                            <option value="{{ $location->id }}">
+                                                {{ $location->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="end_time">Starting Time:</label>
+
+                                    <input type="datetime-local" name="start_time"
+                                        required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="end_time">End Time:</label>
+                                    <input type="datetime-local" name="end_time"
+                                        required="required" />
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Category :</label>
+                                    <div class="input-group">
+                                        <select class="custom-select" name="category"
+                                            id="category" required>
+                                            <option value="art">Art</option>
+                                            <option value="cultural">Cultural</option>
+                                            <option value="music">Music</option>
+                                            <option value="sports">Sports</option>
+                                            <option value="other">Other</option>
+                                        </select>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="form-group custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        id="customFile" name="image" accept="image/*">
+                                    <label class="custom-file-label" for="customFile">Choose
+                                        image...</label>
+                                </div>
+
+
+                                <div class="submit-btns">
+                                    <button type="button" class="mtr-btn"
+                                        data-dismiss="modal"><span>Cancel</span></button>
+                                    <button type="submit"
+                                        class="mtr-btn"><span>Create</span></button>
+                                </div>
+                            </form>
                             </div>
 
                         </div>
