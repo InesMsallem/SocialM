@@ -128,6 +128,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+       
         $request->validate([
             'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
             'name' => 'required|string',

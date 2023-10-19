@@ -397,9 +397,15 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
+                                            <span>01</span>
                                         </li>
                                         <li>
                                             <a href="{{ route('categories.index') }}" title="">Categories</a>
+                                            <span>03</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>05</span>
                                         </li>
                                     </ul>
                                 </div>
