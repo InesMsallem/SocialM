@@ -341,7 +341,6 @@
                                             <th>Name</th>
                                             <th>Description</th>
                                             <th>Price</th>
-                                            <th>Owner</th>
                                             <th>Location</th>
                                             <th>Category</th>
                                             <th>Image</th>
@@ -353,9 +352,15 @@
                                         @foreach ($products as $product)
                                         <tr>
                                             <td>{{ $product->name }}</td>
-                                            <td>{{ $product->description }} </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="top" title="{{ $product->description }}">
+                                                    {{ Str::limit($product->description, 50) }}
+                                                    @if (strlen($product->description) > 50)
+                                                    <span class="text-muted">...</span>
+                                                    @endif
+                                                </span>
+                                            </td>
                                             <td>{{ $product->prix }} TND</td>
-                                            <td>{{ $product->user->name }}</td>
                                             <td>{{ $product->location->name }}</td>
                                             <td>{{ $product->category->name }}</td>
                                             <td>

@@ -24,4 +24,15 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedByUser($user)
+    {
+        return $this->likes->where('user_id', $user->id)->isNotEmpty();
+    }
 }

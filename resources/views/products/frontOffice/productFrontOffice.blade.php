@@ -282,14 +282,13 @@
                                     <h4 class="widget-title">Shortcuts</h4>
                                     <ul class="naves">
                                         <li>
-                                            <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#myModal" href="" title="">Create
-                                                event</a>
+                                            <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#myModal" href="" title="">Add
+                                                product</a>
                                         </li>
                                         <li>
                                             <i class="ti-files"></i>
-                                            <a href="" data-toggle="modal" data-target="#myEventsModal" title="">My events</a>
+                                            <a href="" data-toggle="modal" data-target="#myProductsModal" title="">My Products</a>
                                         </li>
-
                                         <li>
                                             <i class="ti-image"></i>
                                             <a href="#" title="" data-toggle="modal" data-target="#imagesModal">Images</a>
@@ -300,44 +299,12 @@
                                     </ul>
                                 </div>
                             </aside>
-
-
-                            <div class="modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="imagesModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" style="max-width: 40%; max-height: 30%;" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="imagesModalLabel">Images</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                                <div class="carousel-inner">
-                                                    @foreach ($allevents as $event)
-                                                    <div class="carousel-item @if ($loop->first) active @endif">
-                                                        <img class="d-block w-100" src="{{ Vite::asset('storage/app/public/' . $event->image) }}" alt="Image">
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-                                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                                    <span class="carousel-control-next-icon" ariahidden="true"></span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal fade" id="myEventsModal" tabindex="-1" role="dialog" aria-labelledby="myEventsModalLabel" aria-hidden="true">
+                            <!-- modal -->
+                            <div class="modal fade" id="myProductsModal" tabindex="-1" role="dialog" aria-labelledby="myProductsModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="myEventsModalLabel">My Events</h5>
+                                            <h5 class="modal-title" id="myProductsModalLabel">My products</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -345,53 +312,36 @@
                                         <div class="modal-body">
                                             <ul class="list-group">
 
-                                                @foreach ($myevents as $event)
+                                                @foreach ($myProducts as $product)
                                                 <li class="list-group-item position-relative">
 
 
-                                                    <h5 class="mb-1">{{ $event->title }}</h5>
+                                                    <h5 class="mb-1">{{ $product->name }}</h5>
                                                     <p class="mb-1"><strong>Location:</strong>
-                                                        {{ $event->location->name }}
+                                                        {{ $product->location->name }}
                                                     </p>
-                                                    <p><strong>Participants:</strong>
-                                                        {{ $event->participants->count() }}
-                                                    </p>
-
-                                                    @php
-                                                    $startDate = \Carbon\Carbon::parse($event->start_time);
-                                                    $endDate = \Carbon\Carbon::parse($event->end_time);
-                                                    $currentDate = \Carbon\Carbon::now();
-                                                    @endphp
-
-                                                    @if ($currentDate->between($startDate, $endDate))
-                                                    <p class="mb-1"><strong>State:</strong> Current</p>
-                                                    @elseif ($currentDate->greaterThan($endDate))
-                                                    <p class="mb-1"><strong>State:</strong> Finished</p>
-                                                    @else
-                                                    <p class="mb-1"><strong>State:</strong> Soon</p>
-                                                    @endif
                                                 </li>
-                                                <button type="button" class="btn btn-sm btn-danger delete-button" data-toggle="modal" data-target="#deleteEventModal{{ $event->id }}">
+                                                <button type="button" class="btn btn-sm btn-danger delete-button" data-toggle="modal" data-target="#deleteProductModal{{ $product->id }}">
                                                     Delete
                                                 </button>
 
-                                                <div class="modal fade" id="deleteEventModal{{ $event->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteEventModalLabel{{ $event->id }}" aria-hidden="true">
+                                                <div class="modal fade" id="deleteProductModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteProductModalLabel{{ $product->id }}" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="deleteEventModalLabel{{ $event->id }}">
-                                                                    Delete Event</h5>
+                                                                <h5 class="modal-title" id="deleteProductModal{{ $product->id }}">
+                                                                    Delete Product</h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>Are you sure you want to delete this event?
+                                                                <p>Are you sure you want to delete this product?
                                                                 </p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <form action="{{ route('events.destroy', $event) }}" method="POST">
+                                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -409,292 +359,213 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data" class="styled-form">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="name">Name:</label>
+                                                    <input type="text" name="name" id="name" placeholder="name" class="form-control" class="styled-input" style="background-color: #e9f5f9;"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="description">description:</label>
+                                                    <textarea name="description" id="description" placeholder="description" class="form-control" rows="4" style="background-color: #e9f5f9;"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="prix">Prix:</label>
+                                                    <input type="number" name="prix" id="prix" class="form-control" min="1" placeholder="price" style="background-color: #e9f5f9;" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="location_id">Location:</label>
+                                                    <select name="location_id" id="location_id" class="form-control" style="background-color: #e9f5f9;">
+                                                        <!-- Populate with posts -->
+                                                        @foreach ($locations as $location)
+                                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="category_id">Category:</label>
+                                                    <select name="category_id" id="category_id" class="form-control" style="background-color: #e9f5f9;">
+                                                        <!-- Populate with posts -->
+                                                        @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+
+
+
+                                                <div class="form-group">
+                                                    <label for="file" class="custom-file-upload"> Upload file (optional):
+                                                        <i class="fa fa-cloud-upload"></i>
+                                                    </label>
+                                                    <input type="file" name="file" id="file" class="form-control-file" style="background-color: #e9f5f9;">
+                                                </div>
+                                                <button type="submit" class="mtr-btn"><span>Create product</span></button>
+                                                <a href="{{ route('products.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
+
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="imagesModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" style="max-width: 40%; max-height: 30%;" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="imagesModalLabel">Images</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    @foreach ($allProducts as $product)
+                                                    <div class="carousel-item @if ($loop->first) active @endif">
+                                                        <img class="d-block w-100" src="{{ Vite::asset('storage/app/public/' . $product->file) }}" alt="Image">
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" ariahidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-9">
                             <div class="blog-sec right-pading">
                                 <div class="post-filter-sec">
                                     <form method="get" class="filter-form">
-                                        <input type="text" name="search" placeholder="Search event" value="{{ request('search') }}">
+                                        <input type="text" name="search" placeholder="Search products" value="{{ request('search') }}">
                                         <button type="submit"><i class="ti-search"></i></button>
                                     </form>
                                     <div class="purify mt-1">
-                                        <form method="get" action="{{ route('events') }}">
+                                        <form method="get" action="{{ route('products') }}">
+                                            <label for="search" style="margin-right: 10px;">Category:</label>
+
                                             <select name="category">
+
                                                 <option value="">All</option>
-                                                <option value="art">Art</option>
-                                                <option value="cultural">Cultural</option>
-                                                <option value="music">Music</option>
-                                                <option value="sports">Sports</option>
-                                                <option value="other">Other</option>
+                                                @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
                                             </select>
-                                            <button type="submit" class="py-2 px-3"> Purify
-                                            </button>
+                                            <!-- Price Filter -->
+                                            <label for="min_price" style="margin-right: 10px;">Min Price:</label>
+                                            <input type="number" name="min_price" id="min_price" placeholder="Min Price" min="0" style="width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+
+                                            <label for="max_price" style="margin-left: 10px; margin-right: 10px;">Max Price:</label>
+                                            <input type="number" name="max_price" id="max_price" placeholder="Max Price" min="0" style="width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                                            <button type="submit" class="py-2 px-3" style="background-color: #007BFF; color: #fff; border: none; border-radius: 5px;">Purify</button>
                                         </form>
                                     </div>
                                 </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="POST" action="{{ route('addEventPost') }}" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <input type="text" name="title" required="required" placeholder="Event Title" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select name="location_id" id="location_id" class="form-control" required>
 
-                                                            @foreach ($locations as $location)
-                                                            <option value="{{ $location->id }}">
-                                                                {{ $location->name }}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="end_time">Starting Time:</label>
-
-                                                        <input type="datetime-local" name="start_time" required="required" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="end_time">End Time:</label>
-                                                        <input type="datetime-local" name="end_time" required="required" />
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="category">Category :</label>
-                                                        <div class="input-group">
-                                                            <select class="custom-select" name="category" id="category" required>
-                                                                <option value="art">Art</option>
-                                                                <option value="cultural">Cultural</option>
-                                                                <option value="music">Music</option>
-                                                                <option value="sports">Sports</option>
-                                                                <option value="other">Other</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group custom-file">
-                                                        <input type="file" class="custom-file-input" id="customFile" name="image" accept="image/*">
-                                                        <label class="custom-file-label" for="customFile">Choose
-                                                            image...</label>
-                                                    </div>
-
-
-                                                    <div class="submit-btns">
-                                                        <button type="button" class="mtr-btn" data-dismiss="modal"><span>Cancel</span></button>
-                                                        <button type="submit" class="mtr-btn"><span>Create</span></button>
-                                                    </div>
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @foreach ($events as $event)
+                                <!-- Loop through products and display them -->
+                                @foreach ($products as $product)
                                 <div class="l-post">
                                     <figure>
-                                        @if ($event->image)
-                                        <img class="mx-3 my-4" src="{{ Vite::asset('storage/app/public/' . $event->image) }}" alt="Image">
+                                        @if ($product->file)
+                                        <img class="mx-3 my-4" src="{{ asset('storage/' . $product->file) }}" alt="Product Image">
                                         @else
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/404.jpg') }}" alt="">
+                                        <img src="{{ asset('storage/images.png') }}" alt="Default Image">
                                         @endif
-                                        <ul class="blg-socials">
-                                            <li><a href="#" title="" class="youtube"><i class="fa fa-youtube"></i></a></li>
-                                        </ul>
+                                        <!-- Add social links or buttons specific to Products -->
                                     </figure>
                                     <div class="l-post-meta">
-                                        <h4 class="my-3"><a href="#" title="">{{ $event->title }}</a></h4>
+                                        <h4 class="my-3">{{ $product->name }}</h4>
                                         <div class="l-post-ranking">
-                                            <a class="admin" href="#" title="">{{ $event->creator->name }}</a>
-                                            <a class="time-post" href="#" title=""> -
-                                                {{ $event->created_at->format('l F jS') }} </a>
+                                            <a class="admin" href="#">{{ $product->username }}</a>
+                                            <p class="time-post">
+                                                Created at: {{ $product->created_at->format('l F jS') }}
+                                            </p>
+                                            <p>{{ $product->prix }} TND</p>
+                                            <p>{{ $product->location->name }}</p>
                                         </div>
-                                        <p>
-                                            {{ $event->description }}
-                                        </p>
-                                        <div class="g-post-ranking">
-                                            <a class="likes" href="#" title="" data-toggle="modal" data-target="#participantsModal{{ $event->id }}">
-                                                <i class="fa fa-heart-o"></i>
-                                                {{ $event->participants->count() }} Participants
-                                            </a>
-                                            @if (\Carbon\Carbon::parse($event->end_time)->isPast())
-                                            <a class="coments" href="#" title="" data-toggle="modal" data-target="#reviewsModal{{ $event->id }}"><i class="fa fa-comment-o"></i>{{ $event->reviews->count() }}
-                                                Review</a>
+                                        <p>{{ $product->description }}</p>
+
+                                        <div style="display: flex; align-items: center; margin-top: 10px;">
+                                            <p>{{ $product->likes->count() }} Likes</p>
+                                            @if ($product->user_id != auth()->user()->id)
+                                            @if ($product->likedByUser(auth()->user()))
+                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE') <!-- Use DELETE method to unlike -->
+                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                    <i class="ti-heart-broken" style="font-size: 24px; color: red;"></i> <!-- Empty heart icon -->
+                                                </button>
+                                            </form>
+                                            @else
+                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                    <i class="ti-heart" style="font-size: 24px; color: red;"></i> <!-- Filled heart icon -->
+                                                </button>
+                                            </form>
                                             @endif
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <form action="{{ route('eventParticipate', $event->id) }}" method="POST">
-                                                        @csrf
-                                                        @if ($event->participants->contains(auth()->user()))
-                                                        <button class="btn btn-block my-3" style="background-color: #3B5138; color:white" type="submit">Participated</button>
-                                                        @else
-                                                        <button style="background-color: #088DCD; color:white" class="btn btn-block my-3" type="submit">Participate</button>
-                                                        @endif
-                                                    </form>
-                                                </div>
-
-                                                @if (\Carbon\Carbon::parse($event->end_time)->isPast())
-                                                <div class="col-md-4 ">
-                                                    <form action="">
-                                                        <a data-toggle="modal" data-target="#addReviewModal{{ $event->id }}" href=""> <button style="background-color: #088DCD; color:white" class="btn btn-block my-3" type="submit">Add
-                                                                Review</button></a>
-
-                                                    </form>
-                                                </div>
-                                                @endif
-                                                <div class="modal fade" id="addReviewModal{{ $event->id }}" tabindex="-1" role="dialog" aria-labelledby="reviewInputModalLabel{{ $event->id }}" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="reviewInputModalLabel{{ $event->id }}">
-                                                                    Add Review for {{ $event->title }}</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="POST" action="{{ route('addReview', $event->id) }}">
-                                                                    @csrf
-                                                                    <div class="form-group">
-                                                                        <label for="rating">Rating:</label>
-                                                                        <select name="rating" id="rating" class="form-control" required>
-                                                                            <option value="1">1 (Poor)
-                                                                            </option>
-                                                                            <option value="2">2 (Fair)
-                                                                            </option>
-                                                                            <option value="3">3 (Good)
-                                                                            </option>
-                                                                            <option value="4">4 (Very Good)
-                                                                            </option>
-                                                                            <option value="5">5 (Excellent)
-                                                                            </option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="comment">Comment:</label>
-                                                                        <textarea name="comment" rows="4" required="required" placeholder="Enter your review"></textarea>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-primary">Submit
-                                                                        Review</button>
-                                                                </form>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
+                                            @endif
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="participantsModal{{ $event->id }}" tabindex="-1" role="dialog" aria-labelledby="participantsModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="participantsModalLabel">Participants
-                                                    for
-                                                    {{ $event->title }}
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <ul class="list-group">
-                                                    @foreach ($event->participants as $participant)
-                                                    <li class="list-group-item">
-                                                        {{ $participant->name }}
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            </div>
+
+                                        @if ($product->user_id == auth()->user()->id)
+                                        <div class="btn-group">
+                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                            </form>
                                         </div>
+                                        @endif
                                     </div>
+
                                 </div>
-                                <div class="modal fade" id="reviewsModal{{ $event->id }}" tabindex="-1" role="dialog" aria-labelledby="reviewsModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="reviewsModalLabel">Reviews for
-                                                    {{ $event->title }}
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <ul class="list-group">
-                                                    @foreach ($event->reviews as $review)
-                                                    <div class="review">
-                                                        <p class="comment">{{ $review->comment }}</p>
-                                                        <div class="rating">
-                                                            <p class="rating-value">Rating:
-                                                                {{ $review->rating }}
-                                                            </p>
-                                                            <p class="user-name">
-                                                                @foreach ($users as $user)
-                                                                @if ($user->id == $review->user_id)
-                                                                User: {{ $user->name }}
-                                                                @endif
-                                                                @endforeach
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-                                                    @if ($event->reviews->isEmpty())
-                                                    <p>No reviews yet</p>
-                                                    @endif
-                                                </ul>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Add any modals or additional features specific to Products -->
                                 @endforeach
 
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <ul class="pagination justify-content-center">
-                                            @if ($events->onFirstPage())
-                                            <li class="page-item disabled"><span class="page-link">Previous</span>
-                                            </li>
+                                            @if ($products->onFirstPage())
+                                            <li class="page-item disabled"><span class="page-link">Previous</span></li>
                                             @else
-                                            <li class="page-item"><a href="{{ $events->previousPageUrl() }}" class="page-link">Previous</a></li>
+                                            <li class="page-item"><a href="{{ $products->previousPageUrl() }}" class="page-link">Previous</a></li>
                                             @endif
-
-                                            @for ($i = 1; $i <= $events->lastPage(); $i++)
-                                                <li class="page-item{{ $i === $events->currentPage() ? ' active' : '' }}">
-                                                    <a href="{{ $events->url($i) }}" class="page-link">{{ $i }}</a>
+                                            @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                                <li class="page-item{{ $i === $products->currentPage() ? ' active' : '' }}">
+                                                    <a href="{{ $products->url($i) }}" class="page-link">{{ $i }}</a>
                                                 </li>
                                                 @endfor
-
-                                                @if ($events->hasMorePages())
-                                                <li class="page-item"><a href="{{ $events->nextPageUrl() }}" class="page-link">Next</a></li>
+                                                @if ($products->hasMorePages())
+                                                <li class="page-item"><a href="{{ $products->nextPageUrl() }}" class="page-link">Next</a></li>
                                                 @else
-                                                <li class="page-item disabled"><span class="page-link">Next</span>
-                                                </li>
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
                                                 @endif
                                         </ul>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

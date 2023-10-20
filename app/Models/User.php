@@ -52,4 +52,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id')
             ->withTimestamps();
     }
+    // app/Models/User.php
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

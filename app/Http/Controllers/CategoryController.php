@@ -39,7 +39,7 @@ class CategoryController extends Controller
 
         Category::create([
             'name' => $request->input('name'),
-            'description' => $request->input('name'),
+            'description' => $request->input('description'),
         ]);
 
         return back()->with('success', 'Category added successfully.');

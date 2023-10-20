@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Location;
 use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -20,6 +23,44 @@ class ProductController extends Controller
         $products = Product::all();
         return view('products.index', compact('products', 'productCount', 'categoryCount', 'commentCount'));
     }
+
+    public function displayProducts(Request $request)
+    {
+        $locations = Location::all();
+        $allProducts = Product::all();
+        $categories = Category::all();
+        $search = $request->input('search');
+        $category = $request->input('category');
+        $user = auth()->user();
+        $myProducts = Product::where('user_id', $user->id)->get();
+
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+
+        $products = Product::join('users', 'products.user_id', '=', 'users.id')
+            ->join('locations', 'products.location_id', '=', 'locations.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'users.name as username', 'locations.name as location_name', 'categories.name as category_name')
+            ->when($search, function ($query) use ($search) {
+                return $query->where('products.name', 'like', "%$search%")
+                    ->orWhere('products.description', 'like', "%$search%")
+                    ->orWhere('users.name', 'like', "%$search%");
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('products.category_id', $category);
+            })
+            ->when($minPrice, function ($query) use ($minPrice) {
+                return $query->where('products.prix', '>=', $minPrice);
+            })
+            ->when($maxPrice, function ($query) use ($maxPrice) {
+                return $query->where('products.prix', '<=', $maxPrice);
+            })
+            ->paginate(2); // Adjust the pagination limit as needed
+
+
+        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'myProducts', 'locations', 'allProducts'));
+    }
+
 
 
     public function create()
@@ -98,23 +139,23 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'prix' => 'required',
-            'file' => 'required',
-            'location_id' => 'required|exists:locations,id',
-            'category_id' => 'required|exists:categories,id',
+            'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
+            'name' => 'required|string',
+            'description' => 'required|string',
+
 
         ]);
 
         $product = Product::findOrFail($id);
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
-        $product->prix = $request->input('prix');
-        $product->user_id = $request->user()->id;
         $product->location_id = $request->input('location_id');
         $product->category_id = $request->input('category_id');
+        $user = Auth::user();
+        $product->user_id = $user->id;
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+
 
         $file = $request->file('file');
 
@@ -128,5 +169,33 @@ class ProductController extends Controller
         $product->save();
 
         return back()->with('success', 'Product updated successfully.');
+    }
+
+    public function like(Product $product)
+    {
+        // Ensure the user is not the owner of the product
+        if ($product->user_id === auth()->user()->id) {
+            return redirect()->route('products.index')->with('error', 'You cannot like your own product.');
+        }
+
+        $user = auth()->user();
+
+        // Check if the user has already liked the product
+        $existingLike = $product->likes->where('user_id', $user->id)->first();
+
+        if ($existingLike) {
+            // User has already liked the product; delete the like
+            $existingLike->delete();
+            return back();
+        } else {
+            // User hasn't liked the product; create a new like
+            $like = new Like();
+            $like->product_id = $product->id;
+            $like->user_id = $user->id;
+            $like->save();
+
+
+            return back();
+        }
     }
 }
