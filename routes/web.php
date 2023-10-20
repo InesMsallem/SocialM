@@ -77,10 +77,6 @@ Route::resource('posts', PostController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::resource('posts', PostController::class);
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Post;
+use App\Models\Comment;
+
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -9,13 +12,14 @@ class PostController extends Controller
     //
     public function index()
     {
-        $posts = Post::orderBy('id','desc')->paginate(5);
-        return view('posts.index', compact('posts'));
+        $commentCount = Comment::count();
+        $posts = Post::orderBy('id', 'desc')->paginate(5);
+        return view('posts.index', compact('posts', 'commentCount'));
     }
     public function show()
     {
-        $posts = Post::all(); // Retrieve all posts from the database
-    
+        $posts = Post::all();
+
         return view('home', compact('posts'));
     }
     public function create()
@@ -29,26 +33,27 @@ class PostController extends Controller
     //         'likes' => 'required',
     //         'comments' => 'required',
     //     ]);
-        
+
     //     Post::create($request->post());
 
     //     return redirect()->route('posts.index')->with('success','Post has been created successfully.');
     // }
     public function store(Request $request)
-{
-    $request->validate([
-        'content' => 'required',
-    ]);
-    
-    Post::create([
-        'content' => $request->input('content'),
-        // You can add other fields here if necessary
-    ]);
+    {
+        $request->validate([
+            'content' => 'required',
+        ]);
 
-    return redirect()->route('home')->with('success', 'Post has been created successfully.');
-}
+        Post::create([
+            'content' => $request->input('content'),
+            'likes' => 0,
+            'comments' => 0,
+        ]);
 
-    
+        return redirect()->route('home')->with('success', 'Post has been created successfully.');
+    }
+
+
 
     // public function show(Post $post)
     // {
@@ -58,22 +63,24 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        $commentCount = Comment::count();
+
+        return view('posts.edit', compact('post', 'commentCount'));
     }
     public function update(Request $request, Post $post)
     {
         $request->validate([
             'content' => 'required',
-          
+
         ]);
-        
+
         $post->fill($request->post())->save();
 
-        return redirect()->route('posts.index')->with('success','Post Has Been updated successfully');
+        return redirect()->route('posts.index')->with('success', 'Post Has Been updated successfully');
     }
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index')->with('success','Post has been deleted successfully');
+        return redirect()->route('posts.index')->with('success', 'Post has been deleted successfully');
     }
 }
