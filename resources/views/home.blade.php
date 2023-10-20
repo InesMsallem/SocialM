@@ -31,10 +31,12 @@
             <div class="top-area">
                 <ul class="main-menu">
                     <li>
-                        <a href="#" title="">Home</a>
+                        <a href="{{ route('home') }}" title="">Home</a>
                         <ul>
+                            <li><a href="{{ route('home') }}" title="">Home</a></li>
+
                             <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
-                            <li><a href="index-company.html" title="">Home Company</a></li>
+
                         </ul>
                     </li>
                     <li>

@@ -21,8 +21,7 @@
                 <a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
             </span>
             <span class="mh-text">
-                <a href="newsfeed.html" title=""><img
-                        src="{{ Vite::asset('resources/assets/images/logo2.png') }}" alt=""></a>
+                <a href="newsfeed.html" title=""><img src="{{ Vite::asset('resources/assets/images/logo2.png') }}" alt=""></a>
             </span>
             <span class="mh-btns-right">
                 <a class="fa fa-sliders" href="#shoppingbag"></a>
@@ -36,14 +35,13 @@
         </div>
         <nav id="menu" class="res-menu">
             <ul>
-                <li><span>Home</span>
+                <li>
+                    <a href="{{ route('home') }}" title="">Home</a>
                     <ul>
-                        <li><a href="index.html" title="">Home Social</a></li>
-                        <li><a href="index2.html" title="">Home Social 2</a></li>
-                        <li><a href="index-company.html" title="">Home Company</a></li>
-                        <li><a href="landing.html" title="">Login page</a></li>
-                        <li><a href="logout.html" title="">Logout Page</a></li>
-                        <li><a href="newsfeed.html" title="">news feed</a></li>
+                        <li><a href="{{ route('home') }}" title="">Home</a></li>
+
+                        <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
+
                     </ul>
                 </li>
                 <li><span>Time Line</span>

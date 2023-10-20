@@ -28,10 +28,12 @@
             <div class="top-area">
                 <ul class="main-menu">
                     <li>
-                        <a href="#" title="">Home</a>
+                        <a href="{{ route('home') }}" title="">Home</a>
                         <ul>
+                            <li><a href="{{ route('home') }}" title="">Home</a></li>
+
                             <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
-                            <li><a href="index-company.html" title="">Home Company</a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -401,6 +403,9 @@
                                                     </select>
                                                 </div>
 
+
+
+
                                                 <div class="form-group">
                                                     <label for="file" class="custom-file-upload"> Upload file (optional):
                                                         <i class="fa fa-cloud-upload"></i>
@@ -460,16 +465,26 @@
                                     </form>
                                     <div class="purify mt-1">
                                         <form method="get" action="{{ route('products') }}">
+                                            <label for="search" style="margin-right: 10px;">Category:</label>
+
                                             <select name="category">
+
                                                 <option value="">All</option>
                                                 @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
-                                            <button type="submit" class="py-2 px-3">Purify</button>
+                                            <!-- Price Filter -->
+                                            <label for="min_price" style="margin-right: 10px;">Min Price:</label>
+                                            <input type="number" name="min_price" id="min_price" placeholder="Min Price" min="0" style="width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+
+                                            <label for="max_price" style="margin-left: 10px; margin-right: 10px;">Max Price:</label>
+                                            <input type="number" name="max_price" id="max_price" placeholder="Max Price" min="0" style="width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                                            <button type="submit" class="py-2 px-3" style="background-color: #007BFF; color: #fff; border: none; border-radius: 5px;">Purify</button>
                                         </form>
                                     </div>
                                 </div>
+
                                 <!-- Loop through products and display them -->
                                 @foreach ($products as $product)
                                 <div class="l-post">
@@ -477,7 +492,7 @@
                                         @if ($product->file)
                                         <img class="mx-3 my-4" src="{{ asset('storage/' . $product->file) }}" alt="Product Image">
                                         @else
-                                        <img src="{{ asset('path_to_default_image.jpg') }}" alt="Default Image">
+                                        <img src="{{ asset('storage/images.png') }}" alt="Default Image">
                                         @endif
                                         <!-- Add social links or buttons specific to Products -->
                                     </figure>
@@ -488,84 +503,44 @@
                                             <p class="time-post">
                                                 Created at: {{ $product->created_at->format('l F jS') }}
                                             </p>
+                                            <p>{{ $product->prix }} TND</p>
+                                            <p>{{ $product->location->name }}</p>
                                         </div>
                                         <p>{{ $product->description }}</p>
 
+                                        <div style="display: flex; align-items: center; margin-top: 10px;">
+                                            <p>{{ $product->likes->count() }} Likes</p>
+                                            @if ($product->user_id != auth()->user()->id)
+                                            @if ($product->likedByUser(auth()->user()))
+                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE') <!-- Use DELETE method to unlike -->
+                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                    <i class="ti-heart-broken" style="font-size: 24px; color: red;"></i> <!-- Empty heart icon -->
+                                                </button>
+                                            </form>
+                                            @else
+                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                    <i class="ti-heart" style="font-size: 24px; color: red;"></i> <!-- Filled heart icon -->
+                                                </button>
+                                            </form>
+                                            @endif
+                                            @endif
+                                        </div>
+
                                         @if ($product->user_id == auth()->user()->id)
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editProductModal{{ $product->id }}">
-                                                Edit
-                                            </button>&nbsp;
                                             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
                                             </form>
                                         </div>
-
-
                                         @endif
-                                        <div class="modal fade" id="editProductModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="editProductModalLabel">update Product</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('products.update', $product-> id) }}" method="post" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="form-group">
-                                                                <label for="name">Name:</label>
-                                                                <input type="text" name="name" id="name" placeholder="name" class="form-control" value="{{ $product->name }}" style="background-color: #e9f5f9;"></input>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="description">description:</label>
-                                                                <textarea name="description" id="description" placeholder="description" class="form-control" rows="4" style="background-color: #e9f5f9;">{{ $product->description }}</textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="prix">Prix:</label>
-                                                                <input type="number" name="prix" id="prix" class="form-control" value="{{ $product->prix }}" min="1" placeholder="price" style="background-color: #e9f5f9;" />
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="location_id">Location:</label>
-                                                                <select name="location_id" id="location_id" class="form-control" style="background-color: #e9f5f9;">
-                                                                    <!-- Populate with posts -->
-                                                                    @foreach ($locations as $location)
-                                                                    <option value="{{ $location->id }}" {{ $product->location_id == $location->id ? 'selected' : '' }}>{{ $location->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="category_id">Category:</label>
-                                                                <select name="category_id" id="category_id" class="form-control" style="background-color: #e9f5f9;">
-                                                                    <!-- Populate with posts -->
-                                                                    @foreach ($categories as $category)
-                                                                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="file" class="custom-file-upload"> Upload file (optional):
-                                                                    <i class="fa fa-cloud-upload"></i>
-                                                                </label>
-                                                                <input type="file" name="file" id="file" class="form-control-file" style="background-color: #e9f5f9;">
-                                                            </div>
-                                                            <button type="submit" class="mtr-btn"><span>Update product</span></button>
-                                                            <a href="{{ route('products') }}" class="mtr-btn" title=""><span>Cancel</span></a>
-
-                                                        </form>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
+
                                 </div>
                                 <!-- Add any modals or additional features specific to Products -->
                                 @endforeach
