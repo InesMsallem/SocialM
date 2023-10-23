@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\ContactMessage;
 use App\Models\Like;
 use App\Models\Location;
 use App\Models\Product;
@@ -26,6 +27,8 @@ class ProductController extends Controller
 
     public function displayProducts(Request $request)
     {
+
+
         $locations = Location::all();
         $allProducts = Product::all();
         $categories = Category::all();
@@ -54,10 +57,17 @@ class ProductController extends Controller
             ->when($maxPrice, function ($query) use ($maxPrice) {
                 return $query->where('products.prix', '<=', $maxPrice);
             })
-            ->paginate(2); 
+            ->paginate(2);
 
 
-        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'locations', 'allProducts'));
+        $contactMessages = [];
+        foreach ($products as $product) {
+            $allContactMessage = ContactMessage::where('product_id', $product->id)->get();
+            $contactMessages[$product->id] = $allContactMessage;
+        }
+
+
+        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'locations', 'allProducts', 'contactMessages'));
     }
 
 
@@ -196,5 +206,25 @@ class ProductController extends Controller
 
             return back();
         }
+    }
+
+    public function contactOwner(Request $request, $product_id)
+    {
+        $product = Product::findOrFail($product_id);
+        $owner = $product->user;
+
+        $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        // Create a new contact message
+        ContactMessage::create([
+            'sender_id' => auth()->user()->id,
+            'receiver_id' => $owner->id,
+            'product_id' => $product->id,
+            'message' => $request->input('message'),
+        ]);
+
+        return back()->with('success', 'Your message has been sent to the owner.');
     }
 }

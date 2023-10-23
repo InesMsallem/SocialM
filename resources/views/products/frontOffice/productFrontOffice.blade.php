@@ -453,65 +453,105 @@
                                     </div>
                                 </div>
 
-                                <!-- Loop through products and display them -->
                                 @foreach ($products as $product)
-                                <div class="l-post">
-                                    <figure>
-                                        @if ($product->file)
-                                        <img class="mx-3 my-4" src="{{ asset('storage/' . $product->file) }}" alt="Product Image">
-                                        @else
-                                        <img src="{{ asset('storage/images.png') }}" alt="Default Image">
-                                        @endif
-                                        <!-- Add social links or buttons specific to Products -->
-                                    </figure>
-                                    <div class="l-post-meta">
-                                        <h4 class="my-3">{{ $product->name }}</h4>
-                                        <div class="l-post-ranking">
-                                            <a class="admin" href="#">{{ $product->username }}</a>
-                                            <p class="time-post">
-                                                Created at: {{ $product->created_at->format('l F jS') }}
-                                            </p>
-                                            <p>{{ $product->prix }} TND</p>
-                                            <p>{{ $product->location->name }}</p>
+                                <div class="l-post row my-4">
+                                    <div class="col-md-6">
+                                        <!-- Product Card -->
+                                        <div class="card product-card mb-3">
+                                            <div class="card-body">
+                                                <!-- Product Information -->
+                                                <figure>
+                                                    @if ($product->file)
+                                                    <img src="{{ asset('storage/' . $product->file) }}" alt="Product Image" class="img-fluid">
+                                                    @else
+                                                    <img src="{{ asset('storage/images.png') }}" alt="Default Image" class="img-fluid">
+                                                    @endif
+                                                </figure>
+                                                <h4 class="my-3">{{ $product->name }}</h4>
+                                                <!-- Product Information -->
+                                                <p class="admin">By: {{ $product->username }}</p>
+                                                <p class="time-post">Created at: {{ $product->created_at->format('l F jS') }}</p>
+                                                <p class="price">{{ $product->prix }} TND</p>
+                                                <p class="location">{{ $product->location->name }}</p>
+                                                <p class="description">{{ $product->description }}</p>
+                                                <div class="like-section">
+                                                    <p class="like-count">{{ $product->likes->count() }} Likes</p>
+                                                    @if ($product->user_id != auth()->user()->id)
+                                                    @if ($product->likedByUser(auth()->user()))
+                                                    <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE') <!-- Use DELETE method to unlike -->
+                                                        <button type="submit" class="unlike-button">
+                                                            <i class="ti-heart-broken"></i> <!-- Empty heart icon -->
+                                                        </button>
+                                                    </form>
+                                                    @else
+                                                    <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="like-button">
+                                                            <i class="ti-heart"></i> <!-- Filled heart icon -->
+                                                        </button>
+                                                    </form>
+                                                    @endif
+                                                    @endif
+                                                </div>
+                                                @if ($product->user_id == auth()->user()->id)
+                                                <div class="delete-button">
+                                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                                    </form>
+                                                </div>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <p>{{ $product->description }}</p>
-
-                                        <div style="display: flex; align-items: center; margin-top: 10px;">
-                                            <p>{{ $product->likes->count() }} Likes</p>
-                                            @if ($product->user_id != auth()->user()->id)
-                                            @if ($product->likedByUser(auth()->user()))
-                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE') <!-- Use DELETE method to unlike -->
-                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                                    <i class="ti-heart-broken" style="font-size: 24px; color: red;"></i> <!-- Empty heart icon -->
-                                                </button>
-                                            </form>
-                                            @else
-                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                                    <i class="ti-heart" style="font-size: 24px; color: red;"></i> <!-- Filled heart icon -->
-                                                </button>
-                                            </form>
-                                            @endif
-                                            @endif
-                                        </div>
-
-                                        @if ($product->user_id == auth()->user()->id)
-                                        <div class="btn-group">
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
-                                            </form>
-                                        </div>
-                                        @endif
                                     </div>
+                                    <div class="col-md-6">
+                                        <!-- Contact Card (Nested Inside Product Card) -->
+                                        <div class="card contact-card mb-3">
+                                            <div class="card-body">
+                                                <div class="contact-messages p-3">
+                                                    <h5>Contact Messages:</h5>
+                                                    <div style="max-height:300px; overflow-y: auto;">
+                                                        @foreach ($contactMessages[$product->id] as $message)
+                                                        <div class="contact-message">
+                                                            <strong>From: {{ $message->sender->name }}</strong>
+                                                            <p>{{ $message->message }}</p>
+                                                            <p>Sent at: {{ $message->created_at->format('Y-m-d H:i:s') }}</p>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
 
+                                                    @if (auth()->user()->id === $product->user_id)
+                                                    <!-- Show the "Contact Owner" button for the product owner -->
+                                                    <form method="post" action="{{ route('products.contact', ['product_id' => $product->id]) }}">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="message">Message</label>
+                                                            <textarea name="message" class="form-control" rows="4" required style="border: 1px solid #000; background-color: ghostwhite"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success">Répondre</button>
+                                                    </form>
+                                                    @else
+                                                    <!-- Show the "Contact Sender" button for other users -->
+                                                    <form method="post" action="{{ route('products.contact', ['product_id' => $product->id]) }}">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="message">Message</label>
+                                                            <textarea name="message" class="form-control" rows="4" required style="border: 1px solid #000; background-color: ghostwhite"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Contact Owner</button>
+                                                    </form>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Add any modals or additional features specific to Products -->
                                 @endforeach
+
 
                                 <div class="row">
                                     <div class="col-md-12 text-center">
