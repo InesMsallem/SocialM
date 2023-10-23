@@ -227,4 +227,21 @@ class ProductController extends Controller
 
         return back()->with('success', 'Your message has been sent to the owner.');
     }
+
+
+    public function deleteMessage($product_id, $message_id)
+    {
+        $message = ContactMessage::find($message_id);
+
+        if (!$message) {
+            return back()->with('error', 'Message not found.');
+        }
+
+        if (auth()->user()->id === $message->sender_id) {
+            $message->delete();
+            return back()->with('success', 'Message deleted successfully.');
+        } else {
+            return back()->with('error', 'You are not authorized to delete this message.');
+        }
+    }
 }

@@ -115,6 +115,8 @@ Route::put('/dashboard/products/{id}', [ProductController::class, 'update'])->na
 Route::get('/home/products', [ProductController::class, 'displayProducts'])->name('products');
 Route::match(['post', 'delete'], 'products/like/{product}', [ProductController::class, 'like'])->name('products.like');
 Route::post('/products/{product_id}/contact', [ProductController::class, 'contactOwner'])->name('products.contact');
+Route::delete('/products/{product_id}/messages/{message_id}', [ProductController::class, 'deleteMessage'])->middleware('auth')->name('products.deleteMessage');
+
 
 
 //Pages ==>

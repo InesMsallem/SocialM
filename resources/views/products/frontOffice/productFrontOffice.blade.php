@@ -508,17 +508,26 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <!-- Contact Card (Nested Inside Product Card) -->
                                         <div class="card contact-card mb-3">
                                             <div class="card-body">
                                                 <div class="contact-messages p-3">
                                                     <h5>Contact Messages:</h5>
-                                                    <div style="max-height:300px; overflow-y: auto;">
+                                                    <div style="max-height: 300px; overflow-y: auto;">
+
                                                         @foreach ($contactMessages[$product->id] as $message)
-                                                        <div class="contact-message">
-                                                            <strong>From: {{ $message->sender->name }}</strong>
+                                                        <div class="contact-message" style="border: 1px solid; padding: 10px; margin: 10px 0; border-radius: 8px; background-color: #e9f5f9;">
+                                                            <strong>{{ $message->sender->name }}</strong>
                                                             <p>{{ $message->message }}</p>
-                                                            <p>Sent at: {{ $message->created_at->format('Y-m-d H:i:s') }}</p>
+                                                            <p class="timestamp text-muted small">{{ $message->created_at->format('Y-m-d H:i:s') }}</p>
+
+                                                            @if (auth()->user()->id === $message->sender_id)
+                                                            <form method="post" action="{{ route('products.deleteMessage', ['product_id' => $product->id, 'message_id' => $message->id]) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                            </form>
+                                                            @endif
+
                                                         </div>
                                                         @endforeach
                                                     </div>
@@ -545,6 +554,7 @@
                                                     </form>
                                                     @endif
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
