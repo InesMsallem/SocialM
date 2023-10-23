@@ -32,7 +32,6 @@ class ProductController extends Controller
         $search = $request->input('search');
         $category = $request->input('category');
         $user = auth()->user();
-        $myProducts = Product::where('user_id', $user->id)->get();
 
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
@@ -55,10 +54,10 @@ class ProductController extends Controller
             ->when($maxPrice, function ($query) use ($maxPrice) {
                 return $query->where('products.prix', '<=', $maxPrice);
             })
-            ->paginate(2); // Adjust the pagination limit as needed
+            ->paginate(2); 
 
 
-        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'myProducts', 'locations', 'allProducts'));
+        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'locations', 'allProducts'));
     }
 
 

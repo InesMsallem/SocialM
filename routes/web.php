@@ -14,6 +14,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -30,9 +31,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/profile', function () {
-    return view('time-line');
-})->name('profile');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
 Route::get('/inbox', function () {
     return view('inbox');
 });
