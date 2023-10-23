@@ -699,7 +699,7 @@
                                                                 <li>
                                                                     <span class="comment" data-toggle="tooltip" title="Comments">
                                                                         <i class="fa fa-comments-o"></i>
-                                                                        <ins>{{ $commentCount }}</ins>
+                                                                        <ins>{{ $post->comments }}</ins>
                                                                     </span>
                                                                 </li>
                                                                 <li>
