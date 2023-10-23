@@ -285,10 +285,7 @@
                                             <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#myModal" href="" title="">Add
                                                 product</a>
                                         </li>
-                                        <li>
-                                            <i class="ti-files"></i>
-                                            <a href="" data-toggle="modal" data-target="#myProductsModal" title="">My Products</a>
-                                        </li>
+
                                         <li>
                                             <i class="ti-image"></i>
                                             <a href="#" title="" data-toggle="modal" data-target="#imagesModal">Images</a>
@@ -300,6 +297,7 @@
                                 </div>
                             </aside>
                             <!-- modal -->
+
                             <div class="modal fade" id="myProductsModal" tabindex="-1" role="dialog" aria-labelledby="myProductsModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -309,52 +307,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <ul class="list-group">
 
-                                                @foreach ($myProducts as $product)
-                                                <li class="list-group-item position-relative">
-
-
-                                                    <h5 class="mb-1">{{ $product->name }}</h5>
-                                                    <p class="mb-1"><strong>Location:</strong>
-                                                        {{ $product->location->name }}
-                                                    </p>
-                                                </li>
-                                                <button type="button" class="btn btn-sm btn-danger delete-button" data-toggle="modal" data-target="#deleteProductModal{{ $product->id }}">
-                                                    Delete
-                                                </button>
-
-                                                <div class="modal fade" id="deleteProductModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteProductModalLabel{{ $product->id }}" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="deleteProductModal{{ $product->id }}">
-                                                                    Delete Product</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>Are you sure you want to delete this product?
-                                                                </p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-
-
-                                            </ul>
-                                        </div>
 
                                     </div>
                                 </div>
@@ -368,6 +321,21 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
                                         <div class="modal-body">
                                             <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data" class="styled-form">
                                                 @csrf
@@ -406,11 +374,10 @@
 
 
 
-                                                <div class="form-group">
-                                                    <label for="file" class="custom-file-upload"> Upload file (optional):
-                                                        <i class="fa fa-cloud-upload"></i>
-                                                    </label>
-                                                    <input type="file" name="file" id="file" class="form-control-file" style="background-color: #e9f5f9;">
+                                                <div class="form-group custom-file">
+                                                    <input type="file" class="custom-file-input" id="file" name="file" accept="image/*">
+                                                    <label class="custom-file-label" for="file">Choose
+                                                        image...</label>
                                                 </div>
                                                 <button type="submit" class="mtr-btn"><span>Create product</span></button>
                                                 <a href="{{ route('products.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
@@ -480,7 +447,8 @@
 
                                             <label for="max_price" style="margin-left: 10px; margin-right: 10px;">Max Price:</label>
                                             <input type="number" name="max_price" id="max_price" placeholder="Max Price" min="0" style="width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
-                                            <button type="submit" class="py-2 px-3" style="background-color: #007BFF; color: #fff; border: none; border-radius: 5px;">Purify</button>
+                                            <button type="submit" class="py-2 px-3">
+                                                <i class="ti-search"></i></button>
                                         </form>
                                     </div>
                                 </div>

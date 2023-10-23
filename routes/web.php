@@ -12,7 +12,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -29,9 +31,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/profile', function () {
-    return view('time-line');
-})->name('profile');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
 Route::get('/inbox', function () {
     return view('inbox');
 });
@@ -94,7 +95,7 @@ Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])-
 Route::put('/dashboard/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
 //Category ==>
-// Route to display the comment creation form
+// Route to display the category creation form
 Route::get('/dashboard/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/dashboard/categories', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/dashboard/categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -103,8 +104,8 @@ Route::get('/dashboard/categories/{id}/edit', [CategoryController::class, 'edit'
 Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 
 
-//Category ==>
-// Route to display the comment creation form
+//Product ==>
+// Route to display the product creation form
 Route::get('/dashboard/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/dashboard/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/dashboard/products', [ProductController::class, 'index'])->name('products.index');
@@ -115,6 +116,14 @@ Route::get('/home/products', [ProductController::class, 'displayProducts'])->nam
 Route::match(['post', 'delete'], 'products/like/{product}', [ProductController::class, 'like'])->name('products.like');
 
 
+//Pages ==>
+// Route to display the page creation form
+Route::get('/dashboard/pages/create', [PageController::class, 'create'])->name('pages.create');
+Route::post('/dashboard/pages', [PageController::class, 'store'])->name('pages.store');
+Route::get('/dashboard/pages', [PageController::class, 'index'])->name('pages.index');
+Route::delete('/dashboard/pages/{id}', [PageController::class, 'destroy'])->name('pages.destroy');
+Route::get('/dashboard/pages/{id}/edit', [PageController::class, 'edit'])->name('pages.edit');
+Route::put('/dashboard/pages/{id}', [PageController::class, 'update'])->name('pages.update');
 
 
 

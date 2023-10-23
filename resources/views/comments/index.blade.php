@@ -342,7 +342,6 @@
                                             <th>Post</th>
                                             <th>File</th>
                                             <th>Content</th>
-                                            <th>Likes</th>
                                             <th>Delete</th>
                                             <th>Update</th>
                                         </tr>
@@ -363,7 +362,6 @@
                                             </td>
 
                                             <td>{{ $comment->content }}</td>
-                                            <td>{{ $comment->likes }}</td>
                                             <td>
                                                 <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
                                                     @csrf
