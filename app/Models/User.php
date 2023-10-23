@@ -58,4 +58,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    public function joiningPages(): BelongsToMany
+    {
+        return $this->belongsToMany(Page::class, 'page_user', 'user_id', 'page_id')
+            ->withTimestamps();
+    }
 }
