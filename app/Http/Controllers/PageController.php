@@ -94,11 +94,11 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|string',
+            'title' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
             'description' => 'required|string',
             'user_id' => 'required|exists:users,id',
-            'image' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
-            'cover' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
+            'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'cover' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $page = Page::findOrFail($id);

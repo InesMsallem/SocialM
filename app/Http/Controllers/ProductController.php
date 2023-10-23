@@ -79,10 +79,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'prix' => 'required',
-            'file' => 'required',
+            'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
+            'description' => 'required|string',
+            'prix' => 'required|numeric',
+            'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
             'location_id' => 'required|exists:locations,id',
             'category_id' => 'required|exists:categories,id',
 

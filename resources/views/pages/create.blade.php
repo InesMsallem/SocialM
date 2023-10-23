@@ -356,17 +356,15 @@
                                                 <textarea name="description" id="description" class="form-control" rows="4" style="background-color: #e9f5f9;"></textarea>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="image" class="custom-file-upload"> Upload image:
-                                                    <i class="fa fa-cloud-upload"></i>
-                                                </label>
-                                                <input type="file" name="image" id="image" class="form-control-file">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
+                                                <label class="custom-file-label" for="image">Choose
+                                                    image...</label>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="cover" class="custom-file-upload"> Upload cover:
-                                                    <i class="fa fa-cloud-upload"></i>
-                                                </label>
-                                                <input type="file" name="cover" id="cover" class="form-control-file">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="cover" name="cover" accept="image/*">
+                                                <label class="custom-file-label" for="cover">Choose
+                                                    cover...</label>
                                             </div>
 
 

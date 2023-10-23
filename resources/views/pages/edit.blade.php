@@ -326,7 +326,21 @@
                                 <div class="row">
                                     <div class="col-lg-9">
                                         <h1>Edit page</h1>
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
 
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
                                         <form action="{{ route('pages.update', $page->id) }}" method="post" enctype="multipart/form-data" class="styled-form">
                                             @csrf
                                             @method('PUT')
@@ -349,17 +363,15 @@
                                                 <label for="description">Description:</label>
                                                 <textarea name="description" id="description" class="form-control" rows="4" style="background-color: #e9f5f9;">{{ $page->description }}</textarea>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="image" class="custom-file-upload"> Upload image:
-                                                    <i class="fa fa-cloud-upload"></i>
-                                                </label>
-                                                <input type="file" name="image" id="image" class="form-control-file">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
+                                                <label class="custom-file-label" for="image">Choose
+                                                    image...</label>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="cover" class="custom-file-upload"> Upload cover:
-                                                    <i class="fa fa-cloud-upload"></i>
-                                                </label>
-                                                <input type="file" name="cover" id="cover" class="form-control-file">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="cover" name="cover" accept="image/*">
+                                                <label class="custom-file-label" for="cover">Choose
+                                                    cover...</label>
                                             </div>
 
                                             <button type="submit" class="mtr-btn"><span>Update Page</span></button>

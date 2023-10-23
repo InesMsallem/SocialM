@@ -356,11 +356,10 @@
                                                 </select>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="file" class="custom-file-upload"> Upload file (optional):
-                                                    <i class="fa fa-cloud-upload"></i>
-                                                </label>
-                                                <input type="file" name="file" id="file" class="form-control-file">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="file" name="file" accept="image/*">
+                                                <label class="custom-file-label" for="file">Choose
+                                                    image...</label>
                                             </div>
 
                                             <div class="form-group">

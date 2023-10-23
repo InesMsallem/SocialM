@@ -326,7 +326,21 @@
                                 <div class="row">
                                     <div class="col-lg-9">
                                         <h1>Edit Comment</h1>
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
 
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
                                         <form action="{{ route('comments.update', $comment->id) }}" method="post" enctype="multipart/form-data" class="styled-form">
                                             @csrf
                                             @method('PUT')
@@ -351,9 +365,10 @@
                                                 </select>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="file">File (optional):</label>
-                                                <input type="file" name="file" id="file" class="form-control-file">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="file" name="file" accept="image/*">
+                                                <label class="custom-file-label" for="file">Choose
+                                                    image...</label>
                                             </div>
 
                                             <div class="form-group">

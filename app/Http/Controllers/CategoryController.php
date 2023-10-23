@@ -71,7 +71,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
             'description' => 'required|string',
         ]);
 

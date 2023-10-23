@@ -26,18 +26,7 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'content' => 'required',
-    //         'likes' => 'required',
-    //         'comments' => 'required',
-    //     ]);
-
-    //     Post::create($request->post());
-
-    //     return redirect()->route('posts.index')->with('success','Post has been created successfully.');
-    // }
+   
     public function store(Request $request)
     {
         $request->validate([

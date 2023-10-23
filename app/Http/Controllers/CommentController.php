@@ -37,7 +37,7 @@ class CommentController extends Controller
         $request->validate([
             'content' => 'required|string',
             'post_id' => 'required|exists:posts,id',
-
+            'file' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $file = $request->file('file');
