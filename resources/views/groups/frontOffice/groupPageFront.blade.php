@@ -552,7 +552,7 @@
 
                                 <div class="row">
                                     @if ($blogs->isEmpty())
-                                        <h1  style="color:red; text-align:center">No blogs available for this group.</h1>
+                                        <h3  style="color:grey; text-align:center">No blogs available for this group.</h3>
                                     @else
                                 @foreach ($blogs as $blog)
                                     <div class="col-lg-6 col-sm-6">
