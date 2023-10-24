@@ -14,7 +14,11 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+
+use App\Http\Controllers\BlogController;
+
 use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -83,7 +87,19 @@ Route::put('groups/{group}', [GroupController::class, 'update'])->name('editGrou
 Route::get('/dashboard/groups', [GroupController::class, 'index'])->name('showGroup');
 //delete group
 Route::delete('dashboard/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
-
+Route::get('/home/groups', [GroupController::class, 'displayGroups'])->name('groups');
+Route::get('/home/groups/add', [GroupController::class, 'addGroupFront'])->name('addGroupFront');
+Route::post('/groupsfront', [GroupController::class, 'storeFront'])->name('addGroupPostFront');
+Route::get('/groups/{group}/join', [GroupController::class, 'join'])->name('joinGroup');
+Route::post('/groups/{group}/leave', [GroupController::class, 'leave'])->name('leaveGroup');
+Route::delete('home/groups/{group}', [GroupController::class, 'destroyFront'])->name('groups.destroyfront');
+Route::get('home/{group}/edit', [GroupController::class, 'editFront'])->name('editGroupFront');
+Route::put('home/{group}', [GroupController::class, 'updateFront'])->name('editGroupPutFront');
+Route::get('/group/{group}', [GroupController::class, 'groupPageFront'])->name('groupPageFront');
+//blogs ==>
+//add blog
+Route::post('/blogs', [BlogController::class, 'storeBlog'])->name('addBlog');
+Route::delete('/delete-blog/{blog}', [BlogController::class, 'destroy'])->name('deleteBlog');
 
 //Comment ==>
 // Route to display the comment creation form

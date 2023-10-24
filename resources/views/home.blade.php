@@ -278,7 +278,7 @@
                                                 </li>
                                                 <li>
                                                     <i class="ti-user"></i>
-                                                    <a href="timeline-friends.html" title="">friends</a>
+                                                    <a href="{{ route('groups') }}" title="">Groups</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-image"></i>
