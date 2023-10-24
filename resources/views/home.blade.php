@@ -340,30 +340,14 @@
                                                     <textarea name="content" rows="2" placeholder="write something"></textarea>
                                                     <div class="attachments">
                                                         <ul>
-                                                            <li>
-                                                                <i class="fa fa-music"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="music_attachment">
-                                                                </label>
-                                                            </li>
+                                                          
                                                             <li>
                                                                 <i class="fa fa-image"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file" name="image_attachment">
+                                                                    <input type="file" name="image" id="image">
                                                                 </label>
                                                             </li>
-                                                            <li>
-                                                                <i class="fa fa-video-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="video_attachment">
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <i class="fa fa-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="camera_attachment">
-                                                                </label>
-                                                            </li>
+                                                          
                                                             <li>
                                                                 <button type="submit">Post</button>
                                                             </li>
@@ -388,7 +372,7 @@
                                                         <span>published: {{ $post->created_at }}</span>
                                                     </div>
                                                     <div class="post-meta">
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/user-post.jpg') }}" alt="">
+                                                    <img src="{{ asset('storage/' . $post->image) }}" alt="Image">
                                                         <div class="we-video-info">
                                                             <ul>
                                                                 <li>
@@ -483,7 +467,7 @@
                                                 @endif
 
                                             </div>
-                                            <form action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
+                                            <form actionfileim="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
                                                 @csrf <!-- This is for CSRF protection -->
                                                 <textarea name="content" id="content" class="form-control" rows="4"></textarea>
                                                 <input type="hidden" name="post_id" value="{{ $post->id }}">

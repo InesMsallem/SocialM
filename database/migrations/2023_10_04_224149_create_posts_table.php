@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('content');
             $table->integer('likes');
             $table->integer('comments');
+            $table->string('image');
 
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -39,19 +40,31 @@ class PostController extends Controller
     //     return redirect()->route('posts.index')->with('success','Post has been created successfully.');
     // }
     public function store(Request $request)
-    {
-        $request->validate([
-            'content' => 'required',
-        ]);
+{
+    $request->validate([
+        'content' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        Post::create([
-            'content' => $request->input('content'),
-            'likes' => 0,
-            'comments' => 0,
-        ]);
+    $image = $request->file('image');
+    
 
-        return redirect()->route('home')->with('success', 'Post has been created successfully.');
+    if ($image) {
+        $path = $image->store('uploads', 'public');
+    } else {
+        $path = null;
     }
+
+    Post::create([
+        'content' => $request->input('content'),
+        'image' => $path,
+        'likes' => 0,
+        'comments' => 0,
+    ]);
+
+    return redirect()->route('home')->with('success', 'Post has been created successfully.');
+}
+
 
 
 
