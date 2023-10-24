@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Post;
+use App\Models\Comment;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id','desc')->paginate(5);
-        return view('home', compact('posts'));
+        $commentsByPost = [];
+        $posts = Post::all();
+        $currentPostId = null;
+
+        // Loop through each post and fetch its associated comments
+        foreach ($posts as $post) {
+            $comments = Comment::where('post_id', $post->id)->get();
+            $commentsByPost[$post->id] = $comments;
+        }
+
+        $postsOrdred = Post::orderBy('id', 'desc')->paginate(5);
+        return view('home', compact('postsOrdred', 'commentsByPost', 'currentPostId'));
     }
 }

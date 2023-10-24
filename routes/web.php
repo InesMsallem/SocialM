@@ -7,9 +7,14 @@ use App\Http\Controllers\landingController;
 use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
+
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -25,12 +30,26 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::get('/inbox', function () {return view('inbox');});
-Route::get('/time-line', function () {return view('time-line');});
-Route::get('/', function () {return view('login');})->name('signin');
-Route::get('/home', function () {return view('home');})->name('home');
-Route::get('/signup', function () {return view('signup');})->name('signup');
-Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+Route::get('/inbox', function () {
+    return view('inbox');
+});
+
+Route::get('/', function () {
+    return view('login');
+})->name('signin');
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+Route::get('/signup', function () {
+    return view('signup');
+})->name('signup');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 
 //Events ==>
 //add event routes
@@ -38,11 +57,20 @@ Route::get('/dashboard/events/add', [EventController::class, 'create'])->name('a
 Route::post('/events', [EventController::class, 'store'])->name('addEventPost');
 //edit event routes
 Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('editEvent');
-Route::put('events/{event}', [EventController::class, 'update'])->name('editEventPut');
+Route::put('/events/{id}',  [EventController::class, 'update'])->name('editEventPut');
 //display event 
 Route::get('/dashboard/events', [EventController::class, 'index'])->name('showEvent');
 //delete event
 Route::delete('dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+//display event frontOffice
+Route::get('/home/events', [EventController::class, 'displayEvents'])->name('events');
+//participate
+Route::post('/home/events/{event}/participate', [EventController::class, 'participateInEvent'])->name('eventParticipate');
+//event reviews 
+Route::post('/home/events/{event}/reviews', [EventController::class, 'addReview'])->name('addReview');
+
+
+
 
 //Groups ==>
 //add group routes
@@ -66,17 +94,52 @@ Route::delete('/dashboard/comments/{id}', [CommentController::class, 'destroy'])
 Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 Route::put('/dashboard/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
+//Category ==>
+// Route to display the category creation form
+Route::get('/dashboard/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/dashboard/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/dashboard/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::delete('/dashboard/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('/dashboard/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
+
+//Product ==>
+// Route to display the product creation form
+Route::get('/dashboard/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/dashboard/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/dashboard/products', [ProductController::class, 'index'])->name('products.index');
+Route::delete('/dashboard/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/dashboard/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::put('/dashboard/products/{id}', [ProductController::class, 'update'])->name('products.update');
+Route::get('/home/products', [ProductController::class, 'displayProducts'])->name('products');
+Route::match(['post', 'delete'], 'products/like/{product}', [ProductController::class, 'like'])->name('products.like');
+Route::post('/products/{product_id}/contact', [ProductController::class, 'contactOwner'])->name('products.contact');
+Route::delete('/products/{product_id}/messages/{message_id}', [ProductController::class, 'deleteMessage'])->middleware('auth')->name('products.deleteMessage');
+
+
+
+//Pages ==>
+// Route to display the page creation form
+Route::get('/dashboard/pages/create', [PageController::class, 'create'])->name('pages.create');
+Route::post('/dashboard/pages', [PageController::class, 'store'])->name('pages.store');
+Route::get('/dashboard/pages', [PageController::class, 'index'])->name('pages.index');
+Route::delete('/dashboard/pages/{id}', [PageController::class, 'destroy'])->name('pages.destroy');
+Route::get('/dashboard/pages/{id}/edit', [PageController::class, 'edit'])->name('pages.edit');
+Route::put('/dashboard/pages/{id}', [PageController::class, 'update'])->name('pages.update');
 
 
 
 
 
 
-// Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::resource('posts', PostController::class);
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+
+Route::resource('/posts', PostController::class);
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

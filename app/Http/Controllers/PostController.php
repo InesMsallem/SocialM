@@ -33,7 +33,7 @@ class PostController extends Controller
     //         'likes' => 'required',
     //         'comments' => 'required',
     //     ]);
-
+        
     //     Post::create($request->post());
 
     //     return redirect()->route('posts.index')->with('success','Post has been created successfully.');

@@ -13,7 +13,12 @@
     @vite(['resources/assets/css/style.css'])
     @vite(['resources/assets/css/color.css'])
     @vite(['resources/assets/css/responsive.css'])
-
+    <style>
+        .styled-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -321,14 +326,28 @@
                                 <div class="row">
                                     <div class="col-lg-9">
                                         <h1>Edit Comment</h1>
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
 
-                                        <form action="{{ route('comments.update', $comment->id) }}" method="post" enctype="multipart/form-data">
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
+                                        <form action="{{ route('comments.update', $comment->id) }}" method="post" enctype="multipart/form-data" class="styled-form">
                                             @csrf
                                             @method('PUT')
 
                                             <div class="form-group">
                                                 <label for="user_id">User:</label>
-                                                <select name="user_id" id="user_id" class="form-control">
+                                                <select name="user_id" id="user_id" class="form-control" style="background-color: #e9f5f9;">
                                                     <!-- Populate with users -->
                                                     @foreach ($users as $user)
                                                     <option value="{{ $user->id }}" {{ $comment->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
@@ -338,7 +357,7 @@
 
                                             <div class="form-group">
                                                 <label for="post_id">Post:</label>
-                                                <select name="post_id" id="post_id" class="form-control">
+                                                <select name="post_id" id="post_id" class="form-control" style="background-color: #e9f5f9;">
                                                     <!-- Populate with posts -->
                                                     @foreach ($posts as $post)
                                                     <option value="{{ $post->id }}" {{ $comment->post_id == $post->id ? 'selected' : '' }}>{{ $post->content }}</option>
@@ -346,17 +365,20 @@
                                                 </select>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="file">File (optional):</label>
-                                                <input type="file" name="file" id="file" class="form-control-file">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="file" name="file" accept="image/*">
+                                                <label class="custom-file-label" for="file">Choose
+                                                    image...</label>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="content">Content:</label>
-                                                <textarea name="content" id="content" class="form-control" rows="4">{{ $comment->content }}</textarea>
+                                                <textarea name="content" id="content" class="form-control" rows="4" style="background-color: #e9f5f9;">{{ $comment->content }}</textarea>
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary">Update Comment</button>
+                                            <button type="submit" class="mtr-btn"><span>Update Comment</span></button>
+                                            <a href="{{ route('comments.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
+
                                         </form>
 
                                     </div>
@@ -388,6 +410,14 @@
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
                                             <span>{{ $commentCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('categories.index') }}" title="">Categories</a>
+                                            <span>{{ $categoryCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>{{ $productCount }}</span>
                                         </li>
                                     </ul>
                                 </div>

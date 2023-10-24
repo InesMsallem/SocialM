@@ -342,7 +342,6 @@
                                             <th>Post</th>
                                             <th>File</th>
                                             <th>Content</th>
-                                            <th>Likes</th>
                                             <th>Delete</th>
                                             <th>Update</th>
                                         </tr>
@@ -363,7 +362,6 @@
                                             </td>
 
                                             <td>{{ $comment->content }}</td>
-                                            <td>{{ $comment->likes }}</td>
                                             <td>
                                                 <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
                                                     @csrf
@@ -407,8 +405,16 @@
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="{{route('comments.index')}}" title="">Comments</a>
+                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
                                             <span>{{ $commentCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('categories.index') }}" title="">Categories</a>
+                                            <span>{{ $categoryCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>{{ $productCount }}</span>
                                         </li>
                                     </ul>
                                 </div>

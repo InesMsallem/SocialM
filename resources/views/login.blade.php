@@ -36,7 +36,7 @@
                             <h2 class="log-title">Login</h2>
                             <p>
                                 Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a
-                                    href="#" title="">Join now</a>
+                                    href="{{ route('signup') }}" title="">Join now</a>
                             </p>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf

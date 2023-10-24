@@ -19,7 +19,7 @@
                     <a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
                 </span>
                 <span class="mh-text">
-                    <a href="newsfeed.html" title=""><img src="{{ Vite::asset('resources/assets/images/logo2.jpg') }}"  alt=""></a>
+                    <a href="newsfeed.html" title=""><img src="{{ Vite::asset('resources/assets/images/logo2.jpg') }}" alt=""></a>
                 </span>
                 <span class="mh-btns-right">
                     <a class="fa fa-sliders" href="#shoppingbag"></a>
@@ -33,14 +33,13 @@
             </div>
             <nav id="menu" class="res-menu">
                 <ul>
-                    <li><span>Home</span>
+                    <li>
+                        <a href="{{ route('home') }}" title="">Home</a>
                         <ul>
-                            <li><a href="home" title="">Home Social</a></li>
-                            <li><a href="index2.html" title="">Home Social 2</a></li>
-                            <li><a href="index-company.html" title="">Home Company</a></li>
-                            <li><a href="landing.html" title="">Login page</a></li>
-                            <li><a href="logout.html" title="">Logout Page</a></li>
-                            <li><a href="newsfeed.html" title="">news feed</a></li>
+                            <li><a href="{{ route('home') }}" title="">Home</a></li>
+
+                            <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
+
                         </ul>
                     </li>
                     <li><span>Time Line</span>
@@ -205,7 +204,7 @@
 
         <div class="topbar stick">
             <div class="logo">
-                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}"  alt=""></a>
+                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
             </div>
 
             <div class="top-area">
@@ -283,7 +282,7 @@
                             <ul class="drops-menu">
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-1.jpg') }}"  alt="thumb1">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-1.jpg') }}" alt="thumb1">
                                         <div class="mesg-meta">
                                             <h6>sarah Loren</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -294,7 +293,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-2.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-2.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -305,7 +304,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-3.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-3.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -316,7 +315,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-4.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-4.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -327,7 +326,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-5.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-5.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -341,8 +340,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" title="Messages" data-ripple=""><i
-                                class="ti-comment"></i><span>12</span></a>
+                        <a href="#" title="Messages" data-ripple=""><i class="ti-comment"></i><span>12</span></a>
                         <div class="dropdowns">
                             <span>5 New Messages</span>
                             <ul class="drops-menu">
@@ -359,7 +357,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-2.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-2.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -370,7 +368,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-3.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-3.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -381,7 +379,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-4.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-4.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -392,7 +390,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-5.jpg') }}"alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/resources/thumb-5.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -419,8 +417,7 @@
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
-                        <a href="#" title=""><span class="status f-away"></span>away</a>
-                        <a href="#" title=""><span class="status f-off"></span>offline</a>
+                        <a href="#" title=""><span class="status f-away"></span>{{ Auth::user()->name }}</a>
                         <a href="#" title=""><i class="ti-user"></i> view profile</a>
                         <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
                         <a href="#" title=""><i class="ti-target"></i>activity log</a>
@@ -434,11 +431,11 @@
 
         <section>
             <div class="feature-photo">
-                <figure><img src="{{ Vite::asset('resources/assets/images/resources/timeline-1.jpg') }}"  alt=""></figure>
-                <div class="add-btn">
+                <figure><img src="{{ Vite::asset('resources/assets/images/resources/timeline-1.jpg') }}" alt=""></figure>
+                {{-- <div class="add-btn">
                     <span>1205 followers</span>
                     <a href="#" title="" data-ripple="">Add Friend</a>
-                </div>
+                </div> --}}
                 <form class="edit-phto">
                     <i class="fa fa-camera-retro"></i>
                     <label class="fileContainer">
@@ -466,19 +463,15 @@
                             <div class="timeline-info">
                                 <ul>
                                     <li class="admin-name">
-                                        <h5>Janice Griffith</h5>
+                                        <h5>{{ Auth::user()->name }}</h5>
                                     </li>
                                     <li>
                                         <a class="active" href="/time-line" title="" data-ripple="">time
                                             line</a>
-                                        <a class="" href="timeline-photos.html" title=""
-                                            data-ripple="">Photos</a>
-                                        <a class="" href="timeline-videos.html" title=""
-                                            data-ripple="">Videos</a>
-                                        <a class="" href="timeline-friends.html" title=""
-                                            data-ripple="">Friends</a>
-                                        <a class="" href="timeline-groups.html" title=""
-                                            data-ripple="">Groups</a>
+                                        <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
+                                        <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
+                                        <a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
+                                        <a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
                                         <a class="" href="about.html" title="" data-ripple="">about</a>
                                         <a class="" href="#" title="" data-ripple="">more</a>
                                     </li>
@@ -597,8 +590,7 @@
                                             <h4 class="widget-title">Who's follownig</h4>
                                             <ul class="followers">
                                                 <li>
-                                                    <figure><img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar2.jpg') }}"
-                                                            alt=""></figure>
+                                                    <figure><img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar2.jpg') }}" alt=""></figure>
                                                     <div class="friend-meta">
                                                         <h4><a href="/time-line" title="">Kelly Bill</a>
                                                         </h4>
@@ -606,11 +598,10 @@
                                                             Friend</a>
                                                     </div>
                                                 </li>
-                                               
-                                            
+
+
                                                 <li>
-                                                    <figure><img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar8.jpg') }}"
-                                                            alt=""></figure>
+                                                    <figure><img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar8.jpg') }}" alt=""></figure>
                                                     <div class="friend-meta">
                                                         <h4><a href="/time-line" title="">Sophia</a></h4>
                                                         <a href="#" title="" class="underline">Add
@@ -618,8 +609,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <figure><img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar3.jpg') }}"
-                                                            alt=""></figure>
+                                                    <figure><img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar3.jpg') }}" alt=""></figure>
                                                     <div class="friend-meta">
                                                         <h4><a href="/time-line" title="">Allen</a></h4>
                                                         <a href="#" title="" class="underline">Add
@@ -631,617 +621,203 @@
                                     </aside>
                                 </div><!-- sidebar -->
                                 <div class="col-lg-6">
-                                    <div class="loadMore">
-                                        <div class="central-meta item">
-                                            <div class="new-postbox">
-                                                <figure>
-                                                    <img src="{{ Vite::asset('resources/assets/images/resources/admin2.jpg') }}"   alt="">
-                                                </figure>
-                                                <div class="newpst-input">
-                                                    <form method="post">
-                                                        <textarea rows="2" placeholder="write something"></textarea>
-                                                        <div class="attachments">
-                                                            <ul>
-                                                                <li>
-                                                                    <i class="fa fa-music"></i>
-                                                                    <label class="fileContainer">
-                                                                        <input type="file">
-                                                                    </label>
-                                                                </li>
-                                                                <li>
-                                                                    <i class="fa fa-image"></i>
-                                                                    <label class="fileContainer">
-                                                                        <input type="file">
-                                                                    </label>
-                                                                </li>
-                                                                <li>
-                                                                    <i class="fa fa-video-camera"></i>
-                                                                    <label class="fileContainer">
-                                                                        <input type="file">
-                                                                    </label>
-                                                                </li>
-                                                                <li>
-                                                                    <i class="fa fa-camera"></i>
-                                                                    <label class="fileContainer">
-                                                                        <input type="file">
-                                                                    </label>
-                                                                </li>
-                                                                <li>
-                                                                    <button type="submit">Publish</button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div><!-- add post new box -->
-                                        <div class="central-meta item">
-                                            <div class="user-post">
-                                                <div class="friend-info">
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}"
-                                                            alt="">
-                                                    </figure>
-                                                    <div class="friend-name">
-                                                        <ins><a href="/time-line" title="">Janice
-                                                                Griffith</a></ins>
-                                                        <span>published: june,2 2018 19:PM</span>
-                                                    </div>
-                                                    <div class="description">
-
-                                                        <p>
-                                                            World's most beautiful car in Curabitur <a href="#"
-                                                                title="">#test drive booking !</a> the most
-                                                            beatuiful car available in america and the saudia arabia,
-                                                            you can book your test drive by our official website
-                                                        </p>
-                                                    </div>
-                                                    <div class="post-meta">
-                                                        <div class="linked-image align-left">
-                                                            <a href="#" title=""><img
-                                                                src="{{ Vite::asset('resources/assets/images/resources/page1.jpg') }}"
-                                                                    alt=""></a>
-                                                        </div>
-                                                        <div class="detail">
-                                                            <span>Love Maid - ChillGroves</span>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur ipisicing elit,
-                                                                sed do eiusmod tempor incididunt ut labore et dolore
-                                                                magna aliqua... </p>
-                                                            <a href="#" title="">www.sample.com</a>
-                                                        </div>
-                                                        <div class="we-video-info">
-                                                            <ul>
-
-                                                                <li>
-                                                                    <span class="views" data-toggle="tooltip"
-                                                                        title="views">
-                                                                        <i class="fa fa-eye"></i>
-                                                                        <ins>1.2k</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="comment" data-toggle="tooltip"
-                                                                        title="Comments">
-                                                                        <i class="fa fa-comments-o"></i>
-                                                                        <ins>52</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="like" data-toggle="tooltip"
-                                                                        title="like">
-                                                                        <i class="ti-heart"></i>
-                                                                        <ins>2.2k</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="dislike" data-toggle="tooltip"
-                                                                        title="dislike">
-                                                                        <i class="ti-heart-broken"></i>
-                                                                        <ins>200</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="social-media">
-                                                                    <div class="menu">
-                                                                        <div class="btn trigger"><i
-                                                                                class="fa fa-share-alt"></i></div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-html5"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-facebook"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-google-plus"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-twitter"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-css3"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-instagram"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-dribbble"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-pinterest"></i></a>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="central-meta item">
-                                            <div class="user-post">
-                                                <div class="friend-info">
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}"
-                                                            alt="">
-                                                    </figure>
-                                                    <div class="friend-name">
-                                                        <ins><a href="/time-line" title="">Janice
-                                                                Griffith</a></ins>
-                                                        <span>published: june,2 2018 19:PM</span>
-                                                    </div>
-                                                    <div class="post-meta">
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/user-post.jpg') }}"  alt="">
-                                                        <div class="we-video-info">
-                                                            <ul>
-
-                                                                <li>
-                                                                    <span class="views" data-toggle="tooltip"
-                                                                        title="views">
-                                                                        <i class="fa fa-eye"></i>
-                                                                        <ins>1.2k</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="comment" data-toggle="tooltip"
-                                                                        title="Comments">
-                                                                        <i class="fa fa-comments-o"></i>
-                                                                        <ins>52</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="like" data-toggle="tooltip"
-                                                                        title="like">
-                                                                        <i class="ti-heart"></i>
-                                                                        <ins>2.2k</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="dislike" data-toggle="tooltip"
-                                                                        title="dislike">
-                                                                        <i class="ti-heart-broken"></i>
-                                                                        <ins>200</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="social-media">
-                                                                    <div class="menu">
-                                                                        <div class="btn trigger"><i
-                                                                                class="fa fa-share-alt"></i></div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-html5"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-facebook"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-google-plus"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-twitter"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-css3"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-instagram"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-dribbble"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-pinterest"></i></a>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="description">
-
-                                                            <p>
-                                                                Curabitur world's most beautiful car in <a
-                                                                    href="#" title="">#test drive booking
-                                                                    !</a> the most beatuiful car available in america
-                                                                and the saudia arabia, you can book your test drive by
-                                                                our official website
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="coment-area">
-                                                    <ul class="we-comet">
-                                                        <li>
-                                                            <div class="comet-avatar">
-                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-1.jpg') }}" 
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="we-comment">
-                                                                <div class="coment-head">
-                                                                    <h5><a href="/time-line" title="">Jason
-                                                                            borne</a></h5>
-                                                                    <span>1 year ago</span>
-                                                                    <a class="we-reply" href="#"
-                                                                        title="Reply"><i class="fa fa-reply"></i></a>
-                                                                </div>
-                                                                <p>we are working for the dance and sing songs. this car
-                                                                    is very awesome for the youngster. please vote this
-                                                                    car and like our post</p>
-                                                            </div>
-                                                            <ul>
-                                                                <li>
-                                                                    <div class="comet-avatar">
-                                                                        <img src="{{ Vite::asset('resources/assets/images/resources/comet-2.jpg') }}" 
-                                                                            alt="">
-                                                                    </div>
-                                                                    <div class="we-comment">
-                                                                        <div class="coment-head">
-                                                                            <h5><a href="/time-line"
-                                                                                    title="">alexendra dadrio</a>
-                                                                            </h5>
-                                                                            <span>1 month ago</span>
-                                                                            <a class="we-reply" href="#"
-                                                                                title="Reply"><i
-                                                                                    class="fa fa-reply"></i></a>
-                                                                        </div>
-                                                                        <p>yes, really very awesome car i see the
-                                                                            features of this car in the official website
-                                                                            of <a href="#"
-                                                                                title="">#Mercedes-Benz</a> and
-                                                                            really impressed :-)</p>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="comet-avatar">
-                                                                        <img src="{{ Vite::asset('resources/assets/images/resources/comet-3.jpg') }}"  
-                                                                            alt="">
-                                                                    </div>
-                                                                    <div class="we-comment">
-                                                                        <div class="coment-head">
-                                                                            <h5><a href="/time-line"
-                                                                                    title="">Olivia</a></h5>
-                                                                            <span>16 days ago</span>
-                                                                            <a class="we-reply" href="#"
-                                                                                title="Reply"><i
-                                                                                    class="fa fa-reply"></i></a>
-                                                                        </div>
-                                                                        <p>i like lexus cars, lexus cars are most
-                                                                            beautiful with the awesome features, but
-                                                                            this car is really outstanding than lexus
-                                                                        </p>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <div class="comet-avatar">
-                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-1.jpg') }}" 
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="we-comment">
-                                                                <div class="coment-head">
-                                                                    <h5><a href="/time-line" title="">Donald
-                                                                            Trump</a></h5>
-                                                                    <span>1 week ago</span>
-                                                                    <a class="we-reply" href="#"
-                                                                        title="Reply"><i class="fa fa-reply"></i></a>
-                                                                </div>
-                                                                <p>we are working for the dance and sing songs. this
-                                                                    video is very awesome for the youngster. please vote
-                                                                    this video and like our channel
-                                                                    <i class="em em-smiley"></i>
-                                                                </p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" title=""
-                                                                class="showmore underline">more comments</a>
-                                                        </li>
-                                                        <li class="post-comment">
-                                                            <div class="comet-avatar">
-                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-1.jpg') }}" 
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="post-comt-box">
-                                                                <form method="post">
-                                                                    <textarea placeholder="Post your comment"></textarea>
-                                                                    <div class="add-smiles">
-                                                                        <span class="em em-expressionless"
-                                                                            title="add icon"></span>
-                                                                    </div>
-                                                                    <div class="smiles-bunch">
-                                                                        <i class="em em---1"></i>
-                                                                        <i class="em em-smiley"></i>
-                                                                        <i class="em em-anguished"></i>
-                                                                        <i class="em em-laughing"></i>
-                                                                        <i class="em em-angry"></i>
-                                                                        <i class="em em-astonished"></i>
-                                                                        <i class="em em-blush"></i>
-                                                                        <i class="em em-disappointed"></i>
-                                                                        <i class="em em-worried"></i>
-                                                                        <i class="em em-kissing_heart"></i>
-                                                                        <i class="em em-rage"></i>
-                                                                        <i class="em em-stuck_out_tongue"></i>
-                                                                    </div>
-                                                                    <button type="submit"></button>
-                                                                </form>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="central-meta item">
-                                            <div class="user-post">
-                                                <div class="friend-info">
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}"
-                                                            alt="">
-                                                    </figure>
-                                                    <div class="friend-name">
-                                                        <ins><a href="/time-line" title="">Janice
-                                                                Griffith</a></ins>
-                                                        <span>published: june,2 2018 19:PM</span>
-                                                    </div>
-                                                    <div class="post-meta">
-                                                        <iframe src="https://player.vimeo.com/video/15232052"
-                                                            height="315" webkitallowfullscreen mozallowfullscreen
-                                                            allowfullscreen></iframe>
-                                                        <div class="we-video-info">
-                                                            <ul>
-
-                                                                <li>
-                                                                    <span class="views" data-toggle="tooltip"
-                                                                        title="views">
-                                                                        <i class="fa fa-eye"></i>
-                                                                        <ins>1.2k</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="comment" data-toggle="tooltip"
-                                                                        title="Comments">
-                                                                        <i class="fa fa-comments-o"></i>
-                                                                        <ins>52</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="like" data-toggle="tooltip"
-                                                                        title="like">
-                                                                        <i class="ti-heart"></i>
-                                                                        <ins>2.2k</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="dislike" data-toggle="tooltip"
-                                                                        title="dislike">
-                                                                        <i class="ti-heart-broken"></i>
-                                                                        <ins>200</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="social-media">
-                                                                    <div class="menu">
-                                                                        <div class="btn trigger"><i
-                                                                                class="fa fa-share-alt"></i></div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-html5"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-facebook"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-google-plus"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-twitter"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-css3"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-instagram"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-dribbble"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a
-                                                                                    href="#" title=""><i
-                                                                                        class="fa fa-pinterest"></i></a>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="description">
-
-                                                            <p>
-                                                                Lonely Cat Enjoying in Summer Curabitur <a
-                                                                    href="#" title="">#mypage</a>
-                                                                ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-                                                                Maecenas tempus, tellus eget condimentum rhoncus, sem
-                                                                quam semper libero, sit amet adipiscing sem neque sed
-                                                                ipsum. Nam quam nunc,
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="coment-area">
-                                                    <ul class="we-comet">
-                                                        <li>
-                                                            <div class="comet-avatar">
-                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-1.jpg') }}" 
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="we-comment">
-                                                                <div class="coment-head">
-                                                                    <h5><a href="/time-line" title="">Jason
-                                                                            borne</a></h5>
-                                                                    <span>1 year ago</span>
-                                                                    <a class="we-reply" href="#"
-                                                                        title="Reply"><i class="fa fa-reply"></i></a>
-                                                                </div>
-                                                                <p>we are working for the dance and sing songs. this
-                                                                    video is very awesome for the youngster. please vote
-                                                                    this video and like our channel</p>
-                                                            </div>
-
-                                                        </li>
-                                                        <li>
-                                                            <div class="comet-avatar">
-                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-2.jpg') }}"   
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="we-comment">
-                                                                <div class="coment-head">
-                                                                    <h5><a href="/time-line"
-                                                                            title="">Sophia</a></h5>
-                                                                    <span>1 week ago</span>
-                                                                    <a class="we-reply" href="#"
-                                                                        title="Reply"><i class="fa fa-reply"></i></a>
-                                                                </div>
-                                                                <p>we are working for the dance and sing songs. this
-                                                                    video is very awesome for the youngster.
-                                                                    <i class="em em-smiley"></i>
-                                                                </p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" title=""
-                                                                class="showmore underline">more comments</a>
-                                                        </li>
-                                                        <li class="post-comment">
-                                                            <div class="comet-avatar">
-                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-2.jpg') }}"  
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="post-comt-box">
-                                                                <form method="post">
-                                                                    <textarea placeholder="Post your comment"></textarea>
-                                                                    <div class="add-smiles">
-                                                                        <span class="em em-expressionless"
-                                                                            title="add icon"></span>
-                                                                    </div>
-                                                                    <div class="smiles-bunch">
-                                                                        <i class="em em---1"></i>
-                                                                        <i class="em em-smiley"></i>
-                                                                        <i class="em em-anguished"></i>
-                                                                        <i class="em em-laughing"></i>
-                                                                        <i class="em em-angry"></i>
-                                                                        <i class="em em-astonished"></i>
-                                                                        <i class="em em-blush"></i>
-                                                                        <i class="em em-disappointed"></i>
-                                                                        <i class="em em-worried"></i>
-                                                                        <i class="em em-kissing_heart"></i>
-                                                                        <i class="em em-rage"></i>
-                                                                        <i class="em em-stuck_out_tongue"></i>
-                                                                    </div>
-                                                                    <button type="submit"></button>
-                                                                </form>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    @csrf <!-- This is for CSRF protection -->
+                                    @if ($message = Session::get('success'))
+                                    <div class="alert alert-success" id="success-alert">
+                                        <p>{{ $message }}</p>
                                     </div>
-                                </div><!-- centerl meta -->
+                                    <script>
+                                        // Add JavaScript to hide the alert after 2 seconds
+                                        setTimeout(function() {
+                                            var successAlert = document.getElementById('success-alert');
+                                            successAlert.style.display = 'none';
+                                        }, 2000); // 2000 milliseconds = 2 seconds
+                                    </script>
+                                    @endif
+                                    <div class="central-meta">
+                                        <div class="new-postbox">
+                                            <figure>
+                                                <img src="{{ Vite::asset('resources/assets/images/resources/admin2.jpg') }}" alt="">
+                                            </figure>
+                                            <div class="newpst-input">
+                                                <form action="{{ route('posts.store') }}" method="post">
+                                                    @csrf
+                                                    <textarea name="content" rows="2" placeholder="write something"></textarea>
+                                                    <div class="attachments">
+                                                        <ul>
+                                                            <li>
+                                                                <i class="fa fa-music"></i>
+                                                                <label class="fileContainer">
+                                                                    <input type="file" name="music_attachment">
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-image"></i>
+                                                                <label class="fileContainer">
+                                                                    <input type="file" name="image_attachment">
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-video-camera"></i>
+                                                                <label class="fileContainer">
+                                                                    <input type="file" name="video_attachment">
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-camera"></i>
+                                                                <label class="fileContainer">
+                                                                    <input type="file" name="camera_attachment">
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <button type="submit">Post</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- add post new box -->
+                                    <div class="loadMore">
+                                        @foreach ($posts as $post)
+                                        <div class="central-meta item">
+                                            <div class="user-post">
+                                                <div class="friend-info">
+                                                    <figure>
+                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}" alt="">
+                                                    </figure>
+                                                    <div class="friend-name">
+                                                        <ins><a href="time-line.html" title=""> {{ Auth::user()->name }}
+                                                            </a></ins>
+                                                        <span>published: {{ $post->created_at }}</span>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <img src="{{ Vite::asset('resources/assets/images/resources/user-post.jpg') }}" alt="">
+                                                        <div class="we-video-info">
+                                                            <ul>
+                                                                <li>
+                                                                    <span class="comment" data-toggle="tooltip" title="Comments">
+                                                                        <i class="fa fa-comments-o"></i>
+                                                                        <ins>{{ $post->comments }}</ins>
+                                                                    </span>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="like" data-toggle="tooltip" title="like">
+                                                                        <i class="ti-heart"></i>
+                                                                        <ins>{{ $post->likes }}</ins>
+                                                                    </span>
+                                                                </li>
+                                                                <li class="social-media">
+                                                                    <div class="menu">
+                                                                        <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="description">
+
+                                                            <p>{{ $post->content }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @if (isset($commentsByPost[$post->id]))
+                                                @foreach ($commentsByPost[$post->id] as $comment)
+                                                <div class="coment-area">
+                                                    <ul class="we-comet">
+                                                        <li>
+                                                            <div class="comet-avatar">
+                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-1.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                                            </div>
+                                                            <div class="we-comment">
+                                                                <div class="coment-head">
+                                                                    <h5><a href="time-line.html" title="">{{ $comment->user->name }}</a></h5>
+                                                                    <span>{{ $comment->created_at->diffForHumans() }}</span>
+                                                                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn-delete-comment" onclick="return confirm('Are you sure you want to delete this comment?')">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                                <p>{{ $comment->content }}</p>
+                                                                <br>
+                                                                @if ($comment->file)
+                                                                <a href="{{ asset('storage/' . $comment->file) }}" target="_blank"><img src="{{ asset('storage/' . $comment->file) }}" alt="Image" style="width: 100px; height: 50px;"></a>
+                                                                @endif
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                @endforeach
+                                                @endif
+
+                                            </div>
+                                            <form action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
+                                                @csrf <!-- This is for CSRF protection -->
+                                                <textarea name="content" id="content" class="form-control" rows="4"></textarea>
+                                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                                                <div class="attachments">
+                                                    <ul>
+                                                        <li>
+                                                            <label for="file" class="custom-file-upload">
+                                                                <i class="fa fa-cloud-upload"></i>
+                                                            </label>
+                                                            <input type="file" name="file" id="file" class="form-control-file">
+                                                        </li>
+                                                        <li>
+                                                            <button type="submit">Comment</button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                                 <div class="col-lg-3">
                                     <aside class="sidebar static">
                                         <div class="widget">
                                             <div class="banner medium-opacity bluesh">
-                                                <div style="background-image: url(images/resources/baner-widgetbg.jpg)"
-                                                    class="bg-image"></div>
+                                                <div style="background-image: url(images/resources/baner-widgetbg.jpg)" class="bg-image"></div>
                                                 <div class="baner-top">
-                                                    <span><img  src="{{ Vite::asset('resources/assets/images/book-icon.jpg') }}"   alt=""></span>
+                                                    <span><img src="{{ Vite::asset('resources/assets/images/book-icon.jpg') }}" alt=""></span>
                                                     <i class="fa fa-ellipsis-h"></i>
                                                 </div>
                                                 <div class="banermeta">
@@ -1259,58 +835,46 @@
                                             <ul id="people-list" class="friendz-list">
                                                 <li>
                                                     <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar.jpg') }}"
-                                                            alt="">
+                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar.jpg') }}" alt="">
                                                         <span class="status f-online"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="/time-line">bucky barnes</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection"
-                                                                class="__cf_email__"
-                                                                data-cfemail="5f2836312b3a2d2c30333b3a2d1f38323e3633713c3032">[email&#160;protected]</a></i>
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2836312b3a2d2c30333b3a2d1f38323e3633713c3032">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
-                                                                                       
+
                                                 <li>
 
                                                     <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar7.jpg') }}"
-                                                            alt="">
+                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar7.jpg') }}" alt="">
                                                         <span class="status f-off"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="/time-line">amy watson</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection"
-                                                                class="__cf_email__"
-                                                                data-cfemail="a0cac1d3cfcec2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i>
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cac1d3cfcec2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
                                                 <li>
 
                                                     <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar5.jpg') }}"
-                                                            alt="">
+                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar5.jpg') }}" alt="">
                                                         <span class="status f-online"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="/time-line">daniel warber</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection"
-                                                                class="__cf_email__"
-                                                                data-cfemail="6f050e1c00010d2f08020e0603410c0002">[email&#160;protected]</a></i>
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f050e1c00010d2f08020e0603410c0002">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
                                                 <li>
 
                                                     <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar2.jpg') }}"
-                                                            alt="">
+                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar2.jpg') }}" alt="">
                                                         <span class="status f-away"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
                                                         <a href="/time-line">Sarah Loren</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection"
-                                                                class="__cf_email__"
-                                                                data-cfemail="c5a7a4b7aba0b685a2a8a4aca9eba6aaa8">[email&#160;protected]</a></i>
+                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c5a7a4b7aba0b685a2a8a4aca9eba6aaa8">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -1326,50 +890,38 @@
                                                 <div class="chat-list">
                                                     <ul>
                                                         <li class="me">
-                                                            <div class="chat-thumb"><img
-src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}"
-                                                                    alt=""></div>
+                                                            <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}" alt=""></div>
                                                             <div class="notification-event">
                                                                 <span class="chat-message-item">
                                                                     Hi James! Please remember to buy the food for
                                                                     tomorrow! I’m gonna be handling the gifts and Jake’s
                                                                     gonna get the drinks
                                                                 </span>
-                                                                <span class="notification-date"><time
-                                                                        datetime="2004-07-24T18:18"
-                                                                        class="entry-date updated">Yesterday at
+                                                                <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
                                                                         8:10pm</time></span>
                                                             </div>
                                                         </li>
                                                         <li class="you">
-                                                            <div class="chat-thumb"><img
-src="{{ Vite::asset('resources/assets/images/resources/chatlist2.jpg') }}"
-                                                                    alt=""></div>
+                                                            <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist2.jpg') }}" alt=""></div>
                                                             <div class="notification-event">
                                                                 <span class="chat-message-item">
                                                                     Hi James! Please remember to buy the food for
                                                                     tomorrow! I’m gonna be handling the gifts and Jake’s
                                                                     gonna get the drinks
                                                                 </span>
-                                                                <span class="notification-date"><time
-                                                                        datetime="2004-07-24T18:18"
-                                                                        class="entry-date updated">Yesterday at
+                                                                <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
                                                                         8:10pm</time></span>
                                                             </div>
                                                         </li>
                                                         <li class="me">
-                                                            <div class="chat-thumb"><img
-src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}"
-                                                                    alt=""></div>
+                                                            <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}" alt=""></div>
                                                             <div class="notification-event">
                                                                 <span class="chat-message-item">
                                                                     Hi James! Please remember to buy the food for
                                                                     tomorrow! I’m gonna be handling the gifts and Jake’s
                                                                     gonna get the drinks
                                                                 </span>
-                                                                <span class="notification-date"><time
-                                                                        datetime="2004-07-24T18:18"
-                                                                        class="entry-date updated">Yesterday at
+                                                                <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
                                                                         8:10pm</time></span>
                                                             </div>
                                                         </li>
@@ -1377,8 +929,7 @@ src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}"
                                                     <form class="text-box">
                                                         <textarea placeholder="Post enter to post..."></textarea>
                                                         <div class="add-smiles">
-                                                            <span title="add icon"
-                                                                class="em em-expressionless"></span>
+                                                            <span title="add icon" class="em em-expressionless"></span>
                                                         </div>
                                                         <div class="smiles-bunch">
                                                             <i class="em em---1"></i>
@@ -1415,8 +966,7 @@ src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}"
                         <div class="widget">
                             <div class="foot-logo">
                                 <div class="logo">
-                                    <a href="/home" title=""><img src="images/logo.jpg"
-                                            alt=""></a>
+                                    <a href="/home" title=""><img src="images/logo.jpg" alt=""></a>
                                 </div>
                                 <p>
                                     The trio took this simple idea and built it into the world’s leading carpooling
@@ -1441,16 +991,11 @@ src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}"
                                 <h4>follow</h4>
                             </div>
                             <ul class="list-style">
-                                <li><i class="fa fa-facebook-square"></i> <a
-                                        href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
-                                <li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en"
-                                        title="">twitter</a></li>
-                                <li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en"
-                                        title="">instagram</a></li>
-                                <li><i class="fa fa-google-plus-square"></i> <a
-                                        href="https://plus.google.com/discover" title="">Google+</a></li>
-                                <li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/"
-                                        title="">Pintrest</a></li>
+                                <li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
+                                <li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en" title="">twitter</a></li>
+                                <li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en" title="">instagram</a></li>
+                                <li><i class="fa fa-google-plus-square"></i> <a href="https://plus.google.com/discover" title="">Google+</a></li>
+                                <li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/" title="">Pintrest</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1488,12 +1033,9 @@ src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}"
                                 <h4>download apps</h4>
                             </div>
                             <ul class="colla-apps">
-                                <li><a href="https://play.google.com/store?hl=en" title=""><i
-                                            class="fa fa-android"></i>android</a></li>
-                                <li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i
-                                            class="ti-apple"></i>iPhone</a></li>
-                                <li><a href="https://www.microsoft.com/store/apps" title=""><i
-                                            class="fa fa-windows"></i>Windows</a></li>
+                                <li><a href="https://play.google.com/store?hl=en" title=""><i class="fa fa-android"></i>android</a></li>
+                                <li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i class="ti-apple"></i>iPhone</a></li>
+                                <li><a href="https://www.microsoft.com/store/apps" title=""><i class="fa fa-windows"></i>Windows</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1578,15 +1120,12 @@ src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}"
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
