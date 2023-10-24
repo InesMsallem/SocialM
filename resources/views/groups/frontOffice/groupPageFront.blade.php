@@ -718,7 +718,7 @@
 		</div>	
 	</section>
 
-	<footer>
+	{{--<footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-4">
@@ -865,7 +865,7 @@
 				<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
 			</div>
 		</form>
-	</div><!-- side panel -->		
+	</div>--}}	
     <script src="resources/assets/js/script.js"></script>
 
 @vite(['resources/assets/js/script.js'])
