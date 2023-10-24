@@ -14,6 +14,12 @@
     @vite(['resources/assets/css/color.css'])
     @vite(['resources/assets/css/responsive.css'])
 
+    <style>
+        .styled-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -320,7 +326,8 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h1>Edit product</h1>
+                                        <h1>Create Page</h1>
+
                                         @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -336,51 +343,36 @@
                                             {{ session('success') }}
                                         </div>
                                         @endif
-                                        <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+
+                                        <form action="{{ route('pages.store') }}" method="post" enctype="multipart/form-data" class="styled-form">
                                             @csrf
-                                            @method('PUT')
                                             <div class="form-group">
-                                                <label for="name">Name:</label>
-                                                <input type="text" name="name" id="name" placeholder="name" class="form-control" value="{{ $product->name }}" style="background-color: #e9f5f9;"></input>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="description">description:</label>
-                                                <textarea name="description" id="description" placeholder="description" class="form-control" rows="4" style="background-color: #e9f5f9;">{{ $product->description }}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="prix">Prix:</label>
-                                                <input type="number" name="prix" id="prix" class="form-control" value="{{ $product->prix }}" min="1" placeholder="price" style="background-color: #e9f5f9;" />
+                                                <label for="title">Title:</label>
+                                                <input name="title" type="text" id="title" class="form-control" style="background-color: #e9f5f9;" />
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="location_id">Location:</label>
-                                                <select name="location_id" id="location_id" class="form-control" style="background-color: #e9f5f9;">
-                                                    <!-- Populate with posts -->
-                                                    @foreach ($locations as $location)
-                                                    <option value="{{ $location->id }}" {{ $product->location_id == $location->id ? 'selected' : '' }}>{{ $location->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="category_id">Category:</label>
-                                                <select name="category_id" id="category_id" class="form-control" style="background-color: #e9f5f9;">
-                                                    <!-- Populate with posts -->
-                                                    @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <label for="description">Description:</label>
+                                                <textarea name="description" id="description" class="form-control" rows="4" style="background-color: #e9f5f9;"></textarea>
                                             </div>
 
                                             <div class="form-group custom-file">
-                                                <input type="file" class="custom-file-input" id="file" name="file" accept="image/*">
-                                                <label class="custom-file-label" for="file">Choose
+                                                <input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
+                                                <label class="custom-file-label" for="image">Choose
                                                     image...</label>
                                             </div>
-                                            <button type="submit" class="mtr-btn"><span>Update product</span></button>
-                                            <a href="{{ route('products.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="cover" name="cover" accept="image/*">
+                                                <label class="custom-file-label" for="cover">Choose
+                                                    cover...</label>
+                                            </div>
+
+
+
+                                            <button type="submit" class="mtr-btn"><span>Create page</span></button>
+                                            <a href="{{ route('pages.index') }}" class="mtr-btn"><span>Cancel</span></a>
 
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
@@ -408,8 +400,12 @@
                                             <span>32</span>
                                         </li>
                                         <li>
-                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
+                                            <a href="{{ route('comments.index') }}" title="">Comment</a>
                                             <span>{{ $commentCount }}</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('pages.index') }}" title="">Pages</a>
+                                            <span>{{ $pageCount }}</span>
                                         </li>
                                         <li>
                                             <a href="{{ route('categories.index') }}" title="">Categories</a>

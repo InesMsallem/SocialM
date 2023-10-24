@@ -405,7 +405,11 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('products.index') }}" title="">Products</a>
-                                            <span>05</span>
+                                            <span>03</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('pages.index') }}" title="">Pages</a>
+                                            <span>01</span>
                                         </li>
                                     </ul>
                                 </div>

@@ -285,10 +285,7 @@
                                             <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#myModal" href="" title="">Add
                                                 product</a>
                                         </li>
-                                        <li>
-                                            <i class="ti-files"></i>
-                                            <a href="" data-toggle="modal" data-target="#myProductsModal" title="">My Products</a>
-                                        </li>
+
                                         <li>
                                             <i class="ti-image"></i>
                                             <a href="#" title="" data-toggle="modal" data-target="#imagesModal">Images</a>
@@ -300,6 +297,7 @@
                                 </div>
                             </aside>
                             <!-- modal -->
+
                             <div class="modal fade" id="myProductsModal" tabindex="-1" role="dialog" aria-labelledby="myProductsModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -309,52 +307,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <ul class="list-group">
 
-                                                @foreach ($myProducts as $product)
-                                                <li class="list-group-item position-relative">
-
-
-                                                    <h5 class="mb-1">{{ $product->name }}</h5>
-                                                    <p class="mb-1"><strong>Location:</strong>
-                                                        {{ $product->location->name }}
-                                                    </p>
-                                                </li>
-                                                <button type="button" class="btn btn-sm btn-danger delete-button" data-toggle="modal" data-target="#deleteProductModal{{ $product->id }}">
-                                                    Delete
-                                                </button>
-
-                                                <div class="modal fade" id="deleteProductModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteProductModalLabel{{ $product->id }}" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="deleteProductModal{{ $product->id }}">
-                                                                    Delete Product</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>Are you sure you want to delete this product?
-                                                                </p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-
-
-                                            </ul>
-                                        </div>
 
                                     </div>
                                 </div>
@@ -368,6 +321,21 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
                                         <div class="modal-body">
                                             <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data" class="styled-form">
                                                 @csrf
@@ -406,11 +374,10 @@
 
 
 
-                                                <div class="form-group">
-                                                    <label for="file" class="custom-file-upload"> Upload file (optional):
-                                                        <i class="fa fa-cloud-upload"></i>
-                                                    </label>
-                                                    <input type="file" name="file" id="file" class="form-control-file" style="background-color: #e9f5f9;">
+                                                <div class="form-group custom-file">
+                                                    <input type="file" class="custom-file-input" id="file" name="file" accept="image/*">
+                                                    <label class="custom-file-label" for="file">Choose
+                                                        image...</label>
                                                 </div>
                                                 <button type="submit" class="mtr-btn"><span>Create product</span></button>
                                                 <a href="{{ route('products.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
@@ -480,70 +447,121 @@
 
                                             <label for="max_price" style="margin-left: 10px; margin-right: 10px;">Max Price:</label>
                                             <input type="number" name="max_price" id="max_price" placeholder="Max Price" min="0" style="width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
-                                            <button type="submit" class="py-2 px-3" style="background-color: #007BFF; color: #fff; border: none; border-radius: 5px;">Purify</button>
+                                            <button type="submit" class="py-2 px-3">
+                                                <i class="ti-search"></i></button>
                                         </form>
                                     </div>
                                 </div>
 
-                                <!-- Loop through products and display them -->
                                 @foreach ($products as $product)
-                                <div class="l-post">
-                                    <figure>
-                                        @if ($product->file)
-                                        <img class="mx-3 my-4" src="{{ asset('storage/' . $product->file) }}" alt="Product Image">
-                                        @else
-                                        <img src="{{ asset('storage/images.png') }}" alt="Default Image">
-                                        @endif
-                                        <!-- Add social links or buttons specific to Products -->
-                                    </figure>
-                                    <div class="l-post-meta">
-                                        <h4 class="my-3">{{ $product->name }}</h4>
-                                        <div class="l-post-ranking">
-                                            <a class="admin" href="#">{{ $product->username }}</a>
-                                            <p class="time-post">
-                                                Created at: {{ $product->created_at->format('l F jS') }}
-                                            </p>
-                                            <p>{{ $product->prix }} TND</p>
-                                            <p>{{ $product->location->name }}</p>
+                                <div class="l-post row my-4">
+                                    <div class="col-md-6">
+                                        <!-- Product Card -->
+                                        <div class="card product-card mb-3">
+                                            <div class="card-body">
+                                                <!-- Product Information -->
+                                                <figure>
+                                                    @if ($product->file)
+                                                    <img src="{{ asset('storage/' . $product->file) }}" alt="Product Image" class="img-fluid">
+                                                    @else
+                                                    <img src="{{ asset('storage/images.png') }}" alt="Default Image" class="img-fluid">
+                                                    @endif
+                                                </figure>
+                                                <h4 class="my-3">{{ $product->name }}</h4>
+                                                <!-- Product Information -->
+                                                <p class="admin">By: {{ $product->username }}</p>
+                                                <p class="time-post">Created at: {{ $product->created_at->format('l F jS') }}</p>
+                                                <p class="price">{{ $product->prix }} TND</p>
+                                                <p class="location">{{ $product->location->name }}</p>
+                                                <p class="description">{{ $product->description }}</p>
+                                                <div class="like-section">
+                                                    <p class="like-count">{{ $product->likes->count() }} Likes</p>
+                                                    @if ($product->user_id != auth()->user()->id)
+                                                    @if ($product->likedByUser(auth()->user()))
+                                                    <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE') <!-- Use DELETE method to unlike -->
+                                                        <button type="submit" class="unlike-button">
+                                                            <i class="ti-heart-broken"></i> <!-- Empty heart icon -->
+                                                        </button>
+                                                    </form>
+                                                    @else
+                                                    <form action="{{ route('products.like', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="like-button">
+                                                            <i class="ti-heart"></i> <!-- Filled heart icon -->
+                                                        </button>
+                                                    </form>
+                                                    @endif
+                                                    @endif
+                                                </div>
+                                                @if ($product->user_id == auth()->user()->id)
+                                                <div class="delete-button">
+                                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                                    </form>
+                                                </div>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <p>{{ $product->description }}</p>
-
-                                        <div style="display: flex; align-items: center; margin-top: 10px;">
-                                            <p>{{ $product->likes->count() }} Likes</p>
-                                            @if ($product->user_id != auth()->user()->id)
-                                            @if ($product->likedByUser(auth()->user()))
-                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE') <!-- Use DELETE method to unlike -->
-                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                                    <i class="ti-heart-broken" style="font-size: 24px; color: red;"></i> <!-- Empty heart icon -->
-                                                </button>
-                                            </form>
-                                            @else
-                                            <form action="{{ route('products.like', $product->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                                    <i class="ti-heart" style="font-size: 24px; color: red;"></i> <!-- Filled heart icon -->
-                                                </button>
-                                            </form>
-                                            @endif
-                                            @endif
-                                        </div>
-
-                                        @if ($product->user_id == auth()->user()->id)
-                                        <div class="btn-group">
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
-                                            </form>
-                                        </div>
-                                        @endif
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="card contact-card mb-3">
+                                            <div class="card-body">
+                                                <div class="contact-messages p-3">
+                                                    <h5>Contact Messages:</h5>
+                                                    <div style="max-height: 300px; overflow-y: auto;">
 
+                                                        @foreach ($contactMessages[$product->id] as $message)
+                                                        <div class="contact-message" style="border: 1px solid; padding: 10px; margin: 10px 0; border-radius: 8px; background-color: #e9f5f9;">
+                                                            <strong>{{ $message->sender->name }}</strong>
+                                                            <p>{{ $message->message }}</p>
+                                                            <p class="timestamp text-muted small">{{ $message->created_at->format('Y-m-d H:i:s') }}</p>
+
+                                                            @if (auth()->user()->id === $message->sender_id)
+                                                            <form method="post" action="{{ route('products.deleteMessage', ['product_id' => $product->id, 'message_id' => $message->id]) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                            </form>
+                                                            @endif
+
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                    @if (auth()->user()->id === $product->user_id)
+                                                    <!-- Show the "Contact Owner" button for the product owner -->
+                                                    <form method="post" action="{{ route('products.contact', ['product_id' => $product->id]) }}">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="message">Message</label>
+                                                            <textarea name="message" class="form-control" rows="4" required style="border: 1px solid #000; background-color: ghostwhite"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success">Répondre</button>
+                                                    </form>
+                                                    @else
+                                                    <!-- Show the "Contact Sender" button for other users -->
+                                                    <form method="post" action="{{ route('products.contact', ['product_id' => $product->id]) }}">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="message">Message</label>
+                                                            <textarea name="message" class="form-control" rows="4" required style="border: 1px solid #000; background-color: ghostwhite"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Contact Owner</button>
+                                                    </form>
+                                                    @endif
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Add any modals or additional features specific to Products -->
                                 @endforeach
+
 
                                 <div class="row">
                                     <div class="col-md-12 text-center">

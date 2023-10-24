@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\ContactMessage;
 use App\Models\Like;
 use App\Models\Location;
 use App\Models\Product;
@@ -26,13 +27,14 @@ class ProductController extends Controller
 
     public function displayProducts(Request $request)
     {
+
+
         $locations = Location::all();
         $allProducts = Product::all();
         $categories = Category::all();
         $search = $request->input('search');
         $category = $request->input('category');
         $user = auth()->user();
-        $myProducts = Product::where('user_id', $user->id)->get();
 
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
@@ -55,10 +57,17 @@ class ProductController extends Controller
             ->when($maxPrice, function ($query) use ($maxPrice) {
                 return $query->where('products.prix', '<=', $maxPrice);
             })
-            ->paginate(2); // Adjust the pagination limit as needed
+            ->paginate(2);
 
 
-        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'myProducts', 'locations', 'allProducts'));
+        $contactMessages = [];
+        foreach ($products as $product) {
+            $allContactMessage = ContactMessage::where('product_id', $product->id)->get();
+            $contactMessages[$product->id] = $allContactMessage;
+        }
+
+
+        return view('products.frontOffice.productFrontOffice', compact('categories', 'products', 'locations', 'allProducts', 'contactMessages'));
     }
 
 
@@ -79,10 +88,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'prix' => 'required',
-            'file' => 'required',
+            'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
+            'description' => 'required|string',
+            'prix' => 'required|numeric',
+            'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
             'location_id' => 'required|exists:locations,id',
             'category_id' => 'required|exists:categories,id',
 
@@ -196,6 +205,43 @@ class ProductController extends Controller
 
 
             return back();
+        }
+    }
+
+    public function contactOwner(Request $request, $product_id)
+    {
+        $product = Product::findOrFail($product_id);
+        $owner = $product->user;
+
+        $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        // Create a new contact message
+        ContactMessage::create([
+            'sender_id' => auth()->user()->id,
+            'receiver_id' => $owner->id,
+            'product_id' => $product->id,
+            'message' => $request->input('message'),
+        ]);
+
+        return back()->with('success', 'Your message has been sent to the owner.');
+    }
+
+
+    public function deleteMessage($product_id, $message_id)
+    {
+        $message = ContactMessage::find($message_id);
+
+        if (!$message) {
+            return back()->with('error', 'Message not found.');
+        }
+
+        if (auth()->user()->id === $message->sender_id) {
+            $message->delete();
+            return back()->with('success', 'Message deleted successfully.');
+        } else {
+            return back()->with('error', 'You are not authorized to delete this message.');
         }
     }
 }
