@@ -14,6 +14,11 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+
+use App\Http\Controllers\BlogController;
+
+use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -30,9 +35,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/profile', function () {
-    return view('time-line');
-})->name('profile');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
 Route::get('/inbox', function () {
     return view('inbox');
 });
@@ -83,12 +87,25 @@ Route::put('groups/{group}', [GroupController::class, 'update'])->name('editGrou
 Route::get('/dashboard/groups', [GroupController::class, 'index'])->name('showGroup');
 //delete group
 Route::delete('dashboard/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
-
+Route::get('/home/groups', [GroupController::class, 'displayGroups'])->name('groups');
+Route::get('/home/groups/add', [GroupController::class, 'addGroupFront'])->name('addGroupFront');
+Route::post('/groupsfront', [GroupController::class, 'storeFront'])->name('addGroupPostFront');
+Route::get('/groups/{group}/join', [GroupController::class, 'join'])->name('joinGroup');
+Route::post('/groups/{group}/leave', [GroupController::class, 'leave'])->name('leaveGroup');
+Route::delete('home/groups/{group}', [GroupController::class, 'destroyFront'])->name('groups.destroyfront');
+Route::get('home/{group}/edit', [GroupController::class, 'editFront'])->name('editGroupFront');
+Route::put('home/{group}', [GroupController::class, 'updateFront'])->name('editGroupPutFront');
+Route::get('/group/{group}', [GroupController::class, 'groupPageFront'])->name('groupPageFront');
+//blogs ==>
+//add blog
+Route::post('/blogs', [BlogController::class, 'storeBlog'])->name('addBlog');
+Route::delete('/delete-blog/{blog}', [BlogController::class, 'destroy'])->name('deleteBlog');
 
 //Comment ==>
 // Route to display the comment creation form
 Route::get('/dashboard/comments/create', [CommentController::class, 'create'])->name('comments.create');
 Route::post('/dashboard/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/home', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/dashboard/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::delete('/dashboard/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
@@ -108,12 +125,16 @@ Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])-
 // Route to display the product creation form
 Route::get('/dashboard/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/dashboard/products', [ProductController::class, 'store'])->name('products.store');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/dashboard/products', [ProductController::class, 'index'])->name('products.index');
 Route::delete('/dashboard/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 Route::get('/dashboard/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/dashboard/products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::get('/home/products', [ProductController::class, 'displayProducts'])->name('products');
 Route::match(['post', 'delete'], 'products/like/{product}', [ProductController::class, 'like'])->name('products.like');
+Route::post('/products/{product_id}/contact', [ProductController::class, 'contactOwner'])->name('products.contact');
+Route::delete('/products/{product_id}/messages/{message_id}', [ProductController::class, 'deleteMessage'])->middleware('auth')->name('products.deleteMessage');
+
 
 
 //Pages ==>

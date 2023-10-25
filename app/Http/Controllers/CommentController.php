@@ -37,7 +37,6 @@ class CommentController extends Controller
         $request->validate([
             'content' => 'required|string',
             'post_id' => 'required|exists:posts,id',
-            'file' => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $file = $request->file('file');
@@ -56,7 +55,7 @@ class CommentController extends Controller
             'likes' => 0,
         ]);
 
-        return back()->with('success', 'Comment deleted successfully.');
+        return back()->with('success', 'Comment created  successfully.');
     }
 
     public function destroy($id)

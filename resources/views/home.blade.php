@@ -243,7 +243,7 @@
                                                 </li>
                                                 <li>
                                                     <i class="ti-user"></i>
-                                                    <a href="timeline-friends.html" title="">friends</a>
+                                                    <a href="{{ route('groups') }}" title="">Groups</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-image"></i>
@@ -302,35 +302,27 @@
                                                     alt="">
                                             </figure>
                                             <div class="newpst-input">
-                                                <form action="{{ route('posts.store') }}" method="post">
+                                                @error('content')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
+                                                @error('image')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
+                                                <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <textarea name="content" rows="2" placeholder="write something"></textarea>
                                                     <div class="attachments">
                                                         <ul>
-                                                            <li>
-                                                                <i class="fa fa-music"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="music_attachment">
-                                                                </label>
-                                                            </li>
-                                                            <li>
+
+                                                             <li>
                                                                 <i class="fa fa-image"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file" name="image_attachment">
+                                                                    <input type="file" name="image" id="image">
                                                                 </label>
                                                             </li>
-                                                            <li>
-                                                                <i class="fa fa-video-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="video_attachment">
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <i class="fa fa-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="camera_attachment">
-                                                                </label>
-                                                            </li>
+
                                                             <li>
                                                                 <button type="submit">Post</button>
                                                             </li>
@@ -343,48 +335,40 @@
                                     </div><!-- add post new box -->
                                     <div class="loadMore">
                                         @foreach ($postsOrdred as $post)
-                                            <div class="central-meta item">
-                                                <div class="user-post">
-                                                    <div class="friend-info">
-                                                        <figure>
-                                                            <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}"
-                                                                alt="">
-                                                        </figure>
-                                                        <div class="friend-name">
-                                                            <ins><a href="time-line.html" title="">
-                                                                    {{ Auth::user()->name }}
-                                                                </a></ins>
-                                                            <span>published: {{ $post->created_at }}</span>
-                                                        </div>
-                                                        <div class="post-meta">
-                                                            <img src="{{ Vite::asset('resources/assets/images/resources/user-post.jpg') }}"
-                                                                alt="">
-                                                            <div class="we-video-info">
-                                                                <ul>
-                                                                    <li>
-                                                                        <span class="comment" data-toggle="tooltip"
-                                                                            title="Comments">
-                                                                            <i class="fa fa-comments-o"></i>
-                                                                            <ins>{{ $post->comments }}</ins>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <span class="like" data-toggle="tooltip"
-                                                                            title="like">
-                                                                            <i class="ti-heart"></i>
-                                                                            <ins>{{ $post->likes }}</ins>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li class="social-media">
-                                                                        <div class="menu">
-                                                                            <div class="btn trigger"><i
-                                                                                    class="fa fa-share-alt"></i></div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-html5"></i></a>
-                                                                                </div>
+
+                                        <div class="central-meta item">
+                                            <div class="user-post">
+                                                <div class="friend-info">
+                                                    <figure>
+                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}" alt="">
+                                                    </figure>
+                                                    <div class="friend-name">
+                                                        <ins><a href="time-line.html" title=""> {{ Auth::user()->name }}
+                                                            </a></ins>
+                                                        <span>published: {{ $post->created_at }}</span>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <img src="{{ asset('storage/' . $post->image) }}" alt="Image">
+                                                        <div class="we-video-info">
+                                                            <ul>
+                                                                <li>
+                                                                    <span class="comment" data-toggle="tooltip" title="Comments">
+                                                                        <i class="fa fa-comments-o"></i>
+                                                                        <ins>{{ $post->comments }}</ins>
+                                                                    </span>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="like" data-toggle="tooltip" title="like">
+                                                                        <i class="ti-heart"></i>
+                                                                        <ins>{{ $post->likes }}</ins>
+                                                                    </span>
+                                                                </li>
+                                                                <li class="social-media">
+                                                                    <div class="menu">
+                                                                        <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a>
+
                                                                             </div>
                                                                             <div class="rotater">
                                                                                 <div class="btn btn-icon"><a
@@ -492,6 +476,25 @@
                                                         @endforeach
                                                     @endif
 
+
+                                            </div>
+                                            <form actionfileim="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
+                                                @csrf <!-- This is for CSRF protection -->
+                                                <textarea name="content" id="content" class="form-control" rows="4"></textarea>
+                                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                                                <div class="attachments">
+                                                    <ul>
+                                                        <li>
+                                                            <label for="file" class="custom-file-upload">
+                                                                <i class="fa fa-cloud-upload"></i>
+                                                            </label>
+                                                            <input type="file" name="file" id="file" class="form-control-file">
+                                                        </li>
+                                                        <li>
+                                                            <button type="submit">Comment</button>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                                 <form action="{{ route('comments.store') }}" method="post"
                                                     enctype="multipart/form-data">
