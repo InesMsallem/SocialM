@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @vite(['resources/sass/app.scss'])
     @vite(['resources/js/app.js'])
@@ -17,80 +18,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 </head>
+
 <body>
-<!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	
-	
-	
-<div class="topbar stick">
+    <!--<div class="se-pre-con"></div>-->
+    <div class="theme-layout">
+
+
+
+       
+        <div class="topbar stick">
             <div class="logo">
-                <a title="" href="/home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}"
-                        alt=""></a>
+                <a title="" href="{{ route('home') }}"><img
+                        src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
             </div>
 
             <div class="top-area">
-                <ul class="main-menu">
+                <ul class="">
+                    @if (auth()->check() && auth()->user()->role === 'admin')
+                        <li>
+                            <a href="{{ route('dashboard') }}" title="">Dashboard</a>
+                        </li>
+                    @endif
+
                     <li>
-                        <a href="#" title="">Home</a>
-                        <ul>
-                            <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
-                            <li><a href="index-company.html" title="">Home Company</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="">timeline</a>
-                        <ul>
-                            <li><a href="time-line.html" title="">timeline</a></li>
-                            <li><a href="timeline-friends.html" title="">timeline friends</a></li>
-                            <li><a href="timeline-groups.html" title="">timeline groups</a></li>
-                            <li><a href="timeline-pages.html" title="">timeline pages</a></li>
-                            <li><a href="timeline-photos.html" title="">timeline photos</a></li>
-                            <li><a href="timeline-videos.html" title="">timeline videos</a></li>
-                            <li><a href="fav-page.html" title="">favourit page</a></li>
-                            <li><a href="groups.html" title="">groups page</a></li>
-                            <li><a href="page-likers.html" title="">Likes page</a></li>
-                            <li><a href="people-nearby.html" title="">people nearby</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="">account settings</a>
-                        <ul>
-                            <li><a href="create-fav-page.html" title="">create fav page</a></li>
-                            <li><a href="edit-account-setting.html" title="">edit account setting</a></li>
-                            <li><a href="edit-interest.html" title="">edit-interest</a></li>
-                            <li><a href="edit-password.html" title="">edit-password</a></li>
-                            <li><a href="edit-profile-basic.html" title="">edit profile basics</a></li>
-                            <li><a href="edit-work-eductation.html" title="">edit work educations</a></li>
-                            <li><a href="messages.html" title="">message box</a></li>
-                            <li><a href="inbox.html" title="">Inbox</a></li>
-                            <li><a href="notifications.html" title="">notifications page</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="">more pages</a>
-                        <ul>
-                            <li><a href="404.html" title="">404 error page</a></li>
-                            <li><a href="about.html" title="">about</a></li>
-                            <li><a href="contact.html" title="">contact</a></li>
-                            <li><a href="faq.html" title="">faq's page</a></li>
-                            <li><a href="insights.html" title="">insights</a></li>
-                            <li><a href="knowledge-base.html" title="">knowledge base</a></li>
-                            <li><a href="widgets.html" title="">Widgts</a></li>
-                        </ul>
+                        <a href="{{ route('editProfile') }}" title=""> Settings</a>
                     </li>
                 </ul>
+
                 <ul class="setting-area">
-                    <li>
-                        <a href="" title="Home" data-ripple=""><i class="ti-search"></i></a>
-                        <div class="searched">
-                            <form method="post" class="form-search">
-                                <input type="text" placeholder="Search Friend">
-                                <button data-ripple><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                    </li>
-                    <li><a href="" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+
+                    <li><a href="{{ route('home') }}" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+
                     <li>
                         <a href="#" title="Notification" data-ripple="">
                             <i class="ti-bell"></i><span>20</span>
@@ -232,31 +190,31 @@
                             <a href="messages.html" title="" class="more-mesg">view more</a>
                         </div>
                     </li>
-                    <li><a href="#" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
-                        <div class="dropdowns languages">
-                            <a href="#" title=""><i class="ti-check"></i>English</a>
-                            <a href="#" title="">Arabic</a>
-                            <a href="#" title="">Dutch</a>
-                            <a href="#" title="">French</a>
-                        </div>
+                    <li><a href="{{ route('editProfile') }}" title="Languages" data-ripple=""><i
+                                class="fa fa-globe"></i></a>
+
                     </li>
                 </ul>
                 <div class="user-img">
-                    <img src="{{ Vite::asset('resources/assets/images/resources/admin.jpg') }}" alt="">
+                    <img width="50px" height="60px"
+                        src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
                         {{-- <a href="#" title=""><span class="status f-away"></span>away</a>
-                        <a href="#" title=""><span class="status f-off"></span>offline</a> --}}
+					<a href="#" title=""><span class="status f-off"></span>offline</a> --}}
                         @if (Auth::check())
-                            <a href="#" title=""><i class="ti-user"></i> {{ Auth::user()->name }}</a>
+                            <a href="{{ route('profile') }}" title=""><i class="ti-user"></i>
+                                {{ Auth::user()->name }}</a>
                         @endif
-                        <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+                        <a href="{{ route('editProfile') }}" title=""><i class="ti-pencil-alt"></i>edit
+                            profile</a>
                         <a href="" title=""><i class="ti-target"></i>activity log</a>
-                        <a href="#" title=""><i class="ti-settings"></i>account setting</a>
+                        <a href="{{ route('editProfile') }}" title=""><i class="ti-settings"></i>account
+                            setting</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="group.preventDefault();
-                                      document.getElementById('logout-form').submit();">
+                            onclick="event.preventDefault();
+								  document.getElementById('logout-form').submit();">
                             <i class="ti-power-off"></i> {{ __('Logout') }}
                         </a>
 
@@ -268,28 +226,28 @@
                 <span class="ti-menu main-menu" data-ripple=""></span>
 
             </div>
-        </div><!-- topbar -->	
-		
+        </div>
+
         <section>
-		<div class="page-header">
-			<div class="header-inner">
-				<h2>your Searched Groups</h2>
-				<nav class="breadcrumb">
-				  
-				  <a href="{{ route('addGroupFront') }}" title="" class="add-butn">Create</a>
-				</nav>
-			</div>
-		</div>
-	</section>
-		
-	<section>
-		<div class="gap gray-bg">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="row" id="page-contents">
-							<div class="col-lg-3">
-                            <aside class="sidebar static">
+            <div class="page-header">
+                <div class="header-inner">
+                    <h2>your Searched Groups</h2>
+                    <nav class="breadcrumb">
+
+                        <a href="{{ route('addGroupFront') }}" title="" class="add-butn">Create</a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="gap gray-bg">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row" id="page-contents">
+                                <div class="col-lg-3">
+                                    <aside class="sidebar static">
                                         <div class="widget">
                                             <h4 class="widget-title">Shortcuts</h4>
                                             <ul class="naves">
@@ -313,7 +271,7 @@
                                                 </li>
                                                 <li>
                                                     <i class="ti-mouse-alt"></i>
-                                                    <a href="{{route('profile')}}">Profile</a>
+                                                    <a href="{{ route('profile') }}">Profile</a>
 
                                                 </li>
                                                 <li>
@@ -336,38 +294,37 @@
                                         </div><!-- Shortcuts -->
 
                                     </aside>
-							</div><!-- sidebar -->
+                                </div><!-- sidebar -->
 
-							<!-- <div class="col-lg-8">
-								<div class="central-meta" >
-									<div class="groups">
-										<span><i class="fa fa-users"></i> Groups</span>
+                                <!-- <div class="col-lg-8">
+        <div class="central-meta" >
+         <div class="groups">
+          <span><i class="fa fa-users"></i> Groups</span>
                                         
-									</div>
+         </div>
                                     
-									<ul class="nearby-contct">
+         <ul class="nearby-contct">
                                     @foreach ($groups as $group)
-										<li>
-											<div class="nearly-pepls">
+<li>
+           <div class="nearly-pepls">
                                                 <div class="image-container">
                                             @if ($group->image)
-                                            <figure>
+<figure>
                                                 <a><img src= "{{ asset('storage/' . $group->image) }}"
                                                     alt="" ></a>
                                             <figure>
-                                            @else
-                                            <figure>
+@else
+<figure>
                                             <a><img src="{{ Vite::asset('resources/assets/images/resources/404.jpg') }}"
                                                     alt="" ></a>
                                             </figure>
                                             </div>
-                                            @endif
-												<div class="pepl-info">
-													<h4>{{ $group->name }}</h4>
+@endif
+            <div class="pepl-info">
+             <h4>{{ $group->name }}</h4>
                                                     <em>{{ $group->members->count() }} Members</em>
                                                     @if (auth()->user()->id === $group->creator->id)
-
-                                                    <a href="{{ route('editGroupFront', $group->id) }}" title="" class="ml-5" ><i class="ti-pencil text-info"></i></a>
+<a href="{{ route('editGroupFront', $group->id) }}" title="" class="ml-5" ><i class="ti-pencil text-info"></i></a>
                                                     <div class="btn-group ml-1" role="group" aria-label="Delete Group">
                                                     <form method="POST" action="{{ route('groups.destroyfront', ['group' => $group]) }}">
                                                     @csrf
@@ -376,78 +333,93 @@
                                                      
                                                     </form>
                                                     </div>
-                                    
-                                                    @elseif ($group->members->contains(auth()->user()))
-                                                    <form method="POST" action="{{ route('leaveGroup', ['group' => $group]) }}" >
+@elseif ($group->members->contains(auth()->user()))
+<form method="POST" action="{{ route('leaveGroup', ['group' => $group]) }}" >
                                                         @csrf
                                                         <a href="#" title="Leave Group" data-ripple="" onclick="event.preventDefault(); this.closest('form').submit();">Leave Group</a>
                                                     </form>
-                                                    @else
-													<a href="{{ route('joinGroup', ['group' => $group]) }}" class="add-butn" >join now</a>
-                                                    @endif
-												</div>
-											</div>
-										</li>
-										@endforeach
-									</ul>
-								</div>
-							</div> -->
-							<div class="col-lg-8">
-    <div class="central-meta">
-        <div class="groups">
-            <span><i class="fa fa-users"></i> Groups</span>
+@else
+<a href="{{ route('joinGroup', ['group' => $group]) }}" class="add-butn" >join now</a>
+@endif
+            </div>
+           </div>
+          </li>
+@endforeach
+         </ul>
         </div>
+       </div> -->
+                                <div class="col-lg-8">
+                                    <div class="central-meta">
+                                        <div class="groups">
+                                            <span><i class="fa fa-users"></i> Groups</span>
+                                        </div>
 
-        <ul class="list-group nearby-contct">
-            @foreach ($groups as $group)
-                <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                        <div class="image-container mr-3">
-                            @if ($group->image)
-                                <img src="{{ asset('storage/' . $group->image) }}" alt="{{ $group->name }}" class="img-fluid rounded" style="max-width: 100px; max-height: auto;">
-                            @else
-                                <img src="{{ Vite::asset('resources/assets/images/resources/404.jpg') }}" alt="Placeholder" class="img-fluid rounded" style="max-width: 100px; max-height: auto;">
-                            @endif
-                        </div>
-                        <div class="pepl-info">
-													<h4>{{ $group->name }}</h4>
-                                                    <em>{{ $group->members->count() }} Members</em>
-                                                    @if (auth()->user()->id === $group->creator->id)
+                                        <ul class="list-group nearby-contct">
+                                            @foreach ($groups as $group)
+                                                <li class="list-group-item">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="image-container mr-3">
+                                                            @if ($group->image)
+                                                                <img src="{{ asset('storage/' . $group->image) }}"
+                                                                    alt="{{ $group->name }}"
+                                                                    class="img-fluid rounded"
+                                                                    style="max-width: 100px; max-height: auto;">
+                                                            @else
+                                                                <img src="{{ Vite::asset('resources/assets/images/resources/404.jpg') }}"
+                                                                    alt="Placeholder" class="img-fluid rounded"
+                                                                    style="max-width: 100px; max-height: auto;">
+                                                            @endif
+                                                        </div>
+                                                        <div class="pepl-info">
+                                                            <h4>{{ $group->name }}</h4>
+                                                            <em>{{ $group->members->count() }} Members</em>
+                                                            @if (auth()->user()->id === $group->creator->id)
+                                                                <a href="{{ route('editGroupFront', $group->id) }}"
+                                                                    title="" class="ml-5"><i
+                                                                        class="ti-pencil text-info"></i></a>
+                                                                <div class="btn-group ml-1" role="group"
+                                                                    aria-label="Delete Group">
+                                                                    <form method="POST"
+                                                                        action="{{ route('groups.destroyfront', ['group' => $group]) }}">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-link text-danger"
+                                                                            id="delete-group"
+                                                                            style="background: none !important;"><i
+                                                                                class="ti-trash"></i></button>
 
-                                                    <a href="{{ route('editGroupFront', $group->id) }}" title="" class="ml-5" ><i class="ti-pencil text-info"></i></a>
-                                                    <div class="btn-group ml-1" role="group" aria-label="Delete Group">
-                                                    <form method="POST" action="{{ route('groups.destroyfront', ['group' => $group]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                     <button type="submit" class="btn btn-link text-danger" id="delete-group" style="background: none !important;"><i class="ti-trash"></i></button>
-                                                     
-                                                    </form>
+                                                                    </form>
+                                                                </div>
+                                                            @elseif ($group->members->contains(auth()->user()))
+                                                                <form method="POST"
+                                                                    action="{{ route('leaveGroup', ['group' => $group]) }}">
+                                                                    @csrf
+                                                                    <a href="#" title="Leave Group"
+                                                                        data-ripple=""
+                                                                        onclick="event.preventDefault(); this.closest('form').submit();">Leave
+                                                                        Group</a>
+                                                                </form>
+                                                            @else
+                                                                <a href="{{ route('joinGroup', ['group' => $group]) }}"
+                                                                    class="add-butn">join now</a>
+                                                            @endif
+                                                        </div>
                                                     </div>
-                                    
-                                                    @elseif ($group->members->contains(auth()->user()))
-                                                    <form method="POST" action="{{ route('leaveGroup', ['group' => $group]) }}" >
-                                                        @csrf
-                                                        <a href="#" title="Leave Group" data-ripple="" onclick="event.preventDefault(); this.closest('form').submit();">Leave Group</a>
-                                                    </form>
-                                                    @else
-													<a href="{{ route('joinGroup', ['group' => $group]) }}" class="add-butn" >join now</a>
-                                                    @endif
-												</div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-</div>
+                </div>
+            </div>
+        </section>
 
-						</div>	
-					</div>
-				</div>
-			</div>
-		</div>	
-	</section>
-
-	{{--<footer>
+        {{-- <footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-4">
@@ -595,23 +567,24 @@
 				</div>
 			</form>
 		</div> --}}
-	
+
         <script src="resources/assets/js/script.js"></script>
 
         @vite(['resources/assets/js/script.js'])
         @vite(['resources/assets/js/map-init.js'])
         @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
         @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-</script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
 
 
-</body>	
+</body>
+
 </html>

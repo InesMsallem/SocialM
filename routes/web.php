@@ -40,6 +40,9 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/inbox', function () {
     return view('inbox');
 });
+Route::get('/profile/edit', function () {
+    return view('profile');
+})->name('editProfile');
 
 Route::get('/', function () {
     return view('login');
@@ -50,9 +53,15 @@ Route::get('/home', function () {
 Route::get('/signup', function () {
     return view('signup');
 })->name('signup');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+//edit profile 
+Route::put('/profile/update',  [EventController::class, 'updateProfile'])->name('profile.update');
+
 
 
 //Events ==>

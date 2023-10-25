@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -41,7 +42,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role' => 'string', 
     ];
+
+    public function getRoleAttribute()
+    {
+        return $this->attributes['role'];
+    }
 
     public function events()
     {
@@ -70,8 +77,7 @@ class User extends Authenticatable
     }
 
     public function memberships()
-{
-    return $this->hasMany(Membership::class);
-}
-
+    {
+        return $this->hasMany(Membership::class);
+    }
 }

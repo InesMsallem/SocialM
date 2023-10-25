@@ -167,4 +167,27 @@ class EventController extends Controller
 
         return redirect()->route('events')->with('success', 'Review added successfully');
     }
+
+
+    public function updateProfile(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'new_password' => 'nullable|string|min:6',  // Allow empty new_password
+        ]);
+        
+        $user = auth()->user();
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        
+        if (!empty($validatedData['new_password'])) {
+            $user->password = bcrypt($validatedData['new_password']);
+        }
+        
+        $user->save();
+        
+        return back()->with('success', 'Profile updated successfully');
+        
+    }
 }

@@ -212,24 +212,22 @@
             </nav>
         </div><!-- responsive header -->
 
+        
         <div class="topbar stick">
             <div class="logo">
-                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}"
-                        alt=""></a>
+                <a title="" href="{{ route('home') }}"><img
+                        src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
             </div>
 
             <div class="top-area">
-                <ul class="main-menu">
-                    <li>
-                        <a href="{{ route('home') }}" title="">Home</a>
-                        <ul>
-                            <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
+                @if (auth()->check() && auth()->user()->role === 'admin')
+                    <ul class="">
+                        <li>
+                            <a href="{{ route('dashboard') }}" title="">Dashboard</a>
+                        </li>
+                    </ul>
+                @endif
 
-                        </ul>
-                    </li>
-
-
-                </ul>
                 <ul class="setting-area">
 
                     <li><a href="{{ route('home') }}" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
@@ -411,7 +409,7 @@
                 <span class="ti-menu main-menu" data-ripple=""></span>
 
             </div>
-        </div>
+        </div><!-- topbar -->
 
         <section>
 
@@ -749,7 +747,7 @@
                                                         <span class="status f-off"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
-                                                        <a href="time-line.html">Oubaida</a>
+                                                        <a href="time-line.html">Yassine</a>
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                                                                 data-cfemail="eb818a98848589ab8c868a8287c5888486">[email&#160;protected]</a></i>
                                                     </div>
