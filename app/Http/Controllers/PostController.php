@@ -31,7 +31,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => 'required',
+            'content' => 'required|string',
         ]);
 
         $image = $request->file('image');
@@ -63,7 +63,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'content' => 'required',
+            'content' => 'required|string',
 
         ]);
 

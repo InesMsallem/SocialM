@@ -105,6 +105,7 @@ Route::delete('/delete-blog/{blog}', [BlogController::class, 'destroy'])->name('
 // Route to display the comment creation form
 Route::get('/dashboard/comments/create', [CommentController::class, 'create'])->name('comments.create');
 Route::post('/dashboard/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/home', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/dashboard/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::delete('/dashboard/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::get('/dashboard/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
@@ -124,6 +125,7 @@ Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])-
 // Route to display the product creation form
 Route::get('/dashboard/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/dashboard/products', [ProductController::class, 'store'])->name('products.store');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/dashboard/products', [ProductController::class, 'index'])->name('products.index');
 Route::delete('/dashboard/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 Route::get('/dashboard/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
