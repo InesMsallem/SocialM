@@ -138,7 +138,6 @@ class EventController extends Controller
     }
 
 
-
     // my events
     public function myEvents()
     {

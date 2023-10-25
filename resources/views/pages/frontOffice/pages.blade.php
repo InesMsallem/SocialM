@@ -214,7 +214,8 @@
 
         <div class="topbar stick">
             <div class="logo">
-                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
+                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}"
+                        alt=""></a>
             </div>
 
             <div class="top-area">
@@ -222,65 +223,16 @@
                     <li>
                         <a href="{{ route('home') }}" title="">Home</a>
                         <ul>
-                            <li><a href="{{ route('home') }}" title="">Home</a></li>
-
                             <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
 
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" title="">timeline</a>
-                        <ul>
-                            <li><a href="time-line.html" title="">timeline</a></li>
-                            <li><a href="timeline-friends.html" title="">timeline friends</a></li>
-                            <li><a href="timeline-groups.html" title="">timeline groups</a></li>
-                            <li><a href="timeline-pages.html" title="">timeline pages</a></li>
-                            <li><a href="timeline-photos.html" title="">timeline photos</a></li>
-                            <li><a href="timeline-videos.html" title="">timeline videos</a></li>
-                            <li><a href="fav-page.html" title="">favourit page</a></li>
-                            <li><a href="groups.html" title="">groups page</a></li>
-                            <li><a href="page-likers.html" title="">Likes page</a></li>
-                            <li><a href="people-nearby.html" title="">people nearby</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="">account settings</a>
-                        <ul>
-                            <li><a href="create-fav-page.html" title="">create fav page</a></li>
-                            <li><a href="edit-account-setting.html" title="">edit account setting</a></li>
-                            <li><a href="edit-interest.html" title="">edit-interest</a></li>
-                            <li><a href="edit-password.html" title="">edit-password</a></li>
-                            <li><a href="edit-profile-basic.html" title="">edit profile basics</a></li>
-                            <li><a href="edit-work-eductation.html" title="">edit work educations</a></li>
-                            <li><a href="messages.html" title="">message box</a></li>
-                            <li><a href="inbox.html" title="">Inbox</a></li>
-                            <li><a href="notifications.html" title="">notifications page</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="">more pages</a>
-                        <ul>
-                            <li><a href="404.html" title="">404 error page</a></li>
-                            <li><a href="about.html" title="">about</a></li>
-                            <li><a href="contact.html" title="">contact</a></li>
-                            <li><a href="faq.html" title="">faq's page</a></li>
-                            <li><a href="insights.html" title="">insights</a></li>
-                            <li><a href="knowledge-base.html" title="">knowledge base</a></li>
-                            <li><a href="widgets.html" title="">Widgts</a></li>
-                        </ul>
-                    </li>
+
+
                 </ul>
                 <ul class="setting-area">
-                    <li>
-                        <a href="" title="Home" data-ripple=""><i class="ti-search"></i></a>
-                        <div class="searched">
-                            <form method="post" class="form-search">
-                                <input type="text" placeholder="Search Friend">
-                                <button data-ripple><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                    </li>
-                    <li><a href="" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+
+                    <li><a href="{{ route('home') }}" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
                     <li>
                         <a href="#" title="Notification" data-ripple="">
                             <i class="ti-bell"></i><span>20</span>
@@ -290,7 +242,8 @@
                             <ul class="drops-menu">
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>sarah Loren</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -301,7 +254,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -312,7 +266,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -323,7 +278,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -334,7 +290,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -354,7 +311,8 @@
                             <ul class="drops-menu">
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>sarah Loren</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -365,7 +323,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -376,7 +335,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -387,7 +347,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -398,7 +359,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -421,19 +383,22 @@
                     </li>
                 </ul>
                 <div class="user-img">
-                    <img src="{{ Vite::asset('resources/assets/images/resources/admin.jpg') }}" alt="">
+                    <img width="50px" height="60px"
+                        src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
                         {{-- <a href="#" title=""><span class="status f-away"></span>away</a>
                         <a href="#" title=""><span class="status f-off"></span>offline</a> --}}
                         @if (Auth::check())
-                        <a href="#" title=""><i class="ti-user"></i> {{ Auth::user()->name }}</a>
+                            <a href="{{ route('profile') }}" title=""><i class="ti-user"></i>
+                                {{ Auth::user()->name }}</a>
                         @endif
                         <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
                         <a href="" title=""><i class="ti-target"></i>activity log</a>
                         <a href="#" title=""><i class="ti-settings"></i>account setting</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                             <i class="ti-power-off"></i> {{ __('Logout') }}
                         </a>
@@ -446,7 +411,7 @@
                 <span class="ti-menu main-menu" data-ripple=""></span>
 
             </div>
-        </div><!-- topbar -->
+        </div>
 
         <section>
 
@@ -455,31 +420,50 @@
         <section>
             <div class="gap gray-bg">
                 <div class="container-fluid">
+                    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row" id="page-contents">
                                 <div class="col-lg-3">
                                     <aside class="sidebar static">
                                         <div class="widget">
+                                            <h4 class="widget-title">Socials</h4>
+                                            <ul class="socials">
+                                                <li class="facebook">
+                                                    <a title="" href="#"><i class="fa fa-facebook"></i>
+                                                        <span>facebook</span> <ins>45 likes</ins></a>
+                                                </li>
+                                                <li class="twitter">
+                                                    <a title="" href="#"><i class="fa fa-twitter"></i>
+                                                        <span>twitter</span><ins>25 likes</ins></a>
+                                                </li>
+                                                <li class="google">
+                                                    <a title="" href="#"><i class="fa fa-google"></i>
+                                                        <span>google</span><ins>35 likes</ins></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="widget">
                                             <h4 class="widget-title">Shortcuts</h4>
                                             <ul class="naves">
                                                 <li>
-                                                    <i class="fa fa-plus"></i> <a data-toggle="modal"
-                                                        data-target="#myModal" href="" title="">Create
-                                                        Page</a>
+                                                    <i class="fa fa-plus"></i> <a class="modal-title"
+                                                        data-toggle="modal" data-target="#myModal" href=""
+                                                        title="" id="openCreatePageModal">Create Page</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-files"></i>
-                                                    <a href="" data-toggle="modal"
-                                                        data-target="#myEventsModal" title="">My Pages</a>
+                                                    <a href="" data-toggle="modal" data-target="#myPagesModal"
+                                                        title="">My Pages</a>
                                                 </li>
-
-
-
-
-
+                                                <li>
+                                                    <i class="ti-image"></i>
+                                                    <a href="{{ route('events') }}" title="">Events</a>
+                                                </li>
                                             </ul>
-                                        </div><!-- Shortcuts -->
+                                        </div>
+
+                                        {{-- 
                                         <div class="widget">
                                             <h4 class="widget-title">Members</h4>
                                             <ul class="followers">
@@ -530,54 +514,90 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </div><!-- who's following -->
-
-
+                                        </div> --}}
                                     </aside>
                                 </div><!-- sidebar -->
+
                                 <div class="col-lg-6">
                                     <div class="central-meta">
-
+                                        <div class="post-filter-sec">
+                                            <form method="get" class="filter-form">
+                                                <input type="text" name="search" placeholder="Search page"
+                                                    value="{{ request('search') }}">
+                                                <button type="submit"><i class="ti-search"></i></button>
+                                            </form>
+                                        </div>
                                         <ul class="liked-pages">
                                             @foreach ($pages as $page)
-                                            <li>
-                                                <div class="f-page">
-                                                    <figure>
-                                                        <img class="d-block w-100"
-                                                            src="{{ Vite::asset('storage/app/public/' . $page->image) }}"
-                                                            alt="Image">
-                                        
-                                                            <form method="POST" action="{{ route('page.join', ['page' => $page]) }}">
+                                                <li>
+                                                    <div class="f-page">
+                                                        <figure>
+                                                            <img class="d-block w-100"
+                                                                src="{{ Vite::asset('storage/app/public/' . $page->image) }}"
+                                                                alt="Image">
+
+                                                            <form method="POST"
+                                                                action="{{ route('page.join', ['page' => $page]) }}">
                                                                 @csrf
-                                                                <button type="submit" class="btn dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                                                                    @if($page->members->contains(auth()->user()))
-                                                                        joined
+                                                                <button type="submit" class="btn btn-block my-3"
+                                                                    style="background-color: #088DCD; color:white"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                    @if ($page->members->contains(auth()->user()))
+                                                                        Joined
                                                                     @else
-                                                                        join
+                                                                        Join
                                                                     @endif
                                                                 </button>
                                                             </form>
-                                                            
-                                        
-                                                        
-                                                    </figure>
-                                                    <div class="page-infos">
-                                                        <h5><a href="#"
-                                                            title="">{{ $page->title }}</a></h5>
-                                                        <span><a href="#"
-                                                            title="">{{ $page->description }}</a></span>
+                                                        </figure>
+                                                        <div class="page-infos">
+                                                            <h5>{{ $page->title }}</h5>
+                                                            <span>{{ $page->description }}</span>
+                                                        </div>
+                                                        <div class="page-infos">
+                                                            <span><a href="#"
+                                                                    title="">{{ $page->members->count() }}
+                                                                    members</a></span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                        
+                                                </li>
+                                            @endforeach
                                         </ul>
-                                        <div class="lodmore"><button class="btn-view btn-load-more"></button></div>
+
+                                        <!-- Display pagination controls -->
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <ul class="pagination justify-content-center">
+                                                    @if ($pages->onFirstPage())
+                                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                                    @else
+                                                        <li class="page-item"><a href="{{ $pages->previousPageUrl() }}" class="page-link">Previous</a></li>
+                                                    @endif
+                                        
+                                                    @for ($i = 1; $i <= $pages->lastPage(); $i++)
+                                                        <li class="page-item{{ $i === $pages->currentPage() ? ' active' : '' }}">
+                                                            <a href="{{ $pages->url($i) }}" class="page-link">{{ $i }}</a>
+                                                        </li>
+                                                    @endfor
+                                        
+                                                    @if ($pages->hasMorePages())
+                                                        <li class="page-item"><a href="{{ $pages->nextPageUrl() }}" class="page-link">Next</a></li>
+                                                    @else
+                                                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+
+                                        {{-- <div class="lodmore"><button class="btn-view btn-load-more"></button></div> --}}
+
+
                                     </div><!-- photos -->
                                 </div><!-- centerl meta -->
                                 <div class="col-lg-3">
                                     <aside class="sidebar static">
-                                        <div class="widget">
+                                        {{-- <div class="widget">
                                             <h4 class="widget-title">Your page</h4>
                                             <div class="your-page">
                                                 <figure>
@@ -685,115 +705,57 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="widget friend-list stick-widget">
-                                            <h4 class="widget-title">Friends</h4>
+                                            <h4 class="widget-title">Invite Friends</h4>
                                             <div id="searchDir"></div>
                                             <ul id="people-list" class="friendz-list">
                                                 <li>
                                                     <figure>
-                                                        <img src="images/resources/friend-avatar.jpg" alt="">
+                                                        <img width="40px" height="40px" src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                                                         <span class="status f-online"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
-                                                        <a href="time-line.html">bucky barnes</a>
+                                                        <a href="time-line.html">Belghith</a>
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                                                                 data-cfemail="a6d1cfc8d2c3d4d5c9cac2c3d4e6c1cbc7cfca88c5c9cb">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <figure>
-                                                        <img src="images/resources/friend-avatar2.jpg" alt="">
+                                                        <img width="40px" height="40px" src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                                                         <span class="status f-away"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
-                                                        <a href="time-line.html">Sarah Loren</a>
+                                                        <a href="time-line.html">Youssef</a>
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                                                                 data-cfemail="4624273428233506212b272f2a6825292b">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <figure>
-                                                        <img src="images/resources/friend-avatar3.jpg" alt="">
+                                                        <img width="40px" height="40px" src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                                                         <span class="status f-off"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
-                                                        <a href="time-line.html">jason borne</a>
+                                                        <a href="time-line.html">Tlili</a>
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                                                                 data-cfemail="95fff4e6fafbf7d5f2f8f4fcf9bbf6faf8">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <figure>
-                                                        <img src="images/resources/friend-avatar4.jpg" alt="">
+                                                        <img width="40px" height="40px" src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                                                         <span class="status f-off"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
-                                                        <a href="time-line.html">Cameron diaz</a>
+                                                        <a href="time-line.html">Oubaida</a>
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                                                                 data-cfemail="eb818a98848589ab8c868a8287c5888486">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="images/resources/friend-avatar5.jpg" alt="">
-                                                        <span class="status f-online"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="time-line.html">daniel warber</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                                data-cfemail="0c666d7f63626e4c6b616d6560226f6361">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="images/resources/friend-avatar6.jpg" alt="">
-                                                        <span class="status f-away"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="time-line.html">andrew</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                                data-cfemail="e983889a86878ba98e84888085c78a8684">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="images/resources/friend-avatar7.jpg" alt="">
-                                                        <span class="status f-off"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="time-line.html">amy watson</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                                data-cfemail="4d272c3e22232f0d2a202c2421632e2220">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="images/resources/friend-avatar5.jpg" alt="">
-                                                        <span class="status f-online"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="time-line.html">daniel warber</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                                data-cfemail="a2c8c3d1cdccc0e2c5cfc3cbce8cc1cdcf">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="images/resources/friend-avatar2.jpg" alt="">
-                                                        <span class="status f-away"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="time-line.html">Sarah Loren</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                                data-cfemail="6d0f0c1f03081e2d0a000c0401430e0200">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
+                                       
+                                                
                                             </ul>
                                             <div class="chat-box">
                                                 <div class="chat-head">
@@ -889,98 +851,136 @@
             </div>
         </section>
 
-        {{-- <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4">
-                        <div class="widget">
-                            <div class="foot-logo">
-                                <div class="logo">
-                                    <a href="index.html" title=""><img src="images/logo.png"
-                                            alt=""></a>
-                                </div>
-                                <p>
-                                    The trio took this simple idea and built it into the world’s leading carpooling
-                                    platform.
-                                </p>
-                            </div>
-                            <ul class="location">
-                                <li>
-                                    <i class="ti-map-alt"></i>
-                                    <p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
-                                </li>
-                                <li>
-                                    <i class="ti-mobile"></i>
-                                    <p>+1-56-346 345</p>
-                                </li>
-                            </ul>
-                        </div>
+
+
+
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Page</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>follow</h4>
+                    <div class="modal-body">
+                        <form action="{{ route('pages.store') }}" method="post" enctype="multipart/form-data"
+                            class="styled-form">
+                            @csrf
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input name="title" type="text" id="title" class="form-control" />
                             </div>
-                            <ul class="list-style">
-                                <li><i class="fa fa-facebook-square"></i> <a
-                                        href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
-                                <li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en"
-                                        title="">twitter</a></li>
-                                <li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en"
-                                        title="">instagram</a></li>
-                                <li><i class="fa fa-google-plus-square"></i> <a
-                                        href="https://plus.google.com/discover" title="">Google+</a></li>
-                                <li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/"
-                                        title="">Pintrest</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>Navigate</h4>
+
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea name="description" id="description" class="form-control" rows="4"></textarea>
                             </div>
-                            <ul class="list-style">
-                                <li><a href="about.html" title="">about us</a></li>
-                                <li><a href="contact.html" title="">contact us</a></li>
-                                <li><a href="terms.html" title="">terms & Conditions</a></li>
-                                <li><a href="#" title="">RSS syndication</a></li>
-                                <li><a href="sitemap.html" title="">Sitemap</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>useful links</h4>
+
+                            <div class="form-group custom-file">
+                                <input type="file" class="custom-file-input" id="image" name="image"
+                                    accept="image/*">
+                                <label class="custom-file-label" for="image">Choose
+                                    image...</label>
                             </div>
-                            <ul class="list-style">
-                                <li><a href="#" title="">leasing</a></li>
-                                <li><a href="#" title="">submit route</a></li>
-                                <li><a href="#" title="">how does it work?</a></li>
-                                <li><a href="#" title="">agent listings</a></li>
-                                <li><a href="#" title="">view All</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4">
-                        <div class="widget">
-                            <div class="widget-title">
-                                <h4>download apps</h4>
+                            <div class="form-group custom-file">
+                                <input type="file" class="custom-file-input" id="cover" name="cover"
+                                    accept="image/*">
+                                <label class="custom-file-label" for="cover">Choose
+                                    cover...</label>
                             </div>
-                            <ul class="colla-apps">
-                                <li><a href="https://play.google.com/store?hl=en" title=""><i
-                                            class="fa fa-android"></i>android</a></li>
-                                <li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i
-                                            class="ti-apple"></i>iPhone</a></li>
-                                <li><a href="https://www.microsoft.com/store/apps" title=""><i
-                                            class="fa fa-windows"></i>Windows</a></li>
-                            </ul>
-                        </div>
+
+
+
+                            <button type="submit" class="mtr-btn"><span>Create page</span></button>
+                            <a href="{{ route('pages.index') }}" class="mtr-btn"><span>Cancel</span></a>
+
+                        </form>
                     </div>
+
+
+
                 </div>
             </div>
-        </footer><!-- footer --> --}}
+        </div>
+
+
+        <div class="modal fade" id="myPagesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">My Pages</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            @if (!is_null($mypages))
+                                @foreach ($mypages as $event)
+                                    <li class="list-group-item position-relative">
+
+
+                                        <h5 class="mb-1">{{ $event->title }}</h5>
+                                        <p class="mb-1">
+                                            {{ $event->description }}
+                                        </p>
+
+                                    </li>
+                                    <button type="button" class="btn btn-sm btn-danger delete-button"
+                                        data-toggle="modal" data-target="#deleteEventModal{{ $event->id }}">
+                                        Delete
+                                    </button>
+
+                                    <div class="modal fade" id="deleteEventModal{{ $event->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="deleteEventModalLabel{{ $event->id }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        id="deleteEventModalLabel{{ $event->id }}">
+                                                        Delete Page</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this event?
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cancel</button>
+                                                    <form action="{{ route('pages.destroy', $event) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p>No pages found.</p>
+                            @endif
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
 
     </div>
     <div class="side-panel">

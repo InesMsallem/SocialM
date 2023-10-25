@@ -45,7 +45,7 @@ Route::get('/', function () {
     return view('login');
 })->name('signin');
 Route::get('/home', function () {
-    return view('home');
+    return view('home')->name('home');
 })->name('home');
 Route::get('/signup', function () {
     return view('signup');
