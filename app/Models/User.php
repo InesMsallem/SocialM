@@ -47,12 +47,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class);
     }
+
+    public function pages()
+    {
+        return $this->hasMany(Page::class);
+    }
     public function participatingEvents(): BelongsToMany
     {
         return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id')
             ->withTimestamps();
     }
-    // app/Models/User.php
 
     public function likes()
     {

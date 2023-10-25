@@ -22,7 +22,8 @@
     <div class="theme-layout">
         <div class="topbar stick">
             <div class="logo">
-                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
+                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}"
+                        alt=""></a>
             </div>
 
             <div class="top-area">
@@ -30,65 +31,16 @@
                     <li>
                         <a href="{{ route('home') }}" title="">Home</a>
                         <ul>
-                            <li><a href="{{ route('home') }}" title="">Home</a></li>
-
                             <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
 
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" title="">timeline</a>
-                        <ul>
-                            <li><a href="time-line.html" title="">timeline</a></li>
-                            <li><a href="timeline-friends.html" title="">timeline friends</a></li>
-                            <li><a href="timeline-groups.html" title="">timeline groups</a></li>
-                            <li><a href="timeline-pages.html" title="">timeline pages</a></li>
-                            <li><a href="timeline-photos.html" title="">timeline photos</a></li>
-                            <li><a href="timeline-videos.html" title="">timeline videos</a></li>
-                            <li><a href="fav-page.html" title="">favourit page</a></li>
-                            <li><a href="groups.html" title="">groups page</a></li>
-                            <li><a href="page-likers.html" title="">Likes page</a></li>
-                            <li><a href="people-nearby.html" title="">people nearby</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="">account settings</a>
-                        <ul>
-                            <li><a href="create-fav-page.html" title="">create fav page</a></li>
-                            <li><a href="edit-account-setting.html" title="">edit account setting</a></li>
-                            <li><a href="edit-interest.html" title="">edit-interest</a></li>
-                            <li><a href="edit-password.html" title="">edit-password</a></li>
-                            <li><a href="edit-profile-basic.html" title="">edit profile basics</a></li>
-                            <li><a href="edit-work-eductation.html" title="">edit work educations</a></li>
-                            <li><a href="messages.html" title="">message box</a></li>
-                            <li><a href="inbox.html" title="">Inbox</a></li>
-                            <li><a href="notifications.html" title="">notifications page</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="">more pages</a>
-                        <ul>
-                            <li><a href="404.html" title="">404 error page</a></li>
-                            <li><a href="about.html" title="">about</a></li>
-                            <li><a href="contact.html" title="">contact</a></li>
-                            <li><a href="faq.html" title="">faq's page</a></li>
-                            <li><a href="insights.html" title="">insights</a></li>
-                            <li><a href="knowledge-base.html" title="">knowledge base</a></li>
-                            <li><a href="widgets.html" title="">Widgts</a></li>
-                        </ul>
-                    </li>
+
+
                 </ul>
                 <ul class="setting-area">
-                    <li>
-                        <a href="" title="Home" data-ripple=""><i class="ti-search"></i></a>
-                        <div class="searched">
-                            <form method="post" class="form-search">
-                                <input type="text" placeholder="Search Friend">
-                                <button data-ripple><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                    </li>
-                    <li><a href="" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+
+                    <li><a href="{{ route('home') }}" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
                     <li>
                         <a href="#" title="Notification" data-ripple="">
                             <i class="ti-bell"></i><span>20</span>
@@ -98,7 +50,8 @@
                             <ul class="drops-menu">
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>sarah Loren</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -109,7 +62,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -120,7 +74,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -131,7 +86,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -142,7 +98,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -162,7 +119,8 @@
                             <ul class="drops-menu">
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>sarah Loren</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -173,7 +131,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -184,7 +143,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -195,7 +155,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -206,7 +167,8 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}" alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}"
+                                            alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -229,19 +191,22 @@
                     </li>
                 </ul>
                 <div class="user-img">
-                    <img src="{{ Vite::asset('resources/assets/images/resources/admin.jpg') }}" alt="">
+                    <img width="50px" height="60px"
+                        src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
                         {{-- <a href="#" title=""><span class="status f-away"></span>away</a>
                         <a href="#" title=""><span class="status f-off"></span>offline</a> --}}
                         @if (Auth::check())
-                        <a href="#" title=""><i class="ti-user"></i> {{ Auth::user()->name }}</a>
+                            <a href="{{ route('profile') }}" title=""><i class="ti-user"></i>
+                                {{ Auth::user()->name }}</a>
                         @endif
                         <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
                         <a href="" title=""><i class="ti-target"></i>activity log</a>
                         <a href="#" title=""><i class="ti-settings"></i>account setting</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                             <i class="ti-power-off"></i> {{ __('Logout') }}
                         </a>
@@ -254,7 +219,7 @@
                 <span class="ti-menu main-menu" data-ripple=""></span>
 
             </div>
-        </div><!-- topbar -->
+        </div>
         <section>
             <div class="gap gray-bg">
                 <div class="container-fluid">
@@ -294,7 +259,10 @@
                                             <i class="ti-image"></i>
                                             <a href="#" title="" data-toggle="modal" data-target="#imagesModal">Images</a>
                                         </li>
-
+                                        <li>
+                                            <i class="ti-files"></i>
+                                            <a href="{{ route('pages') }}" title="">Pages</a>
+                                        </li>
 
 
                                     </ul>
@@ -344,7 +312,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <ul class="list-group">
-
+                                                @if (!is_null($myevents))
                                                 @foreach ($myevents as $event)
                                                 <li class="list-group-item position-relative">
 
@@ -401,7 +369,9 @@
                                                     </div>
                                                 </div>
                                                 @endforeach
-
+                                                @else
+                                                <p>No events found.</p>
+                                            @endif
 
                                             </ul>
                                         </div>

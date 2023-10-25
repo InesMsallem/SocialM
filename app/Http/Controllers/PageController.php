@@ -22,15 +22,30 @@ class PageController extends Controller
         $pages = Page::all();
         return view('pages.index', compact('productCount', 'categoryCount', 'commentCount', 'pages', 'pageCount'));
     }
-    public function displayPages()
+    public function displayPages(Request $request)
     {
-        $pageCount = Page::count();
-        $commentCount = Comment::count();
-        $categoryCount = Category::count();
-        $productCount = Product::count();
-        $pages = Page::all();
-        return view('pages.frontOffice.pages', compact('productCount', 'categoryCount', 'commentCount', 'pages', 'pageCount'));
+        if (auth()->check()) {
+            $user = auth()->user();
+            $mypages = $user->pages();
+            $pageCount = Page::count();
+            $commentCount = Comment::count();
+            $categoryCount = Category::count();
+            $productCount = Product::count();
+    
+            $search = $request->input('search');
+    
+            $pages = $mypages->where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('description', 'LIKE', '%' . $search . '%')
+                ->paginate(3); 
+    
+            return view('pages.frontOffice.pages', compact('productCount', 'categoryCount', 'commentCount', 'pages', 'pageCount', 'mypages'));
+        } else {
+            return back();
+        }
     }
+    
+    
+    
 
     public function create()
     {
@@ -158,5 +173,6 @@ class PageController extends Controller
         }
     }
     
+
 
 }
