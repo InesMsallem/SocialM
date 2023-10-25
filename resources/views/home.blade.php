@@ -335,19 +335,27 @@
                                                 <img src="{{ Vite::asset('resources/assets/images/resources/admin2.jpg') }}" alt="">
                                             </figure>
                                             <div class="newpst-input">
-                                                <form action="{{ route('posts.store') }}" method="post">
+                                                @error('content')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
+                                                @error('image')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
+                                                <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <textarea name="content" rows="2" placeholder="write something"></textarea>
                                                     <div class="attachments">
                                                         <ul>
-                                                          
+
                                                             <li>
                                                                 <i class="fa fa-image"></i>
                                                                 <label class="fileContainer">
                                                                     <input type="file" name="image" id="image">
                                                                 </label>
                                                             </li>
-                                                          
+
                                                             <li>
                                                                 <button type="submit">Post</button>
                                                             </li>
@@ -372,7 +380,7 @@
                                                         <span>published: {{ $post->created_at }}</span>
                                                     </div>
                                                     <div class="post-meta">
-                                                    <img src="{{ asset('storage/' . $post->image) }}" alt="Image">
+                                                        <img src="{{ asset('storage/' . $post->image) }}" alt="Image">
                                                         <div class="we-video-info">
                                                             <ul>
                                                                 <li>
