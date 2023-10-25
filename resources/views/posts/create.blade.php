@@ -350,6 +350,11 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                                <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="file" name="image" accept="image/*">
+                                                <label class="custom-file-label" for="file">Choose
+                                                    image...</label>
+                                            </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="form-group">
                                                         <strong>Post Likes:</strong>
@@ -397,10 +402,7 @@
                                             <a href="" title="">Posts</a>
                                             <span>32</span>
                                         </li>
-                                        <li>
-                                            <a href="{{ route('comments.index') }}" title="">Comments</a>
-                                            <span>{{ $commentCount }}</span>
-                                        </li>
+                                     
                                     </ul>
                                 </div>
                                 {{-- <div class="widget">

@@ -56,7 +56,7 @@ class CommentController extends Controller
             'likes' => 0,
         ]);
 
-        return back()->with('success', 'Comment deleted successfully.');
+        return back()->with('success', 'Comment created  successfully.');
     }
 
     public function destroy($id)
