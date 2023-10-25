@@ -342,66 +342,64 @@
                             </div>
                             <div class="forum-form">
                                 <h5 class="f-title"><i class="ti-info-alt"></i> Create Event</h5>
-                                <form method="POST" action="{{ route('addEventPost') }}"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <input type="text" name="title" required="required"
-                                        placeholder="Event Title" />
-                                </div>
-                                <div class="form-group">
-                                    <select name="location_id" id="location_id"
-                                        class="form-control" required>
+                                <form method="POST" action="{{ route('addEventPost') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="text" name="title" required="required" placeholder="Event Title" />
+                                        @error('title')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="location_id" id="location_id" class="form-control" required>
 
-                                        @foreach ($locations as $location)
+                                            @foreach ($locations as $location)
                                             <option value="{{ $location->id }}">
-                                                {{ $location->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="end_time">Starting Time:</label>
-
-                                    <input type="datetime-local" name="start_time"
-                                        required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="end_time">End Time:</label>
-                                    <input type="datetime-local" name="end_time"
-                                        required="required" />
-                                </div>
-
-                                <div class="form-group">
-                                    <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="category">Category :</label>
-                                    <div class="input-group">
-                                        <select class="custom-select" name="category"
-                                            id="category" required>
-                                            <option value="art">Art</option>
-                                            <option value="cultural">Cultural</option>
-                                            <option value="music">Music</option>
-                                            <option value="sports">Sports</option>
-                                            <option value="other">Other</option>
+                                                {{ $location->name }}
+                                            </option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group custom-file">
-                                    <input type="file" class="custom-file-input"
-                                        id="customFile" name="image" accept="image/*">
-                                    <label class="custom-file-label" for="customFile">Choose
-                                        image...</label>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="end_time">Starting Time:</label>
 
+                                        <input type="datetime-local" name="start_time" required="required" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="end_time">End Time:</label>
+                                        <input type="datetime-local" name="end_time" required="required" />
+                                    </div>
 
-                                <div class="submit-btns">
-                                    <button type="button" class="mtr-btn"
-                                        data-dismiss="modal"><span>Cancel</span></button>
-                                    <button type="submit"
-                                        class="mtr-btn"><span>Create</span></button>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
+                                        @error('description')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category">Category :</label>
+                                        <div class="input-group">
+                                            <select class="custom-select" name="category" id="category" required>
+                                                <option value="art">Art</option>
+                                                <option value="cultural">Cultural</option>
+                                                <option value="music">Music</option>
+                                                <option value="sports">Sports</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile" name="image" accept="image/*">
+                                        <label class="custom-file-label" for="customFile">Choose image...</label>
+                                        @error('image')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="submit-btns">
+                                        <button type="button" class="mtr-btn" data-dismiss="modal"><span>Cancel</span></button>
+                                        <button type="submit" class="mtr-btn"><span>Create</span></button>
+                                    </div>
+                                </form>
                             </div>
 
                         </div>
@@ -428,7 +426,7 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
-                                            <span>{{$commentCount}}</span>
+                                            <span>{{ $commentCount }}</span>
 
                                         </li>
                                     </ul>
@@ -563,11 +561,14 @@
     @vite(['resources/assets/js/map-init.js'])
     @vite(['https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI'])
     @vite(['/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js'])
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 

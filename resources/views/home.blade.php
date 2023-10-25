@@ -274,7 +274,7 @@
 
                                                 <li>
                                                     <i class="ti-files"></i>
-                                                    <a href="fav-page.html" title="">My pages</a>
+                                                    <a href="{{ route('pages') }}" title="">Pages</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-user"></i>

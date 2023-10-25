@@ -60,14 +60,15 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
+            'description' => 'required|string',
             'start_time' => 'required',
             'end_time' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
             'category' => 'required',
             'location_id' => 'required|exists:locations,id',
         ]);
+        
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('uploads', 'public');
             $validatedData['image'] = $imagePath;
@@ -76,7 +77,7 @@ class EventController extends Controller
         $event = new Event($validatedData);
         $event->user_id = $user->id;
         $event->save();
-        return back();
+        return back()->with('success', 'Event added successfully.');;
     }
 
 
@@ -85,7 +86,7 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
-        return back();
+        return back()->with('success', 'page deleted successfully.');;
     }
 
 

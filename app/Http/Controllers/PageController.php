@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Membership;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -20,7 +22,15 @@ class PageController extends Controller
         $pages = Page::all();
         return view('pages.index', compact('productCount', 'categoryCount', 'commentCount', 'pages', 'pageCount'));
     }
-
+    public function displayPages()
+    {
+        $pageCount = Page::count();
+        $commentCount = Comment::count();
+        $categoryCount = Category::count();
+        $productCount = Product::count();
+        $pages = Page::all();
+        return view('pages.frontOffice.pages', compact('productCount', 'categoryCount', 'commentCount', 'pages', 'pageCount'));
+    }
 
     public function create()
     {
@@ -43,14 +53,14 @@ class PageController extends Controller
         $image = $request->file('image');
 
         if ($image) {
-            $path = $image->store('uploads', 'public');
+            $path = $request->file('image')->store('uploads', 'public');
         } else {
             $path = null;
         }
         $cover = $request->file('cover');
 
         if ($cover) {
-            $path2 = $cover->store('uploads', 'public');
+            $path2 = $request->file('cover')->store('uploads', 'public');
         } else {
             $path2 = null;
         }
@@ -63,7 +73,7 @@ class PageController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        return back()->with('success', 'page deleted successfully.');
+        return back()->with('success', 'page added successfully.');
     }
 
     public function destroy($id)
@@ -129,4 +139,24 @@ class PageController extends Controller
 
         return back()->with('success', 'page deleted successfully.');
     }
+
+    public function joinPage(Page $page)
+    {
+        $user = auth()->user();
+    
+        if ($page->members->contains($user)) {
+            $page->members()->detach($user);
+    
+            return back()->with('status', 'You have left this page.');
+        } else {
+            $membership = new Membership();
+            $membership->user_id = $user->id;
+            $membership->page_id = $page->id;
+            $membership->save();
+    
+            return back()->with('status', 'You have joined this page.');
+        }
+    }
+    
+
 }
