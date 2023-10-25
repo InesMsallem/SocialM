@@ -25,25 +25,27 @@
 
         <div class="topbar stick">
             <div class="logo">
-                <a title="" href="home"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}"
-                        alt=""></a>
+                <a title="" href="{{ route('home') }}"><img
+                        src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
             </div>
 
             <div class="top-area">
-                <ul class="main-menu">
+                <ul class="">
+                    @if (auth()->check() && auth()->user()->role === 'admin')
+                        <li>
+                            <a href="{{ route('dashboard') }}" title="">Dashboard</a>
+                        </li>
+                    @endif
+
                     <li>
-                        <a href="{{ route('home') }}" title="">Home</a>
-                        <ul>
-                            <li><a href="{{ route('dashboard') }}" title="">Dashboard</a></li>
-
-                        </ul>
+                        <a href="{{ route('editProfile') }}" title=""> Settings</a>
                     </li>
-
-
                 </ul>
+
                 <ul class="setting-area">
 
                     <li><a href="{{ route('home') }}" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+
                     <li>
                         <a href="#" title="Notification" data-ripple="">
                             <i class="ti-bell"></i><span>20</span>
@@ -116,7 +118,8 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" title="Messages" data-ripple=""><i class="ti-comment"></i><span>12</span></a>
+                        <a href="#" title="Messages" data-ripple=""><i
+                                class="ti-comment"></i><span>12</span></a>
                         <div class="dropdowns">
                             <span>5 New Messages</span>
                             <ul class="drops-menu">
@@ -184,13 +187,9 @@
                             <a href="messages.html" title="" class="more-mesg">view more</a>
                         </div>
                     </li>
-                    <li><a href="#" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
-                        <div class="dropdowns languages">
-                            <a href="#" title=""><i class="ti-check"></i>English</a>
-                            <a href="#" title="">Arabic</a>
-                            <a href="#" title="">Dutch</a>
-                            <a href="#" title="">French</a>
-                        </div>
+                    <li><a href="{{ route('editProfile') }}" title="Languages" data-ripple=""><i
+                                class="fa fa-globe"></i></a>
+
                     </li>
                 </ul>
                 <div class="user-img">
@@ -200,17 +199,19 @@
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
                         {{-- <a href="#" title=""><span class="status f-away"></span>away</a>
-                        <a href="#" title=""><span class="status f-off"></span>offline</a> --}}
+					<a href="#" title=""><span class="status f-off"></span>offline</a> --}}
                         @if (Auth::check())
                             <a href="{{ route('profile') }}" title=""><i class="ti-user"></i>
                                 {{ Auth::user()->name }}</a>
                         @endif
-                        <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+                        <a href="{{ route('editProfile') }}" title=""><i class="ti-pencil-alt"></i>edit
+                            profile</a>
                         <a href="" title=""><i class="ti-target"></i>activity log</a>
-                        <a href="#" title=""><i class="ti-settings"></i>account setting</a>
+                        <a href="{{ route('editProfile') }}" title=""><i class="ti-settings"></i>account
+                            setting</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
+								  document.getElementById('logout-form').submit();">
                             <i class="ti-power-off"></i> {{ __('Logout') }}
                         </a>
 
@@ -222,7 +223,7 @@
                 <span class="ti-menu main-menu" data-ripple=""></span>
 
             </div>
-        </div><!-- topbar -->
+        </div>
 
         <section>
             <div class="gap gray-bg">
@@ -303,23 +304,25 @@
                                             </figure>
                                             <div class="newpst-input">
                                                 @error('content')
-                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                    <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
 
                                                 @error('image')
-                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                    <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
 
-                                                <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+                                                <form action="{{ route('posts.store') }}" method="post"
+                                                    enctype="multipart/form-data">
                                                     @csrf
                                                     <textarea name="content" rows="2" placeholder="write something"></textarea>
                                                     <div class="attachments">
                                                         <ul>
 
-                                                             <li>
+                                                            <li>
                                                                 <i class="fa fa-image"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file" name="image" id="image">
+                                                                    <input type="file" name="image"
+                                                                        id="image">
                                                                 </label>
                                                             </li>
 
@@ -335,92 +338,100 @@
                                     </div><!-- add post new box -->
                                     <div class="loadMore">
                                         @foreach ($postsOrdred as $post)
+                                            <div class="central-meta item">
+                                                <div class="user-post">
+                                                    <div class="friend-info">
+                                                        <figure>
+                                                            <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}"
+                                                                alt="">
+                                                        </figure>
+                                                        <div class="friend-name">
+                                                            <ins><a href="time-line.html" title="">
+                                                                    {{ Auth::user()->name }}
+                                                                </a></ins>
+                                                            <span>published: {{ $post->created_at }}</span>
+                                                        </div>
+                                                        <div class="post-meta">
+                                                            <img src="{{ asset('storage/' . $post->image) }}"
+                                                                alt="Image">
+                                                            <div class="we-video-info">
+                                                                <ul>
+                                                                    <li>
+                                                                        <span class="comment" data-toggle="tooltip"
+                                                                            title="Comments">
+                                                                            <i class="fa fa-comments-o"></i>
+                                                                            <ins>{{ $post->comments }}</ins>
+                                                                        </span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span class="like" data-toggle="tooltip"
+                                                                            title="like">
+                                                                            <i class="ti-heart"></i>
+                                                                            <ins>{{ $post->likes }}</ins>
+                                                                        </span>
+                                                                    </li>
+                                                                    <li class="social-media">
+                                                                        <div class="menu">
+                                                                            <div class="btn trigger"><i
+                                                                                    class="fa fa-share-alt"></i></div>
+                                                                            <div class="rotater">
+                                                                                <div class="btn btn-icon"><a
+                                                                                        href="#"
+                                                                                        title=""><i
+                                                                                            class="fa fa-html5"></i></a>
 
-                                        <div class="central-meta item">
-                                            <div class="user-post">
-                                                <div class="friend-info">
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}" alt="">
-                                                    </figure>
-                                                    <div class="friend-name">
-                                                        <ins><a href="time-line.html" title=""> {{ Auth::user()->name }}
-                                                            </a></ins>
-                                                        <span>published: {{ $post->created_at }}</span>
-                                                    </div>
-                                                    <div class="post-meta">
-                                                        <img src="{{ asset('storage/' . $post->image) }}" alt="Image">
-                                                        <div class="we-video-info">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="comment" data-toggle="tooltip" title="Comments">
-                                                                        <i class="fa fa-comments-o"></i>
-                                                                        <ins>{{ $post->comments }}</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="like" data-toggle="tooltip" title="like">
-                                                                        <i class="ti-heart"></i>
-                                                                        <ins>{{ $post->likes }}</ins>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="social-media">
-                                                                    <div class="menu">
-                                                                        <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
-                                                                        <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a>
+                                                                                </div>
+                                                                                <div class="rotater">
+                                                                                    <div class="btn btn-icon"><a
+                                                                                            href="#"
+                                                                                            title=""><i
+                                                                                                class="fa fa-facebook"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="rotater">
+                                                                                    <div class="btn btn-icon"><a
+                                                                                            href="#"
+                                                                                            title=""><i
+                                                                                                class="fa fa-google-plus"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="rotater">
+                                                                                    <div class="btn btn-icon"><a
+                                                                                            href="#"
+                                                                                            title=""><i
+                                                                                                class="fa fa-twitter"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="rotater">
+                                                                                    <div class="btn btn-icon"><a
+                                                                                            href="#"
+                                                                                            title=""><i
+                                                                                                class="fa fa-css3"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="rotater">
+                                                                                    <div class="btn btn-icon"><a
+                                                                                            href="#"
+                                                                                            title=""><i
+                                                                                                class="fa fa-instagram"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="rotater">
+                                                                                    <div class="btn btn-icon"><a
+                                                                                            href="#"
+                                                                                            title=""><i
+                                                                                                class="fa fa-dribbble"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="rotater">
+                                                                                    <div class="btn btn-icon"><a
+                                                                                            href="#"
+                                                                                            title=""><i
+                                                                                                class="fa fa-pinterest"></i></a>
+                                                                                    </div>
+                                                                                </div>
 
                                                                             </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-facebook"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-google-plus"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-twitter"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-css3"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-instagram"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-dribbble"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a
-                                                                                        href="#"
-                                                                                        title=""><i
-                                                                                            class="fa fa-pinterest"></i></a>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -477,26 +488,8 @@
                                                     @endif
 
 
-                                            </div>
-                                            <form actionfileim="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
-                                                @csrf <!-- This is for CSRF protection -->
-                                                <textarea name="content" id="content" class="form-control" rows="4"></textarea>
-                                                <input type="hidden" name="post_id" value="{{ $post->id }}">
-
-                                                <div class="attachments">
-                                                    <ul>
-                                                        <li>
-                                                            <label for="file" class="custom-file-upload">
-                                                                <i class="fa fa-cloud-upload"></i>
-                                                            </label>
-                                                            <input type="file" name="file" id="file" class="form-control-file">
-                                                        </li>
-                                                        <li>
-                                                            <button type="submit">Comment</button>
-                                                        </li>
-                                                    </ul>
                                                 </div>
-                                                <form action="{{ route('comments.store') }}" method="post"
+                                                <form actionfileim="{{ route('comments.store') }}" method="post"
                                                     enctype="multipart/form-data">
                                                     @csrf <!-- This is for CSRF protection -->
                                                     <textarea name="content" id="content" class="form-control" rows="4"></textarea>
@@ -517,7 +510,28 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </form>
+                                                    <form action="{{ route('comments.store') }}" method="post"
+                                                        enctype="multipart/form-data">
+                                                        @csrf <!-- This is for CSRF protection -->
+                                                        <textarea name="content" id="content" class="form-control" rows="4"></textarea>
+                                                        <input type="hidden" name="post_id"
+                                                            value="{{ $post->id }}">
+
+                                                        <div class="attachments">
+                                                            <ul>
+                                                                <li>
+                                                                    <label for="file" class="custom-file-upload">
+                                                                        <i class="fa fa-cloud-upload"></i>
+                                                                    </label>
+                                                                    <input type="file" name="file"
+                                                                        id="file" class="form-control-file">
+                                                                </li>
+                                                                <li>
+                                                                    <button type="submit">Comment</button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </form>
 
                                             </div>
                                         @endforeach
@@ -576,7 +590,7 @@
                                                         <span class="status f-off"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
-                                                        <a href="time-line.html">Oubaida</a>
+                                                        <a href="time-line.html">Yassine</a>
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                                                                 data-cfemail="eb818a98848589ab8c868a8287c5888486">[email&#160;protected]</a></i>
                                                     </div>
