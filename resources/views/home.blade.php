@@ -349,7 +349,7 @@
                                                     <div class="attachments">
                                                         <ul>
 
-                                                            <li>
+                                                             <li>
                                                                 <i class="fa fa-image"></i>
                                                                 <label class="fileContainer">
                                                                     <input type="file" name="image" id="image">

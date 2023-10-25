@@ -380,7 +380,7 @@
                                                         image...</label>
                                                 </div>
                                                 <button type="submit" class="mtr-btn"><span>Create product</span></button>
-                                                <a href="{{ route('products.index') }}" class="mtr-btn" title=""><span>Cancel</span></a>
+                                                <a href="{{ route('home') }}" class="mtr-btn" title=""><span>Cancel</span></a>
 
                                             </form>
                                         </div>
