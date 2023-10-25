@@ -447,6 +447,9 @@
                                                     @csrf
                                                     <div class="form-group">
                                                         <input type="text" name="title" required="required" placeholder="Event Title" />
+                                                        @error('title')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="form-group">
                                                         <select name="location_id" id="location_id" class="form-control" required>
@@ -470,6 +473,9 @@
 
                                                     <div class="form-group">
                                                         <textarea name="description" rows="4" required="required" placeholder="Event Description"></textarea>
+                                                        @error('description')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="category">Category :</label>
@@ -485,11 +491,11 @@
                                                     </div>
                                                     <div class="form-group custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile" name="image" accept="image/*">
-                                                        <label class="custom-file-label" for="customFile">Choose
-                                                            image...</label>
+                                                        <label class="custom-file-label" for="customFile">Choose image...</label>
+                                                        @error('image')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
-
-
                                                     <div class="submit-btns">
                                                         <button type="button" class="mtr-btn" data-dismiss="modal"><span>Cancel</span></button>
                                                         <button type="submit" class="mtr-btn"><span>Create</span></button>

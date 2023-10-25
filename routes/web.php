@@ -124,7 +124,9 @@ Route::get('/dashboard/pages', [PageController::class, 'index'])->name('pages.in
 Route::delete('/dashboard/pages/{id}', [PageController::class, 'destroy'])->name('pages.destroy');
 Route::get('/dashboard/pages/{id}/edit', [PageController::class, 'edit'])->name('pages.edit');
 Route::put('/dashboard/pages/{id}', [PageController::class, 'update'])->name('pages.update');
-
+//frontoffice
+Route::get('/home/pages/', [PageController::class, 'displayPages'])->name('pages');
+Route::post('/home/pages/{page}/join', [PageController::class, 'joinPage'])->name('page.join');
 
 
 

@@ -22,4 +22,9 @@ class Page extends Model
         return $this->belongsToMany(User::class, 'page_user', 'page_id', 'user_id')
             ->withTimestamps();
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'memberships', 'page_id', 'user_id');
+    }
 }
