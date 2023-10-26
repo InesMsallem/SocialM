@@ -18,7 +18,7 @@ class BlogController extends Controller
             'image' => 'bail|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $currentGroupId = session('current_group_id');
-        $image_path= $request->image->store("blog");
+        $image_path=  $request->file('image')->store('uploads', 'public');
         $blog = new Blog([
             'title' => $request->title,
             'content' => $request->content,

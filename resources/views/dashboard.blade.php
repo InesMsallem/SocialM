@@ -378,11 +378,7 @@
 
                                 <div class="widget">
                                     <h4 class="widget-title">Manage</h4>
-                                    <ul class="forum-static">
-                                        <li>
-                                            <a href="" title="">Users</a>
-                                            <span>13</span>
-                                        </li>
+                                    <ul class="forum-static">                               
                                         <li>
                                             <a href="{{ route('showGroup') }}" title="">Groups</a>
                                             <span>50</span>
@@ -391,25 +387,22 @@
                                             <a href="{{ route('showEvent') }}" title="">Events</a>
                                             <span>14</span>
                                         </li>
-                                        <li>
-                                            <a href="{{ route('posts.index') }}">Posts</a>
-                                            <span>32</span>
-                                        </li>
+                                        
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
-                                            <span>01</span>
+                                            <span>2</span>
                                         </li>
                                         <li>
                                             <a href="{{ route('categories.index') }}" title="">Categories</a>
-                                            <span>03</span>
+                                            <span>2</span>
                                         </li>
                                         <li>
                                             <a href="{{ route('products.index') }}" title="">Products</a>
-                                            <span>03</span>
+                                            <span>2</span>
                                         </li>
                                         <li>
-                                            <a href="{{ route('pages.index') }}" title="">Pages</a>
-                                            <span>01</span>
+                                            <a href="{{route('posts.index')}}" title="">Posts</a>
+                                            <span>32</span>
                                         </li>
                                     </ul>
                                 </div>

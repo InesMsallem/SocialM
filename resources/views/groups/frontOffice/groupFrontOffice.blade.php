@@ -255,7 +255,7 @@
 
                                                 <li>
                                                     <i class="ti-files"></i>
-                                                    <a href="fav-page.html" title="">My pages</a>
+                                                    <a href="" title="">My pages</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-user"></i>
@@ -310,7 +310,7 @@
                                                 <div class="image-container">
                                             @if ($group->image)
 <figure>
-                                                <a><img src= "{{ asset('storage/' . $group->image) }}"
+                                                <a><img src= "{{ asset('storage/app/' . $group->image) }}"
                                                     alt="" ></a>
                                             <figure>
 @else
@@ -361,7 +361,7 @@
                                                         <div class="image-container mr-3">
                                                             @if ($group->image)
                                                                 <img src="{{ asset('storage/' . $group->image) }}"
-                                                                    alt="{{ $group->name }}"
+                                                                    alt="{{ $group->name }}" 
                                                                     class="img-fluid rounded"
                                                                     style="max-width: 100px; max-height: auto;">
                                                             @else
