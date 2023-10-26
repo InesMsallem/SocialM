@@ -157,6 +157,7 @@ Route::put('/dashboard/pages/{id}', [PageController::class, 'update'])->name('pa
 //frontoffice
 Route::get('/home/pages/', [PageController::class, 'displayPages'])->name('pages');
 Route::post('/home/pages/{page}/join', [PageController::class, 'joinPage'])->name('page.join');
+Route::get('/home/pages/{page}', [PageController::class, 'display'])->name('page.show');
 
 
 

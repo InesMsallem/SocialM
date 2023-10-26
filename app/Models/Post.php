@@ -18,5 +18,9 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class, 'post_id');
     }
+    public function page()
+    {
+        return $this->belongsTo(Page::class,'page_id');
+    }
 
 }

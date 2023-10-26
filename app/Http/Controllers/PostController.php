@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Page;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -41,11 +42,26 @@ class PostController extends Controller
             $path = null;
         }
 
+        $pageId = $request->input('page_id');
+
+        if ($pageId) {
+            $page = Page::find($pageId);
+            $page->posts()->create([
+                'content' => $request->input('content'),
+                'image' => $path,
+                'likes' => 0,
+                'comments' => 0
+            ]);
+
+            return back()->with('success', 'Page post has been created successfully.');
+        }
+            
+
         Post::create([
             'content' => $request->input('content'),
             'image' => $path,
             'likes' => 0,
-            'comments' => 0,
+            'comments' => 0
         ]);
 
         return back()->with('success', 'Post has been created successfully.');
