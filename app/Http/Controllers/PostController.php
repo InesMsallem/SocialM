@@ -52,7 +52,8 @@ class PostController extends Controller
                 'content' => $request->input('content'),
                 'image' => $path,
                 'likes' => 0,
-                'comments' => 0
+                'comments' => 0,
+                'user_id'=>auth()->user()->id,
             ]);
 
             return back()->with('success', 'Page post has been created successfully.');

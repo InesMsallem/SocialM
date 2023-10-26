@@ -244,15 +244,7 @@
                                                     <a href="{{ route('profile') }}">Profile</a>
 
                                                 </li>
-                                                <li>
-                                                    <i class="ti-video-camera"></i>
-                                                    <a href="timeline-videos.html" title="">videos</a>
-                                                </li>
-
-                                                <li>
-                                                    <i class="ti-bell"></i>
-                                                    <a href="notifications.html" title="">Notifications</a>
-                                                </li>
+                                              
 
 
                                                 <li>
