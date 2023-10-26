@@ -27,4 +27,9 @@ class Page extends Model
     {
         return $this->belongsToMany(User::class, 'memberships', 'page_id', 'user_id');
     }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class,'page_post','page_id', 'post_id');
+    }
 }
