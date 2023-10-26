@@ -564,7 +564,7 @@
                       <div class="user-post">
                         <div class="friend-info">
                           <figure>
-                            <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}" alt="">
+                            <img src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                           </figure>
                           <div class="friend-name">
                             <ins><a href="time-line.html" title=""> {{ Auth::user()->name }}
