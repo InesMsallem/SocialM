@@ -202,19 +202,18 @@
             </nav>
         </div><!-- responsive header -->
 
-        
+
         <div class="topbar stick">
             <div class="logo">
-                <a title="" href="{{ route('home') }}"><img
-                        src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
+                <a title="" href="{{ route('home') }}"><img src="{{ Vite::asset('resources/assets/images/logo.png') }}" alt=""></a>
             </div>
 
             <div class="top-area">
                 <ul class="">
                     @if (auth()->check() && auth()->user()->role === 'admin')
-                        <li>
-                            <a href="{{ route('dashboard') }}" title="">Dashboard</a>
-                        </li>
+                    <li>
+                        <a href="{{ route('dashboard') }}" title="">Dashboard</a>
+                    </li>
                     @endif
 
                     <li>
@@ -235,8 +234,7 @@
                             <ul class="drops-menu">
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>sarah Loren</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -247,8 +245,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -259,8 +256,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -271,8 +267,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -283,8 +278,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -298,15 +292,13 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" title="Messages" data-ripple=""><i
-                                class="ti-comment"></i><span>12</span></a>
+                        <a href="#" title="Messages" data-ripple=""><i class="ti-comment"></i><span>12</span></a>
                         <div class="dropdowns">
                             <span>5 New Messages</span>
                             <ul class="drops-menu">
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-1.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>sarah Loren</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -317,8 +309,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-2.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Jhon doe</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -329,8 +320,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-3.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Andrew</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -341,8 +331,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-4.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Tom cruse</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -353,8 +342,7 @@
                                 </li>
                                 <li>
                                     <a href="notifications.html" title="">
-                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}"
-                                            alt="">
+                                        <img src="{{ Vite::asset('resources/assets/images/thumb-5.jpg') }}" alt="">
                                         <div class="mesg-meta">
                                             <h6>Amy</h6>
                                             <span>Hi, how r u dear ...?</span>
@@ -367,30 +355,27 @@
                             <a href="messages.html" title="" class="more-mesg">view more</a>
                         </div>
                     </li>
-                    <li><a href="{{ route('editProfile') }}" title="Languages" data-ripple=""><i
-                                class="fa fa-globe"></i></a>
+                    <li><a href="{{ route('editProfile') }}" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
 
                     </li>
                 </ul>
                 <div class="user-img">
-                    <img width="50px" height="60px"
-                        src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
+                    <img width="50px" height="60px" src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
                         {{-- <a href="#" title=""><span class="status f-away"></span>away</a>
 					<a href="#" title=""><span class="status f-off"></span>offline</a> --}}
                         @if (Auth::check())
-                            <a href="{{ route('profile') }}" title=""><i class="ti-user"></i>
-                                {{ Auth::user()->name }}</a>
+                        <a href="{{ route('profile') }}" title=""><i class="ti-user"></i>
+                            {{ Auth::user()->name }}</a>
                         @endif
                         <a href="{{ route('editProfile') }}" title=""><i class="ti-pencil-alt"></i>edit
                             profile</a>
                         <a href="" title=""><i class="ti-target"></i>activity log</a>
                         <a href="{{ route('editProfile') }}" title=""><i class="ti-settings"></i>account
                             setting</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
 								  document.getElementById('logout-form').submit();">
                             <i class="ti-power-off"></i> {{ __('Logout') }}
                         </a>
@@ -613,38 +598,30 @@
                                     <div class="central-meta">
                                         <div class="new-postbox">
                                             <figure>
-                                                <img src="{{ Vite::asset('resources/assets/images/resources/admin2.jpg') }}" alt="">
+                                                <img width="50px" height="60px" src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                                             </figure>
                                             <div class="newpst-input">
-                                                <form action="{{ route('posts.store') }}" method="post">
+                                                @error('content')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
+                                                @error('image')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
+                                                <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <textarea name="content" rows="2" placeholder="write something"></textarea>
                                                     <div class="attachments">
                                                         <ul>
-                                                            <li>
-                                                                <i class="fa fa-music"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="music_attachment">
-                                                                </label>
-                                                            </li>
+
                                                             <li>
                                                                 <i class="fa fa-image"></i>
                                                                 <label class="fileContainer">
-                                                                    <input type="file" name="image_attachment">
+                                                                    <input type="file" name="image" id="image">
                                                                 </label>
                                                             </li>
-                                                            <li>
-                                                                <i class="fa fa-video-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="video_attachment">
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <i class="fa fa-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file" name="camera_attachment">
-                                                                </label>
-                                                            </li>
+
                                                             <li>
                                                                 <button type="submit">Post</button>
                                                             </li>
@@ -669,7 +646,9 @@
                                                         <span>published: {{ $post->created_at }}</span>
                                                     </div>
                                                     <div class="post-meta">
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/user-post.jpg') }}" alt="">
+                                                        @if ($post->image)
+                                                        <a href="{{ asset('storage/' . $post->image) }}" target="_blank"><img src="{{ asset('storage/' . $post->image) }}" alt="Image"></a>
+                                                        @endif
                                                         <div class="we-video-info">
                                                             <ul>
                                                                 <li>
@@ -786,153 +765,154 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div><!-- centerl meta -->
                                 <div class="col-lg-3">
-                                    <aside class="sidebar static">
-                                        <div class="widget">
-                                            <div class="banner medium-opacity bluesh">
-                                                <div style="background-image: url(images/resources/baner-widgetbg.jpg)" class="bg-image"></div>
-                                                <div class="baner-top">
-                                                    <span><img src="{{ Vite::asset('resources/assets/images/book-icon.jpg') }}" alt=""></span>
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </div>
-                                                <div class="banermeta">
-                                                    <p>
-                                                        create your own favourit page.
-                                                    </p>
-                                                    <span>like them all</span>
-                                                    <a href="#" title="" data-ripple="">start now!</a>
+                                    <div class="col-lg-3">
+                                        <aside class="sidebar static">
+                                            <div class="widget">
+                                                <div class="banner medium-opacity bluesh">
+                                                    <div style="background-image: url(images/resources/baner-widgetbg.jpg)" class="bg-image"></div>
+                                                    <div class="baner-top">
+                                                        <span><img src="{{ Vite::asset('resources/assets/images/book-icon.jpg') }}" alt=""></span>
+                                                        <i class="fa fa-ellipsis-h"></i>
+                                                    </div>
+                                                    <div class="banermeta">
+                                                        <p>
+                                                            create your own favourit page.
+                                                        </p>
+                                                        <span>like them all</span>
+                                                        <a href="#" title="" data-ripple="">start now!</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="widget friend-list stick-widget">
-                                            <h4 class="widget-title">Friends</h4>
-                                            <div id="searchDir"></div>
-                                            <ul id="people-list" class="friendz-list">
-                                                <li>
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar.jpg') }}" alt="">
+                                            <div class="widget friend-list stick-widget">
+                                                <h4 class="widget-title">Friends</h4>
+                                                <div id="searchDir"></div>
+                                                <ul id="people-list" class="friendz-list">
+                                                    <li>
+                                                        <figure>
+                                                            <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar.jpg') }}" alt="">
+                                                            <span class="status f-online"></span>
+                                                        </figure>
+                                                        <div class="friendz-meta">
+                                                            <a href="/time-line">bucky barnes</a>
+                                                            <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2836312b3a2d2c30333b3a2d1f38323e3633713c3032">[email&#160;protected]</a></i>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+
+                                                        <figure>
+                                                            <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar7.jpg') }}" alt="">
+                                                            <span class="status f-off"></span>
+                                                        </figure>
+                                                        <div class="friendz-meta">
+                                                            <a href="/time-line">amy watson</a>
+                                                            <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cac1d3cfcec2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+
+                                                        <figure>
+                                                            <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar5.jpg') }}" alt="">
+                                                            <span class="status f-online"></span>
+                                                        </figure>
+                                                        <div class="friendz-meta">
+                                                            <a href="/time-line">daniel warber</a>
+                                                            <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f050e1c00010d2f08020e0603410c0002">[email&#160;protected]</a></i>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+
+                                                        <figure>
+                                                            <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar2.jpg') }}" alt="">
+                                                            <span class="status f-away"></span>
+                                                        </figure>
+                                                        <div class="friendz-meta">
+                                                            <a href="/time-line">Sarah Loren</a>
+                                                            <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c5a7a4b7aba0b685a2a8a4aca9eba6aaa8">[email&#160;protected]</a></i>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="chat-box">
+                                                    <div class="chat-head">
                                                         <span class="status f-online"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="/time-line">bucky barnes</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2836312b3a2d2c30333b3a2d1f38323e3633713c3032">[email&#160;protected]</a></i>
+                                                        <h6>Bucky Barnes</h6>
+                                                        <div class="more">
+                                                            <span><i class="ti-more-alt"></i></span>
+                                                            <span class="close-mesage"><i class="ti-close"></i></span>
+                                                        </div>
                                                     </div>
-                                                </li>
-
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar7.jpg') }}" alt="">
-                                                        <span class="status f-off"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="/time-line">amy watson</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cac1d3cfcec2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar5.jpg') }}" alt="">
-                                                        <span class="status f-online"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="/time-line">daniel warber</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f050e1c00010d2f08020e0603410c0002">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
-                                                <li>
-
-                                                    <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar2.jpg') }}" alt="">
-                                                        <span class="status f-away"></span>
-                                                    </figure>
-                                                    <div class="friendz-meta">
-                                                        <a href="/time-line">Sarah Loren</a>
-                                                        <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c5a7a4b7aba0b685a2a8a4aca9eba6aaa8">[email&#160;protected]</a></i>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="chat-box">
-                                                <div class="chat-head">
-                                                    <span class="status f-online"></span>
-                                                    <h6>Bucky Barnes</h6>
-                                                    <div class="more">
-                                                        <span><i class="ti-more-alt"></i></span>
-                                                        <span class="close-mesage"><i class="ti-close"></i></span>
+                                                    <div class="chat-list">
+                                                        <ul>
+                                                            <li class="me">
+                                                                <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}" alt=""></div>
+                                                                <div class="notification-event">
+                                                                    <span class="chat-message-item">
+                                                                        Hi James! Please remember to buy the food for
+                                                                        tomorrow! I’m gonna be handling the gifts and Jake’s
+                                                                        gonna get the drinks
+                                                                    </span>
+                                                                    <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
+                                                                            8:10pm</time></span>
+                                                                </div>
+                                                            </li>
+                                                            <li class="you">
+                                                                <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist2.jpg') }}" alt=""></div>
+                                                                <div class="notification-event">
+                                                                    <span class="chat-message-item">
+                                                                        Hi James! Please remember to buy the food for
+                                                                        tomorrow! I’m gonna be handling the gifts and Jake’s
+                                                                        gonna get the drinks
+                                                                    </span>
+                                                                    <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
+                                                                            8:10pm</time></span>
+                                                                </div>
+                                                            </li>
+                                                            <li class="me">
+                                                                <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}" alt=""></div>
+                                                                <div class="notification-event">
+                                                                    <span class="chat-message-item">
+                                                                        Hi James! Please remember to buy the food for
+                                                                        tomorrow! I’m gonna be handling the gifts and Jake’s
+                                                                        gonna get the drinks
+                                                                    </span>
+                                                                    <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
+                                                                            8:10pm</time></span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        <form class="text-box">
+                                                            <textarea placeholder="Post enter to post..."></textarea>
+                                                            <div class="add-smiles">
+                                                                <span title="add icon" class="em em-expressionless"></span>
+                                                            </div>
+                                                            <div class="smiles-bunch">
+                                                                <i class="em em---1"></i>
+                                                                <i class="em em-smiley"></i>
+                                                                <i class="em em-anguished"></i>
+                                                                <i class="em em-laughing"></i>
+                                                                <i class="em em-angry"></i>
+                                                                <i class="em em-astonished"></i>
+                                                                <i class="em em-blush"></i>
+                                                                <i class="em em-disappointed"></i>
+                                                                <i class="em em-worried"></i>
+                                                                <i class="em em-kissing_heart"></i>
+                                                                <i class="em em-rage"></i>
+                                                                <i class="em em-stuck_out_tongue"></i>
+                                                            </div>
+                                                            <button type="submit"></button>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                                <div class="chat-list">
-                                                    <ul>
-                                                        <li class="me">
-                                                            <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}" alt=""></div>
-                                                            <div class="notification-event">
-                                                                <span class="chat-message-item">
-                                                                    Hi James! Please remember to buy the food for
-                                                                    tomorrow! I’m gonna be handling the gifts and Jake’s
-                                                                    gonna get the drinks
-                                                                </span>
-                                                                <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
-                                                                        8:10pm</time></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="you">
-                                                            <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist2.jpg') }}" alt=""></div>
-                                                            <div class="notification-event">
-                                                                <span class="chat-message-item">
-                                                                    Hi James! Please remember to buy the food for
-                                                                    tomorrow! I’m gonna be handling the gifts and Jake’s
-                                                                    gonna get the drinks
-                                                                </span>
-                                                                <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
-                                                                        8:10pm</time></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="me">
-                                                            <div class="chat-thumb"><img src="{{ Vite::asset('resources/assets/images/resources/chatlist1.jpg') }}" alt=""></div>
-                                                            <div class="notification-event">
-                                                                <span class="chat-message-item">
-                                                                    Hi James! Please remember to buy the food for
-                                                                    tomorrow! I’m gonna be handling the gifts and Jake’s
-                                                                    gonna get the drinks
-                                                                </span>
-                                                                <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at
-                                                                        8:10pm</time></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <form class="text-box">
-                                                        <textarea placeholder="Post enter to post..."></textarea>
-                                                        <div class="add-smiles">
-                                                            <span title="add icon" class="em em-expressionless"></span>
-                                                        </div>
-                                                        <div class="smiles-bunch">
-                                                            <i class="em em---1"></i>
-                                                            <i class="em em-smiley"></i>
-                                                            <i class="em em-anguished"></i>
-                                                            <i class="em em-laughing"></i>
-                                                            <i class="em em-angry"></i>
-                                                            <i class="em em-astonished"></i>
-                                                            <i class="em em-blush"></i>
-                                                            <i class="em em-disappointed"></i>
-                                                            <i class="em em-worried"></i>
-                                                            <i class="em em-kissing_heart"></i>
-                                                            <i class="em em-rage"></i>
-                                                            <i class="em em-stuck_out_tongue"></i>
-                                                        </div>
-                                                        <button type="submit"></button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div><!-- friends list sidebar -->
-                                    </aside>
-                                </div><!-- sidebar -->
+                                            </div><!-- friends list sidebar -->
+                                        </aside>
+                                    </div><!-- sidebar -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         <footer>

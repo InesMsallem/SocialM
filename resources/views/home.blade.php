@@ -326,13 +326,14 @@
                                                         <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}" alt="">
                                                     </figure>
                                                     <div class="friend-name">
-                                                        <ins><a href="time-line.html" title="">
-                                                                {{ Auth::user()->name }}
+                                                        <ins><a href="time-line.html" title=""> {{ Auth::user()->name }}
                                                             </a></ins>
                                                         <span>published: {{ $post->created_at }}</span>
                                                     </div>
                                                     <div class="post-meta">
-                                                        <img src="{{ asset('storage/' . $post->image) }}" alt="Image">
+                                                        @if ($post->image)
+                                                        <a href="{{ asset('storage/' . $post->image) }}" target="_blank"><img src="{{ asset('storage/' . $post->image) }}" alt="Image"></a>
+                                                        @endif
                                                         <div class="we-video-info">
                                                             <ul>
                                                                 <li>
@@ -352,38 +353,38 @@
                                                                         <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
                                                                         <div class="rotater">
                                                                             <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a>
-
                                                                             </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="rotater">
-                                                                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
-                                                                                </div>
-                                                                            </div>
-
                                                                         </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="rotater">
+                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -400,13 +401,18 @@
                                                         <li>
                                                             <div class="comet-avatar">
                                                                 <img src="{{ Vite::asset('resources/assets/images/resources/comet-1.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                                                <!-- Set the width and height as needed -->
                                                             </div>
                                                             <div class="we-comment">
                                                                 <div class="coment-head">
-                                                                    <h5><a href="time-line.html" title="">{{ $comment->user->name }}</a>
-                                                                    </h5>
+                                                                    <h5><a href="time-line.html" title="">{{ $comment->user->name }}</a></h5>
                                                                     <span>{{ $comment->created_at->diffForHumans() }}</span>
+                                                                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn-delete-comment" onclick="return confirm('Are you sure you want to delete this comment?')">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </form>
                                                                 </div>
                                                                 <p>{{ $comment->content }}</p>
                                                                 <br>
@@ -420,14 +426,13 @@
                                                 @endforeach
                                                 @endif
 
-
                                             </div>
-                                            <form actionfileim="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
                                                 @csrf <!-- This is for CSRF protection -->
                                                 <textarea name="content" id="content" class="form-control" rows="4"></textarea>
                                                 <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-                                                <!--  <div class="attachments">
+                                                <div class="attachments">
                                                     <ul>
                                                         <li>
                                                             <label for="file" class="custom-file-upload">
@@ -439,8 +444,8 @@
                                                             <button type="submit">Comment</button>
                                                         </li>
                                                     </ul>
-                                                </div> -->
-
+                                                </div>
+                                            </form>
 
                                         </div>
                                         @endforeach
@@ -458,7 +463,7 @@
                                                         <span class="status f-online"></span>
                                                     </figure>
                                                     <div class="friendz-meta">
-                                                        <a href="time-line.html">Belghith</a>
+                                                        <a href="time-line.html">Ahmed Belghith</a>
                                                         <i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a6d1cfc8d2c3d4d5c9cac2c3d4e6c1cbc7cfca88c5c9cb">[email&#160;protected]</a></i>
                                                     </div>
                                                 </li>

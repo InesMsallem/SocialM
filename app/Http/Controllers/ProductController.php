@@ -150,7 +150,6 @@ class ProductController extends Controller
     {
 
         $request->validate([
-            'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
             'name' => 'required|string',
             'description' => 'required|string',
 
