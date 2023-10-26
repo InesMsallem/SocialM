@@ -500,8 +500,8 @@
 												</div>
 											
 												<div class="form-group">
-													<input type="password" required="required" name="new_password" placeholder="Enter new password" />
-													<label class="control-label" for="new_password">New Password</label><i class="mtrl-select"></i>
+													<input type="password" required="required" name="new_password" placeholder="Enter password" />
+													<label class="control-label" for="new_password">Password</label><i class="mtrl-select"></i>
 												</div>
 											
 												<div class="submit-btns">
