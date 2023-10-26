@@ -63,7 +63,7 @@ class CommentController extends Controller
         $comment = Comment::find($id);
 
         if (!$comment) {
-            return redirect()->route('comments.index')->with('error', 'Comment not found.');
+            return back()->with('success', 'Comment not deleted successfully.');
         }
 
         $comment->delete();

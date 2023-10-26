@@ -57,6 +57,7 @@ class ProductController extends Controller
             ->when($maxPrice, function ($query) use ($maxPrice) {
                 return $query->where('products.prix', '<=', $maxPrice);
             })
+            ->orderBy('products.updated_at', 'desc')
             ->paginate(2);
 
 
