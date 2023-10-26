@@ -386,27 +386,31 @@
                             <aside class="sidebar full-style">
                                 <div class="widget">
                                     <h4 class="widget-title">Manage</h4>
-                                    <ul class="forum-static">
+                                    <ul class="forum-static">                               
                                         <li>
-                                            <a href="" title="">Users</a>
-                                            <span>13</span>
-                                        </li>
-                                        <li>
-                                            <a href="" title="">Groups</a>
+                                            <a href="{{ route('showGroup') }}" title="">Groups</a>
                                             <span>50</span>
                                         </li>
                                         <li>
                                             <a href="{{ route('showEvent') }}" title="">Events</a>
                                             <span>14</span>
                                         </li>
-                                        <li>
-                                            <a href="" title="">Posts</a>
-                                            <span>32</span>
-                                        </li>
+                                        
                                         <li>
                                             <a href="{{ route('comments.index') }}" title="">Comments</a>
-                                            <span>{{ $commentCount }}</span>
-
+                                            <span>2</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('categories.index') }}" title="">Categories</a>
+                                            <span>2</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('products.index') }}" title="">Products</a>
+                                            <span>2</span>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('posts.index')}}" title="">Posts</a>
+                                            <span>32</span>
                                         </li>
                                     </ul>
                                 </div>

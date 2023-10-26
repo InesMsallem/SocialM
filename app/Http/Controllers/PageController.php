@@ -26,7 +26,7 @@ class PageController extends Controller
     {
         if (auth()->check()) {
             $user = auth()->user();
-            $mypages = $user->pages();
+            $mypages = $user->pages;
             $pageCount = Page::count();
             $commentCount = Comment::count();
             $categoryCount = Category::count();
@@ -34,7 +34,7 @@ class PageController extends Controller
     
             $search = $request->input('search');
     
-            $pages = $mypages->where('title', 'LIKE', '%' . $search . '%')
+            $pages = Page::where('title', 'LIKE', '%' . $search . '%')
                 ->orWhere('description', 'LIKE', '%' . $search . '%')
                 ->paginate(3); 
     

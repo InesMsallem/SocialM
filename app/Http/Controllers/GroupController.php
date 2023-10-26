@@ -62,7 +62,7 @@ class GroupController extends Controller
             'image' => 'bail|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
        
-        $image_path= $request->image->store("group");
+        $image_path=  $request->file('image')->store('uploads', 'public');
         $group = new Group([
             'name' => $request->name,
             'description' => $request->description,

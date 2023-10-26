@@ -323,10 +323,10 @@
                                             <div class="user-post">
                                                 <div class="friend-info">
                                                     <figure>
-                                                        <img src="{{ Vite::asset('resources/assets/images/resources/friend-avatar10.jpg') }}" alt="">
+                                                        <img src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="">
                                                     </figure>
                                                     <div class="friend-name">
-                                                        <ins><a href="time-line.html" title=""> {{ Auth::user()->name }}
+                                                        <ins><a href="time-line.html" title=""> {{ $post->user->name }}
                                                             </a></ins>
                                                         <span>published: {{ $post->created_at }}</span>
                                                     </div>
@@ -400,7 +400,7 @@
                                                     <ul class="we-comet">
                                                         <li>
                                                             <div class="comet-avatar">
-                                                                <img src="{{ Vite::asset('resources/assets/images/resources/comet-1.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                                                <img src="{{ Vite::asset('resources/assets/images/profile.png') }}" alt="" style="width: 40px; height: 40px;">
                                                             </div>
                                                             <div class="we-comment">
                                                                 <div class="coment-head">

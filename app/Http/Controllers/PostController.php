@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -40,12 +41,12 @@ class PostController extends Controller
         } else {
             $path = null;
         }
-
         Post::create([
             'content' => $request->input('content'),
             'image' => $path,
             'likes' => 0,
             'comments' => 0,
+            'user_id'=> auth()->user()->id,
         ]);
 
         return back()->with('success', 'Post has been created successfully.');
