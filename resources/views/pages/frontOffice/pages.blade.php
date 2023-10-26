@@ -454,10 +454,6 @@
                                                     <a href="" data-toggle="modal" data-target="#myPagesModal"
                                                         title="">My Pages</a>
                                                 </li>
-                                                <li>
-                                                    <i class="ti-image"></i>
-                                                    <a href="{{ route('events') }}" title="">Events</a>
-                                                </li>
                                             </ul>
                                         </div>
 
@@ -541,21 +537,23 @@
                                                                     style="background-color: #088DCD; color:white"
                                                                     aria-haspopup="true" aria-expanded="false">
                                                                     @if ($page->members->contains(auth()->user()))
-                                                                        Joined
+                                                                        Followed
                                                                     @else
-                                                                        Join
+                                                                        Follow
                                                                     @endif
                                                                 </button>
                                                             </form>
                                                         </figure>
                                                         <div class="page-infos">
-                                                            <h5>{{ $page->title }}</h5>
+                                                            <a href="{{ route('page.show', $page->id) }}">
+                                                                <h5 >{{ $page->title }}</h5>
+                                                            </a>
                                                             <span>{{ $page->description }}</span>
                                                         </div>
                                                         <div class="page-infos">
                                                             <span><a href="#"
                                                                     title="">{{ $page->members->count() }}
-                                                                    members</a></span>
+                                                                    followers</a></span>
                                                         </div>
                                                     </div>
                                                 </li>

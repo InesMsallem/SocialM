@@ -31,21 +31,34 @@ class PageController extends Controller
             $commentCount = Comment::count();
             $categoryCount = Category::count();
             $productCount = Product::count();
-    
+
             $search = $request->input('search');
-    
+
             $pages = Page::where('title', 'LIKE', '%' . $search . '%')
                 ->orWhere('description', 'LIKE', '%' . $search . '%')
-                ->paginate(3); 
-    
+                ->paginate(3);
+
             return view('pages.frontOffice.pages', compact('productCount', 'categoryCount', 'commentCount', 'pages', 'pageCount', 'mypages'));
         } else {
             return back();
         }
     }
-    
-    
-    
+
+    function display($pageId)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+            $mypages = $user->pages;
+            $page = Page::findOrFail($pageId);
+            $pagePosts = $page->posts()->orderBy('created_at', 'desc')->get();
+            $pagePostsCount = $page->posts()->count();
+
+            return view('pages.frontOffice.page', compact('page', 'pagePosts', 'pagePostsCount', 'mypages'));
+        } else {
+            return back();
+        }
+    }
+
 
     public function create()
     {
@@ -158,21 +171,18 @@ class PageController extends Controller
     public function joinPage(Page $page)
     {
         $user = auth()->user();
-    
+
         if ($page->members->contains($user)) {
             $page->members()->detach($user);
-    
+
             return back()->with('status', 'You have left this page.');
         } else {
             $membership = new Membership();
             $membership->user_id = $user->id;
             $membership->page_id = $page->id;
             $membership->save();
-    
+
             return back()->with('status', 'You have joined this page.');
         }
     }
-    
-
-
 }
