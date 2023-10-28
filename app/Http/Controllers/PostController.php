@@ -39,6 +39,53 @@ class PostController extends Controller
 
     //     return redirect()->route('posts.index')->with('success','Post has been created successfully.');
     // }
+
+
+
+//     public function store(Request $request)
+// {
+//     $request->validate([
+//         'title' => 'required|string',
+//         'description' => 'required|string',
+//     ]);
+
+//     $badWords = array("badword1", "badword2", "badword3"); // Add more bad words to this array as needed
+
+//     $content = $request->input('title') . ' ' . $request->input('description');
+
+//     foreach ($badWords as $badWord) {
+//         if (strpos(strtolower($content), $badWord) !== false) {
+//             return back()->with('error', 'Your post contains a banned word. Please remove it before submitting.');
+//         }
+//     }
+
+//     $image = $request->file('image');
+
+//     if ($image) {
+//         $path = $image->store('uploads', 'public');
+//     } else {
+//         $path = null;
+//     }
+
+//     $cover = $request->file('cover');
+
+//     if ($cover) {
+//         $path2 = $cover->store('uploads', 'public');
+//     } else {
+//         $path2 = null;
+//     }
+
+//     Page::create([
+//         'user_id' => auth()->user()->id,
+//         'image' => $path,
+//         'cover' => $path2,
+//         'title' => $request->input('title'),
+//         'description' => $request->input('description'),
+//     ]);
+
+//     return back()->with('success', 'Page created successfully.');
+// }
+
     public function store(Request $request)
 {
     $request->validate([
@@ -64,6 +111,50 @@ class PostController extends Controller
 
     return redirect()->route('home')->with('success', 'Post has been created successfully.');
 }
+// public function store(Request $request)
+// {
+//     $request->validate([
+//         'title' => 'required|string',
+//         'description' => 'required|string',
+//     ]);
+
+//     $badWords = array("badword1", "badword2", "badword3"); // Add more bad words to this array as needed
+
+//     $content = $request->input('title') . ' ' . $request->input('description');
+
+//     foreach ($badWords as $badWord) {
+//         if (strpos(strtolower($content), $badWord) !== false) {
+//             return back()->with('error', 'Your post contains a banned word. Please remove it before submitting.');
+//         }
+//     }
+
+//     $image = $request->file('image');
+
+//     if ($image) {
+//         $path = $image->store('uploads', 'public');
+//     } else {
+//         $path = null;
+//     }
+
+//     $cover = $request->file('cover');
+
+//     if ($cover) {
+//         $path2 = $cover->store('uploads', 'public');
+//     } else {
+//         $path2 = null;
+//     }
+
+//     Page::create([
+//         'user_id' => auth()->user()->id,
+//         'image' => $path,
+//         'cover' => $path2,
+//         'title' => $request->input('title'),
+//         'description' => $request->input('description'),
+//     ]);
+
+//     return back()->with('success', 'Page created successfully.');
+// }
+
 
 
 
