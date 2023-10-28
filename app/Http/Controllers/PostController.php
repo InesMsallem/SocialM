@@ -86,16 +86,13 @@ class PostController extends Controller
 //     return back()->with('success', 'Page created successfully.');
 // }
 
-    public function store(Request $request)
+public function store(Request $request)
 {
     $request->validate([
         'content' => 'required',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
     $image = $request->file('image');
-    
-
     if ($image) {
         $path = $image->store('uploads', 'public');
     } else {
@@ -109,7 +106,7 @@ class PostController extends Controller
         'comments' => 0,
     ]);
 
-    return redirect()->route('home')->with('success', 'Post has been created successfully.');
+    return back()->with('success', 'Post has been created successfully.');
 }
 // public function store(Request $request)
 // {
